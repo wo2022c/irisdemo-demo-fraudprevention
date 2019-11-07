@@ -1,0 +1,144 @@
+{
+  "transactionsHistory": [
+    {
+      "id": 1,
+      "amount": 1000.00,
+      "date": "09/25/2018",
+      "description": "RBA ATM 43581 ST",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -128.00,
+      "date": "09/24/2018",
+      "description": "CITY PHX WATER DES:PAYMENT ID:4437119787 INDN:SALHUANA, JORGE COID:4866000256 PPD",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -250.00,
+      "date": "09/24/2018",
+      "description": "Funds transfer to card 427683****** $250",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -128.00,
+      "date": "09/24/2018",
+      "description": "CITY PHX WATER DES:PAYMENT ID:4437119787 INDN:SALHUANA, COID:4866000256 PPD",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -300.00,
+      "date": "09/23/2018",
+      "description": "transfer by phone number 11231231234",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -128.00,
+      "date": "09/23/2018",
+      "description": "CITY PHX WATER DES:PAYMENT ID:4437119787 INDN:SALHUANA,JORGE COID:4866000256 PPD",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -128.00,
+      "date": "09/23/2018",
+      "description": "CITY PHX WATER DES:PAYMENT ID:4437119787 INDN:SALHUANA, JORGE COID:4866000256 PPD",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -128.00,
+      "date": "09/22/2018",
+      "description": "CITY PHX WATER DES:PAYMENT ID:4437119787 INDN:SALHUANA,JORGE COID:4866000256 PPD",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": 1000.00,
+      "date": "09/22/2018",
+      "description": "RBA ATM 43581 ST",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -128.00,
+      "date": "09/22/2018",
+      "description": "CITY PHX WATER DES:PAYMENT ID:4437119787 INDN:SALHUANA, JORGE COID:4866000256 PPD",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -250.00,
+      "date": "09/21/2018",
+      "description": "Funds transfer to card 427683****** $250",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -300.00,
+      "date": "09/20/2018",
+      "description": "transfer by phone number 11231231234",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -128.00,
+      "date": "09/20/2018",
+      "description": "CITY PHX WATER DES:PAYMENT ID:4437119787 INDN:SALHUANA,JORGE COID:4866000256 PPD",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -128.00,
+      "date": "09/20/2018",
+      "description": "CITY PHX WATER DES:PAYMENT ID:4437119787 INDN:SALHUANA, JORGE COID:4866000256 PPD",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -128.00,
+      "date": "09/20/2018",
+      "description": "CITY PHX WATER DES:PAYMENT ID:4437119787 INDN:SALHUANA,JORGE COID:4866000256 PPD",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": 1000.00,
+      "date": "09/19/2018",
+      "description": "RBA ATM 43581 ST",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -128.00,
+      "date": "09/19/2018",
+      "description": "CITY PHX WATER DES:PAYMENT ID:4437119787 INDN:SALHUANA, JORGE COID:4866000256 PPD",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -250.00,
+      "date": "09/19/2018",
+      "description": "Funds transfer to card 427683****** $250",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -128.00,
+      "date": "09/18/2018",
+      "description": "CITY PHX WATER DES:PAYMENT ID:4437119787 INDN:SALHUANA, COID:4866000256 PPD",
+      "type": "transaction"
+    },
+    {
+      "id": 1,
+      "amount": -300.00,
+      "date": "09/17/2018",
+      "description": "transfer by phone number 11231231234",
+      "type": "transaction"
+    }
+  ]
+}

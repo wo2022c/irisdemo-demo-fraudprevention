@@ -1,0 +1,169 @@
+<section class="payment__wrapper">
+  <div class="container">
+    <section class="terminal">
+      <img class="terminal__main-img" src="../../assets/images/terminal.svg" alt="bank terminal">
+      <section class="terminal__display">
+        <header class="terminal__display-header">
+          <span class="terminal__date">{{currentDate | date:'shortDate'}}</span>
+          <span class="terminal__time">{{currentTime | date:'shortTime'}}</span>
+        </header>
+        <div class="terminal__content">
+          <section class="terminal__initial" [hidden]="!terminal.state.isInitial">
+            <span class="terminal__currency">$</span>
+            <span class="terminal__value">{{requestValue.Amount}}.00</span>
+          </section>
+          <section class="terminal__waiting"
+                   [hidden]="!terminal.state.isWaiting"
+                   (click)="insertCreditCard()"
+          >
+            <span class="terminal__message">Credit card</span>
+            <img src="../../assets/images/icon-nfc.svg" alt="nfc icon" class="terminal__display-img">
+          </section>
+          <section class="terminal__working" [hidden]="!terminal.state.isWorking">
+            <span class="terminal__message">please waIt</span>
+          </section>
+          <section class="terminal__declined"
+                   [hidden]="!terminal.state.isDeclined"
+                   (click)="resetDemo()"
+          >
+            <span class="terminal__message">declined</span>
+          </section>
+          <section class="terminal__approved"
+                   [hidden]="!terminal.state.isApproved"
+                   (click)="resetDemo()"
+          >
+            <span class="terminal__message">approved</span>
+          </section>
+        </div>
+      </section>
+      <ul class="terminal__buttons-items">
+        <li class="terminal__buttons-item">
+          <button class="terminal__button"
+                  (click)="updateValue(1)"
+          >
+            1
+          </button>
+        </li>
+        <li class="terminal__buttons-item">
+          <button class="terminal__button"
+                  (click)="updateValue(2)"
+          >
+            2
+          </button>
+        </li>
+        <li class="terminal__buttons-item">
+          <button class="terminal__button"
+                  (click)="updateValue(3)"
+          >
+            3
+          </button>
+        </li>
+        <li class="terminal__buttons-item">
+          <button class="terminal__button"
+                  (click)="updateValue(4)"
+          >
+            4
+          </button>
+        </li>
+        <li class="terminal__buttons-item">
+          <button class="terminal__button"
+                  (click)="updateValue(5)"
+          >
+            5
+          </button>
+        </li>
+        <li class="terminal__buttons-item">
+          <button class="terminal__button"
+                  (click)="updateValue(6)"
+          >
+            6
+          </button>
+        </li>
+        <li class="terminal__buttons-item">
+          <button class="terminal__button"
+                  (click)="updateValue(7)"
+          >
+            7
+          </button>
+        </li>
+        <li class="terminal__buttons-item">
+          <button class="terminal__button"
+                  (click)="updateValue(8)"
+          >
+            8
+          </button>
+        </li>
+        <li class="terminal__buttons-item">
+          <button class="terminal__button"
+                  (click)="updateValue(9)"
+          >
+            9
+          </button>
+        </li>
+        <li class="terminal__buttons-item">
+          <button class="terminal__button" disabled>#</button>
+        </li>
+        <li class="terminal__buttons-item">
+          <button class="terminal__button"
+                  (click)="updateValue(0)"
+          >
+            0
+          </button>
+        </li>
+        <li class="terminal__buttons-item">
+          <button class="terminal__button" disabled>.</button>
+        </li>
+        <li class="terminal__buttons-item">
+          <button class="terminal__button terminal__button--cancel"
+                  (click)="clearValue()"
+          >
+            <img class="terminal__button-icon" src="../../assets/images/icon-cancel.svg" alt="">
+          </button>
+        </li>
+        <li class="terminal__buttons-item">
+          <button class="terminal__button terminal__button--delete"
+                  (click)="deleteLastSymbol()"
+          >
+            <img class="terminal__button-icon" src="../../assets/images/icon-delete.svg" alt="">
+          </button>
+        </li>
+        <li class="terminal__buttons-item">
+          <button class="terminal__button terminal__button--enter"
+                  (click)="askCreditCard()"
+          >
+            <img class="terminal__button-icon" src="../../assets/images/icon-enter.svg" alt="">
+          </button>
+        </li>
+      </ul>
+      <div class="terminal__credit-card-mask">
+        <div class="credit-card"
+             [class.credit-card--inserted]="isCreditCardInserted"
+        >
+          <img src="../../assets/images/credit-card.svg" alt="credit card">
+        </div>
+      </div>
+    </section>
+    <section class="info-panel">
+      <select name="operation" id="operation-type" class="info-panel__select" title="select operation type">
+        <option class="info-panel__option" value="Merchant 1">Merchant 1</option>
+        <option class="info-panel__option" value="Merchant 2">Merchant 2</option>
+      </select>
+      <span class="info-panel__label">request</span>
+      <section class="info-panel__text">
+        <ng-container *ngIf="!terminal.state.isInitial && !terminal.state.isWaiting">
+                    <pre>
+{{requestValue | json }}
+          </pre>
+        </ng-container>
+      </section>
+      <span class="info-panel__label">response</span>
+      <div class="info-panel__text">
+        <ng-container *ngIf="terminal.state.isApproved || terminal.state.isDeclined">
+          <pre>
+{{response | json }}
+          </pre>
+        </ng-container>
+      </div>
+    </section>
+  </div>
+</section>

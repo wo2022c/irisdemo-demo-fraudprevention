@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<meta charset="UTF-8">
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="expires" content="0" />
+		<meta http-equiv="pragma" content="no-cache" />
+
+		<title>IRIS Payment Fraud Prevention Demo</title>
+
+		<script language="javascript">
+
+		var ip = window.location.hostname;
+		/*
+		AMIR: Not required anymore now that we are using setTimeout()
+		var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
+		var is_explorer = navigator.userAgent.indexOf('MSIE') > -1;
+		var is_firefox = navigator.userAgent.indexOf('Firefox') > -1;
+		var is_safari = navigator.userAgent.indexOf("Safari") > -1;
+		var is_opera = navigator.userAgent.toLowerCase().indexOf("op") > -1;
+		if ((is_chrome)&&(is_safari)) { is_safari = false; }
+		if ((is_chrome)&&(is_opera)) { is_chrome = false; }
+
+		var TIMEOUT = 2000;
+		if (is_firefox == true) {
+			TIMEOUT = 0;
+		}
+
+		function sleep() {
+			var currentTime = new Date().getTime();
+			while (currentTime + TIMEOUT >= new Date().getTime()) {
+			}
+		}
+		*/
+
+		function openWindows()
+		{
+			var time=1000;
+			var callNumber=0
+			var timeout = function () { return ++callNumber*time };
+
+				openSparkMaster();
+
+				/*
+				A timeout between each opened tab is necessary for Safari.
+				Otherwise, Safari will simply open all windows on a single tab.
+				With the timeout, Safari will first block the popups. Once the user tells
+				safari that it should allow popups, the user should be able to try opening all
+				windows again and all the tabs will be opened, one every second, on a new tab.
+				*/
+
+				setTimeout("openZeppelin()", timeout());
+
+				setTimeout("openMessageTrace()", timeout());
+
+				setTimeout("openPOS()", timeout());
+
+				setTimeout("openBusinessRule()", timeout());
+
+				setTimeout("openDataLookup()", timeout());
+
+				setTimeout("openDataTransformation()", timeout());
+
+				setTimeout("openBusinessProcess()", timeout());
+
+				setTimeout("openProduction()", timeout());
+			}
+
+			function window_open(url)
+			{
+				var winReference = window.open();
+				winReference.location = url;
+				winReference.parent.focus();
+			}
+
+			function openPOS()
+			{
+				window_open('http://' + ip + ':9099');
+			}
+
+			function openProduction()
+			{
+				window_open('EnsPortal.ProductionConfig.zen?$NAMESPACE=APPINT&IRISUserName=SuperUser&IRISPassword=sys');
+			}
+
+			function openBusinessProcess()
+			{
+				window_open('EnsPortal.BPLEditor.zen?NAMESPACE=APPINT&BP=BankingSrv.BP.Transaction.AIProcess.bpl&IRISUserName=SuperUser&IRISPassword=sys')
+			}
+
+			function openDataTransformation()
+			{
+				window_open('EnsPortal.DTLEditor.zen?NAMESPACE=APPINT&DT=BankingSrv.DTL.BuildFeatures.DTL&IRISUserName=SuperUser&IRISPassword=sys')
+			}
+
+			function openDataLookup()
+			{
+				window_open('EnsPortal.LookupSettings.zen?LookupTable=Merchant_Category_Feature.lut&NAMESPACE=APPINT&IRISUserName=SuperUser&IRISPassword=sys')
+			}
+
+			function openBusinessRule()
+			{
+				window_open('EnsPortal.RuleEditor.zen?RULE=BankingSrv.Rule.AIRule&NAMESPACE=APPINT&IRISUserName=SuperUser&IRISPassword=sys')
+			}
+
+			function openMessageTrace()
+			{
+				window_open('EnsPortal.MessageViewer.zen?$NAMESPACE=APPINT&IRISUserName=SuperUser&IRISPassword=sys')
+			}
+
+			function openPMMLTestPage()
+			{
+				window_open('BankingSrv.PMML.FraudPrevModel.cls?$NAMESPACE=APPINT&IRISUserName=SuperUser&IRISPassword=sys')
+			}
+
+			function openPMML()
+			{
+				window_open('pmml.xml')
+			}
+
+			function openSparkMaster()
+			{
+				window_open('http://' + ip + ':8080')
+			}
+
+			function openZeppelin()
+			{
+				window_open('http://' + ip + ':9096/#/notebook/2DSRX14XE')
+			}
+
+			function openDatalake()
+			{
+				window_open('http://' + ip + ':9094/csp/sys/exp/%25CSP.UI.Portal.SQL.Home.zen?$NAMESPACE=APP&IRISUserName=SuperUser&IRISPassword=sys')
+			}
+
+			function openZeppelinSparkUI()
+			{
+				window_open('http://' + ip + ':4141')
+			}
+
+			function on_load()
+			{
+				/* Amir: Not required anymore now that we are using setTimeout()
+
+				if (is_safari == true) {
+					btnElem = document.getElementById('BTNALL');
+					btnElem.style.visibility = 'hidden';
+				}
+				*/
+			}
+
+			function openInstructions()
+			{
+				var btn = document.getElementById('instructionsbtn');
+				var instructions = document.getElementById('instructions');
+
+				if (btn.value == 'Show Instructions')
+				{
+					btn.value = 'Hide Instructions';
+					instructions.hidden=false;
+				}
+				else
+				{
+					btn.value = 'Show Instructions';
+					instructions.hidden=true;
+				}
+			}
+
+		</script>
+		<style>
+		.Button {
+			font-family: Arial;
+			font-size: 12px;
+			font-weight: bold;
+			color: #A4BFDB;
+			background-color: #FFFFFF;
+			width: 200px;
+			border-radius: 10px;
+		}
+		.Button:hover {
+			color: #000000;
+			background-color: #FFFFFF;
+		}
+		</style>
+	</head>
+
+	<body onload="javascript:on_load();">
+
+		<!-- Image Map Generated by http://www.image-map.net/ -->
+		<center>
+			<img src="PaymentDemo.png" usemap="#image-map" id="demoimg">
+		</center>
+
+		<map name="image-map">
+		    <area alt="See the demo on YouTube!" title="See the demo on YouTube!" href="https://www.youtube.com/watch?v=hsQPiKXJlX8" coords="55,775,210,850" shape="rect" target="_blank">
+		    <area alt="Point of Sale" title="Point of Sale" href="javascript:openPOS()" coords="56,259,257,479" shape="rect">
+		    <area alt="IRIS Interoperability" title="IRIS Interoperability" href="javascript:openProduction()" coords="436,249,655,482" shape="rect">
+		    <area alt="IRIS Data Lake" title="IRIS Data Lake" href="javascript:openDatalake()" coords="1056,261,1315,578" shape="rect">
+		    <area alt="Zeppelin Notebook" title="Zeppelin Notebook" href="javascript:openZeppelin()" coords="1543,225,1781,416" shape="rect">
+		    <area alt="Zeppelin Spark App UI" href="javascript:openZeppelinSparkUI()" coords="1750,500,1880,520" shape="rect">
+		    <area alt="Spark Cluster" href="javascript:openSparkMaster()" coords="1750,550,1880,580" shape="rect">
+		    <area alt="Open Current PMML" title="Open Current PMML" href="javascript:openPMML()" coords="436,700,655,850" shape="rect">
+		</map>
+
+		<table width="100%" style="text-align: center; background-color: #b7c8e2;">
+			<tr>
+				<td><input ID="BTNALL" type="button" class="Button" value="Open All Windows" onclick="openWindows()"/></td>
+				<td><input type="button" class="Button" value="1 - Open Production" onclick="openProduction()"/></td>
+				<td><input type="button" class="Button" value="2 - Open Business Process" onclick="openBusinessProcess()"/></td>
+				<td><input type="button" class="Button" value="3 - Open Data Transformation" onclick="openDataTransformation()"/></td>
+				<td><input type="button" class="Button" value="4 - Open Data Lookup" onclick="openDataLookup()"/></td>
+				<td><input type="button" class="Button" value="5 - Open Business Rule" onclick="openBusinessRule()"/></td>
+				<td><input type="button" class="Button" value="6 - Open POS Simulator" onclick="openPOS()"/></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+
+				<td><input type="button" class="Button" value="7 - Open Message Trace" onclick="openMessageTrace()"/></td>
+				<td><input type="button" class="Button" value="8 - Open Zeppelin" onclick="openZeppelin()"/></td>
+				<td><input type="button" class="Button" value="9 - Open Spark Master" onclick="openSparkMaster()"/></td>
+				<td><input type="button" class="Button" value="10 - Open PMML Test Page" onclick="openPMMLTestPage()"/></td>
+				<td><input type="button" class="Button" value="11 - Open PMML" onclick="openPMML()"/></td>
+				<td><input type="button" class="Button" value="Show Instructions" onclick="openInstructions()" id="instructionsbtn"/></td>
+			</tr>
+		</table>
+
+
+		<script type="text/javascript" src="imageMapResizer.min.js"></script>
+
+		<script language="javascript">
+			var demoimg = document.getElementById('demoimg');
+
+			demoimg.style.width="90%";
+
+			imageMapResize();
+		</script>
+
+				<div id="instructions" hidden="true">
+
+			<p>Explain what they are going to see using the image on this page.</p>
+
+			<p>Click on open all windows. Many tabs will be opened for you. If many tabs hasn't been opened for you or
+			just a single tab has been opened, check to see if your browser has blocked your popups.
+			If it has, tell it to allow popups and close any tab that has been opened before trying clickin on the <b>Open All Windows</b>
+			button again.</p>
+
+			<p>
+			You will be left on the tab you should start with. You should clik each tab and explain what is it
+			accordingly to the followin script:</p>
+
+			<ol>
+				<li>
+					On the production tab, explain what services, processes and operations are.</li>
+					<ul>
+						<li>Click on the green circle of the business service that receives the transaction from the POS.
+						    Call their attention to the dependency on the Business Process.</li>
+						<li>Click on the green circle of the business process. Show them how the other dependencies are shown by IRIS.
+						    Explain that this process is taking the transaction and calling the ML model to evaluate if
+						    it is a fraudulent transaction.</li>
+						<li>If it is, the process will call customer services to see if the customer has white listed that transaction.
+						</li>
+						<li>If it has, the process will continue and process the transaction with the core banking system using SOAP</li>
+						<li>If the transaction was considered fraudulent and it wasn't white listed, we will block it.</li>
+						<li>
+							Show them that the Business Process is also storing the signal on a normalized data lake that is implemented with IRIS.
+							This is done through JDBC. This allows our data scientists to compute new models based on recent transactional data, already
+							aggregated, anytime they want, without asking for CSV files from anyone (and without compromising the security of the organization).
+						</li>
+					</ul>
+				</li>
+
+				<li>Now show the Business Process tab. Show them how complex processes can be designed in a low code aproach that is
+					easy to understand and to maintain. Synchronous and Asynchronous activities, calling business rules, data transformations, initiating human workflows, sending alerts,
+					all can be easily designed here.</li>
+				<li>Call their attention to the DTL actitivity. Change to the Data Transformation tab and show them how
+					a typical data transformation is built. Data from the transaction is being mapped to the Machine Learning model message.
+					Show that on this simple DTL, there are Lookup tables that transform strings into a vector of numbers that our ML model
+					expects to receive.
+				</li>
+				<li>Jump to the Lookup table tab and show them the lookup table. We may simplify this by allowing this lookup table to be
+				    embedded on the PMML in the future.</li>
+				<li>Go back to the process tab. Click their attention to the "Call ML Model" activity. Here we are calling the PMML model that was
+				    imported from the Data Science team.</li>
+				<li>Show them that after the call we evaluate the ML results with a Business Rule. Jump to the Business Rule
+					tab and show them how it can be used not only to evaluate the result of the ML model but also to add additional
+ 	 				hard coded business rules and ALSO to combine the results of two or more ML models. This is just one way of combining
+					the results of ML models. Sometimes, on the same Business Process, you can use the result of a model as the input to a second
+					model as well.</li>
+				<li>Finish reviewing the Business Process with them quickly now. Jump to the message trace tab. Tell them that here is
+					where they can query our audit logs. Click on the last message just to leave it checked.</li>
+				<li>Jump to the POS simulator tab now. Enter with the number 10 on the keypad. Click on the wifi symbol on the POS machine to
+					swipe your card. Wait a second and you should see the result of the transaction. The transaction should be approved
+				</li>
+
+				<li>Jump back to the message trace tab. Click on the refresh button on the IRIS UI. Show them that a new transaction came in.
+					Show them the visual trace. This is one of the most important screens! Explore this trace with them. Governance.
+					Auditing. Evidence for solving conflictive problems. Tell them that they can choose to store as many months or
+					years of message as they need. Tell them that we have a message bank component
+					that allows them to keep their production systems small (and stateless) while keeping with all the messages
+					on a message bank that is searchable and allow you to resend messages if necessary. Focus on the concepts that
+					you think are important for this customer.</li>
+
+				<li>Show that we called the PMML model and we got a probability of fraud of only 10%. The business rule decided
+				that this threshold doesn't represent a threat and that is why the transaction
+				was processed immediately. Tell them that we will see where that PMML model came from soon.</li>
+				<li>Now jump back to the POS simulator. Refresh the entire tab and execute a new transaction of US$ 1000. This
+				transaction should be declined.</li>
+				<li>Go back to the message trace tab and refresh it using IRIS UI to show that a new transaction just came in.
+				Show that the probability of fraud was much higher now and that the business rule decided that this is definitely a
+				fraudulent transaction. We called customer services and this transaction wasn't white listed by our customer.
+				That's it! This is a fraudulent transaction!</li>
+				<li>
+					Now go to the Zeppelin tab and show them how we built the model. You will find there two notebooks:
+					<ul>
+						<li>Notebook 1 - Introduction: Just show how you can access data on IRIS using JDBC, Scala with Spark and Scala with Python</li>
+						<li>Notebook 2 - Building the Models (Scala): Show how the model was built. You can try running the notebooks.
+							There is a PLAY button on the top of the screen that runs all the code on a notebook. If you have problems
+							running it, you may try giving more memory to your Docker Machine.</li>
+						<li>If you run the model, you will notice that PMML files will be generated. The production on iotmon will consume these PMML files.</li>
+						<li>You may want to disable the business service that consumes the PMML file so you may be able to open them and show the XML of
+						one of them. The folder is under git/Demos/mobilebanking/common_shared/pmml/</li>
+						<li>You can also click on button 10 and 11 on the main demo screen to see the PMML and test it. You don't need to run the Zeppelin notebook to use these buttons.</li>
+					</ul>
+				</li>
+			</ol>
+		</div>
+
+
+	</body>
+</html>

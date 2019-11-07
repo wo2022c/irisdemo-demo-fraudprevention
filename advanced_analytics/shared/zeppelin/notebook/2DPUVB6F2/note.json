@@ -1,0 +1,604 @@
+{
+  "paragraphs": [
+    {
+      "title": "Merchant Categories",
+      "text": "%md\n\nThe merchant category is an important feature for a fraud prediction model because people tend to follow the same expenditure pattern on each category.\n\nFor instance, it is perfectly common to spend US$10 or even US$200 on Food. But it is uncommon to spend US$1000 (to be very explicit). On the other hand,\nit is very common for people to spend a lot on healthcare or hotel services.\n\nCategories are stored on the *IRISDemo.BC_MERCH_CATEGORY* table. The column *BC_MERCH_CAT_CODE* is an integer that is used as a feature of our model. \n\nLet\u0027s see what are the categories we have:",
+      "user": "anonymous",
+      "dateUpdated": "Dec 9, 2018 4:12:49 PM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "title": true,
+        "results": {},
+        "enabled": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eThe merchant category is an important feature for a fraud prediction model because people tend to follow the same expenditure pattern on each category.\u003c/p\u003e\n\u003cp\u003eFor instance, it is perfectly common to spend US$10 or even US$200 on Food. But it is uncommon to spend US$1000 (to be very explicit). On the other hand,\u003cbr/\u003eit is very common for people to spend a lot on healthcare or hotel services.\u003c/p\u003e\n\u003cp\u003eCategories are stored on the \u003cem\u003eIRISDemo.BC_MERCH_CATEGORY\u003c/em\u003e table. The column \u003cem\u003eBC_MERCH_CAT_CODE\u003c/em\u003e is an integer that is used as a feature of our model. \u003c/p\u003e\n\u003cp\u003eLet\u0026rsquo;s see what are the categories we have:\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1536869149553_-1653856292",
+      "id": "20180913-194145_1724792194",
+      "dateCreated": "Sep 13, 2018 8:05:49 PM",
+      "dateStarted": "Oct 3, 2018 4:26:34 PM",
+      "dateFinished": "Oct 3, 2018 4:26:37 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Merchant Categories",
+      "text": "%irisjdbc\n\nselect * from \nIRISDemo.BC_MERCH_CATEGORY",
+      "user": "anonymous",
+      "dateUpdated": "Nov 7, 2019 6:44:55 PM",
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "title": false,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": true
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "ID\tBC_MERCH_CAT_CODE\tBC_MERCH_CAT_DESC\n1\t12\tTransportation\n2\t4\tHealth\n3\t9\tOtherservices\n4\t3\tFood\n5\t6\tHotelservices\n6\t0\tBarsandrestaurants\n7\t11\tTech\n8\t10\tSportsandtoys\n9\t14\tWellnessandbeauty\n10\t7\tHyper\n11\t2\tFashion\n12\t5\tHome\n13\t1\tContents\n14\t13\tTravel\n15\t8\tLeisure\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1536869149554_-1652702045",
+      "id": "20180827-231906_879263362",
+      "dateCreated": "Sep 13, 2018 8:05:49 PM",
+      "dateStarted": "Nov 7, 2019 6:44:56 PM",
+      "dateFinished": "Nov 7, 2019 6:44:58 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Merchants",
+      "text": "%md\n\nMerchants are also important for our model. Take the *Food* category for instance. Food on a merchant can be typically more expensive than on another merchant that also is under category food.\n\nSo, both the specific merchant AND the merchant\u0027s category become important features for our model.\n\nMerchants are on table *IRISDemo.BC_MERCH_ACCOUNT*. The next query will give you a list of merchants, their feature code and their category feature code:",
+      "user": "anonymous",
+      "dateUpdated": "Dec 9, 2018 4:12:49 PM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "title": true,
+        "results": {},
+        "enabled": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eMerchants are also important for our model. Take the \u003cem\u003eFood\u003c/em\u003e category for instance. Food on a merchant can be typically more expensive than on another merchant that also is under category food.\u003c/p\u003e\n\u003cp\u003eSo, both the specific merchant AND the merchant\u0026rsquo;s category become important features for our model.\u003c/p\u003e\n\u003cp\u003eMerchants are on table \u003cem\u003eIRISDemo.BC_MERCH_ACCOUNT\u003c/em\u003e. The next query will give you a list of merchants, their feature code and their category feature code:\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1536869149555_-1653086794",
+      "id": "20180913-194736_14694211",
+      "dateCreated": "Sep 13, 2018 8:05:49 PM",
+      "dateStarted": "Sep 13, 2018 8:07:31 PM",
+      "dateFinished": "Sep 13, 2018 8:07:31 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%irisjdbc\n\nselect BC_ACC_NUMBER, BC_MERCH_CODE, BC_MERCH_CATEGORY-\u003eBC_MERCH_CAT_DESC, BC_MERCH_CATEGORY-\u003eBC_MERCH_CAT_CODE from IRISDemo.BC_MERCH_ACCOUNT",
+      "user": "anonymous",
+      "dateUpdated": "Dec 9, 2018 4:12:49 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/sql",
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "BC_ACC_NUMBER\tBC_MERCH_CODE\tBC_MERCH_CAT_DESC\tBC_MERCH_CAT_CODE\nM348934600\t30\tTransportation\t12\nM1823072687\t18\tTransportation\t12\nM50039827\t36\tHealth\t4\nM1888755466\t22\tOtherservices\t9\nM1053599405\t0\tHealth\t4\nM85975013\t45\tFood\t3\nM480139044\t34\tHealth\t4\nM692898500\t39\tHealth\t4\nM348875670\t29\tHotelservices\t6\nM151143676\t9\tBarsandrestaurants\t0\nM840466850\t42\tTech\t11\nM1741626453\t15\tSportsandtoys\t10\nM1535107174\t10\tWellnessandbeauty\t14\nM855959430\t43\tHyper\t7\nM349281107\t31\tFashion\t2\nM209847108\t27\tWellnessandbeauty\t14\nM2122776122\t28\tHome\t5\nM1873032707\t21\tHotelservices\t6\nM2011752106\t25\tHotelservices\t6\nM857378720\t44\tHotelservices\t6\nM1198415165\t2\tWellnessandbeauty\t14\nM1748431652\t16\tWellnessandbeauty\t14\nM980657600\t49\tSportsandtoys\t10\nM1352454843\t5\tHotelservices\t6\nM117188757\t1\tHome\t5\nM547558035\t37\tFashion\t2\nM17379832\t14\tSportsandtoys\t10\nM1649169323\t12\tSportsandtoys\t10\nM1946091778\t24\tWellnessandbeauty\t14\nM97925176\t48\tWellnessandbeauty\t14\nM923029380\t46\tHome\t5\nM1353266412\t6\tHotelservices\t6\nM1842530320\t19\tTech\t11\nM677738360\t38\tContents\t1\nM1313686961\t4\tContents\t1\nM732195782\t40\tTravel\t13\nM1600850729\t11\tFashion\t2\nM1872033263\t20\tHome\t5\nM3697346\t32\tLeisure\t8\nM495352832\t35\tTravel\t13\nM1400236507\t7\tHome\t5\nM1294758098\t3\tLeisure\t8\nM1913465890\t23\tHealth\t4\nM45060432\t33\tHotelservices\t6\nM78078399\t41\tWellnessandbeauty\t14\nM2080407379\t26\tTravel\t13\nM1788569036\t17\tSportsandtoys\t10\nM1416436880\t8\tTech\t11\nM933210764\t47\tSportsandtoys\t10\nM1726401631\t13\tTravel\t13\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1536869149555_-1653086794",
+      "id": "20180815-193023_586425323",
+      "dateCreated": "Sep 13, 2018 8:05:49 PM",
+      "dateStarted": "Dec 9, 2018 4:12:51 PM",
+      "dateFinished": "Dec 9, 2018 4:12:52 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Spark",
+      "text": "%md\n\nUp to now, we have been using JDBC to query IRIS. There are other tables on our normalized data lake such as *IRISdemo.BC_TRANSACTIONS*. This table holds\nall debit card transactions. \n\nLet\u0027s use Spark to get a dataframe with the first 100 transactions:",
+      "user": "anonymous",
+      "dateUpdated": "Dec 9, 2018 4:12:51 PM",
+      "config": {
+        "lineNumbers": false,
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "title": true,
+        "results": {},
+        "enabled": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eUp to now, we have been using JDBC to query IRIS. There are other tables on our normalized data lake such as \u003cem\u003eIRISdemo.BC_TRANSACTIONS\u003c/em\u003e. This table holds\u003cbr/\u003eall debit card transactions. \u003c/p\u003e\n\u003cp\u003eLet\u0026rsquo;s use Spark to get a dataframe with the first 100 transactions:\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1536869149555_-1653086794",
+      "id": "20180815-193116_2098244034",
+      "dateCreated": "Sep 13, 2018 8:05:49 PM",
+      "dateStarted": "Sep 13, 2018 8:07:33 PM",
+      "dateFinished": "Sep 13, 2018 8:07:33 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\n\ndf \u003d spark.read.format(\"iris\").option(\"dbtable\",\"IRISDemo.BC_TRANSACTIONS\").load().limit(100)\ndf.show()",
+      "user": "anonymous",
+      "dateUpdated": "Nov 7, 2019 6:45:06 PM",
+      "config": {
+        "lineNumbers": false,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "title": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---+---------------+----------------+------------------------+------------------------+-----------------+-----------------+-------------------------+-------------------------+--------------------+-------------+------------+--------------------+-----------------------+\n| ID|BC_TRANS_AMOUNT|BC_TRANS_SRC_ACC|BC_TRANS_SRC_ACC_NEW_BAL|BC_TRANS_SRC_ACC_OLD_BAL|BC_TRANS_IS_FRAUD|BC_TRANS_DEST_ACC|BC_TRANS_DEST_ACC_NEW_BAL|BC_TRANS_DEST_ACC_OLD_BAL|       BC_TRANS_DATE|BC_TRANS_TYPE|BC_TRANS_NUM|BC_TRANS_WAS_BLOCKED|BC_TRANS_WHITELISTED_BY|\n+---+---------------+----------------+------------------------+------------------------+-----------------+-----------------+-------------------------+-------------------------+--------------------+-------------+------------+--------------------+-----------------------+\n|  1|           4.55|               1|                 5995.45|                  6000.0|            false|                2|                 -5995.45|                  -6000.0|2018-01-01 00:00:...|      PAYMENT|           1|               false|                      0|\n|  2|          39.68|               3|                 5960.32|                  6000.0|            false|                2|      -5955.7699999999995|                 -5995.45|2018-01-01 00:00:...|      PAYMENT|           2|               false|                      0|\n|  3|          26.89|               4|                 5973.11|                  6000.0|            false|                5|                 -5973.11|                  -6000.0|2018-01-01 00:00:...|      PAYMENT|           3|               false|                      0|\n|  4|          17.25|               6|                 5982.75|                  6000.0|            false|                2|      -5938.5199999999995|      -5955.7699999999995|2018-01-01 00:00:...|      PAYMENT|           4|               false|                      0|\n|  5|          35.72|               7|                 5964.28|                  6000.0|            false|                2|       -5902.799999999999|      -5938.5199999999995|2018-01-01 00:00:...|      PAYMENT|           5|               false|                      0|\n|  6|          25.81|               8|                 5974.19|                  6000.0|            false|                2|       -5876.989999999999|       -5902.799999999999|2018-01-01 00:00:...|      PAYMENT|           6|               false|                      0|\n|  7|            9.1|               9|                  5990.9|                  6000.0|            false|                2|      -5867.8899999999985|       -5876.989999999999|2018-01-01 00:00:...|      PAYMENT|           7|               false|                      0|\n|  8|          21.17|              10|                 5978.83|                  6000.0|            false|                2|       -5846.719999999998|      -5867.8899999999985|2018-01-01 00:00:...|      PAYMENT|           8|               false|                      0|\n|  9|           32.4|              11|                  5967.6|                  6000.0|            false|                2|       -5814.319999999999|       -5846.719999999998|2018-01-01 00:00:...|      PAYMENT|           9|               false|                      0|\n| 10|           35.4|              12|                  5964.6|                  6000.0|            false|                2|       -5778.919999999999|       -5814.319999999999|2018-01-01 00:00:...|      PAYMENT|          10|               false|                      0|\n| 11|          14.95|              13|                 5985.05|                  6000.0|            false|                2|       -5763.969999999999|       -5778.919999999999|2018-01-01 00:00:...|      PAYMENT|          11|               false|                      0|\n| 12|           1.51|              14|                 5998.49|                  6000.0|            false|                5|       -5971.599999999999|                 -5973.11|2018-01-01 00:00:...|      PAYMENT|          12|               false|                      0|\n| 13|          68.79|              15|                 5931.21|                  6000.0|            false|               16|                 -5931.21|                  -6000.0|2018-01-01 00:00:...|      PAYMENT|          13|               false|                      0|\n| 14|          20.32|              17|                 5979.68|                  6000.0|            false|                5|                 -5951.28|       -5971.599999999999|2018-01-01 00:00:...|      PAYMENT|          14|               false|                      0|\n| 15|          13.56|              18|                 5986.44|                  6000.0|            false|                2|       -5750.409999999999|       -5763.969999999999|2018-01-01 00:00:...|      PAYMENT|          15|               false|                      0|\n| 16|          30.19|              19|                 5969.81|                  6000.0|            false|                2|       -5720.219999999999|       -5750.409999999999|2018-01-01 00:00:...|      PAYMENT|          16|               false|                      0|\n| 17|          17.54|              20|                 5982.46|                  6000.0|            false|                5|                 -5933.74|                 -5951.28|2018-01-01 00:00:...|      PAYMENT|          17|               false|                      0|\n| 18|          40.69|              21|                 5959.31|                  6000.0|            false|                2|                 -5679.53|       -5720.219999999999|2018-01-01 00:00:...|      PAYMENT|          18|               false|                      0|\n| 19|          21.21|              22|                 5978.79|                  6000.0|            false|                2|                 -5658.32|                 -5679.53|2018-01-01 00:00:...|      PAYMENT|          19|               false|                      0|\n| 20|          10.09|              23|                 5989.91|                  6000.0|            false|                2|                 -5648.23|                 -5658.32|2018-01-01 00:00:...|      PAYMENT|          20|               false|                      0|\n+---+---------------+----------------+------------------------+------------------------+-----------------+-----------------+-------------------------+-------------------------+--------------------+-------------+------------+--------------------+-----------------------+\nonly showing top 20 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1536869149555_-1653086794",
+      "id": "20180815-194102_349085272",
+      "dateCreated": "Sep 13, 2018 8:05:49 PM",
+      "dateStarted": "Nov 3, 2019 10:42:52 PM",
+      "dateFinished": "Nov 3, 2019 10:43:31 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\nBut that is not pretty... Zeppelin can help us with some magic:",
+      "user": "anonymous",
+      "dateUpdated": "Dec 9, 2018 4:12:51 PM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "results": {},
+        "enabled": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eBut that is not pretty\u0026hellip; Zeppelin can help us with some magic:\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1536869149556_-1655010539",
+      "id": "20180815-194635_389054367",
+      "dateCreated": "Sep 13, 2018 8:05:49 PM",
+      "dateStarted": "Sep 13, 2018 8:07:33 PM",
+      "dateFinished": "Sep 13, 2018 8:07:33 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\n\nz.show(df)",
+      "user": "anonymous",
+      "dateUpdated": "Nov 3, 2019 10:45:08 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/text",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "ID\tBC_TRANS_AMOUNT\tBC_TRANS_SRC_ACC\tBC_TRANS_SRC_ACC_NEW_BAL\tBC_TRANS_SRC_ACC_OLD_BAL\tBC_TRANS_IS_FRAUD\tBC_TRANS_DEST_ACC\tBC_TRANS_DEST_ACC_NEW_BAL\tBC_TRANS_DEST_ACC_OLD_BAL\tBC_TRANS_DATE\tBC_TRANS_TYPE\tBC_TRANS_NUM\tBC_TRANS_WAS_BLOCKED\tBC_TRANS_WHITELISTED_BY\n1\t4.55\t1\t5995.45\t6000.0\tfalse\t2\t-5995.45\t-6000.0\t2018-01-01 00:00:11.0\tPAYMENT\t1\tfalse\t0\n2\t39.68\t3\t5960.32\t6000.0\tfalse\t2\t-5955.7699999999995\t-5995.45\t2018-01-01 00:00:17.0\tPAYMENT\t2\tfalse\t0\n3\t26.89\t4\t5973.11\t6000.0\tfalse\t5\t-5973.11\t-6000.0\t2018-01-01 00:00:22.0\tPAYMENT\t3\tfalse\t0\n4\t17.25\t6\t5982.75\t6000.0\tfalse\t2\t-5938.5199999999995\t-5955.7699999999995\t2018-01-01 00:00:03.0\tPAYMENT\t4\tfalse\t0\n5\t35.72\t7\t5964.28\t6000.0\tfalse\t2\t-5902.799999999999\t-5938.5199999999995\t2018-01-01 00:00:21.0\tPAYMENT\t5\tfalse\t0\n6\t25.81\t8\t5974.19\t6000.0\tfalse\t2\t-5876.989999999999\t-5902.799999999999\t2018-01-01 00:00:23.0\tPAYMENT\t6\tfalse\t0\n7\t9.1\t9\t5990.9\t6000.0\tfalse\t2\t-5867.8899999999985\t-5876.989999999999\t2018-01-01 00:00:09.0\tPAYMENT\t7\tfalse\t0\n8\t21.17\t10\t5978.83\t6000.0\tfalse\t2\t-5846.719999999998\t-5867.8899999999985\t2018-01-01 00:00:15.0\tPAYMENT\t8\tfalse\t0\n9\t32.4\t11\t5967.6\t6000.0\tfalse\t2\t-5814.319999999999\t-5846.719999999998\t2018-01-01 00:00:08.0\tPAYMENT\t9\tfalse\t0\n10\t35.4\t12\t5964.6\t6000.0\tfalse\t2\t-5778.919999999999\t-5814.319999999999\t2018-01-01 00:00:14.0\tPAYMENT\t10\tfalse\t0\n11\t14.95\t13\t5985.05\t6000.0\tfalse\t2\t-5763.969999999999\t-5778.919999999999\t2018-01-01 00:00:01.0\tPAYMENT\t11\tfalse\t0\n12\t1.51\t14\t5998.49\t6000.0\tfalse\t5\t-5971.599999999999\t-5973.11\t2018-01-01 00:00:15.0\tPAYMENT\t12\tfalse\t0\n13\t68.79\t15\t5931.21\t6000.0\tfalse\t16\t-5931.21\t-6000.0\t2018-01-01 00:00:22.0\tPAYMENT\t13\tfalse\t0\n14\t20.32\t17\t5979.68\t6000.0\tfalse\t5\t-5951.28\t-5971.599999999999\t2018-01-01 00:00:09.0\tPAYMENT\t14\tfalse\t0\n15\t13.56\t18\t5986.44\t6000.0\tfalse\t2\t-5750.409999999999\t-5763.969999999999\t2018-01-01 00:00:21.0\tPAYMENT\t15\tfalse\t0\n16\t30.19\t19\t5969.81\t6000.0\tfalse\t2\t-5720.219999999999\t-5750.409999999999\t2018-01-01 00:00:20.0\tPAYMENT\t16\tfalse\t0\n17\t17.54\t20\t5982.46\t6000.0\tfalse\t5\t-5933.74\t-5951.28\t2018-01-01 00:00:01.0\tPAYMENT\t17\tfalse\t0\n18\t40.69\t21\t5959.31\t6000.0\tfalse\t2\t-5679.53\t-5720.219999999999\t2018-01-01 00:00:11.0\tPAYMENT\t18\tfalse\t0\n19\t21.21\t22\t5978.79\t6000.0\tfalse\t2\t-5658.32\t-5679.53\t2018-01-01 00:00:08.0\tPAYMENT\t19\tfalse\t0\n20\t10.09\t23\t5989.91\t6000.0\tfalse\t2\t-5648.23\t-5658.32\t2018-01-01 00:00:04.0\tPAYMENT\t20\tfalse\t0\n21\t19.31\t24\t5980.69\t6000.0\tfalse\t2\t-5628.919999999999\t-5648.23\t2018-01-01 00:00:00.0\tPAYMENT\t21\tfalse\t0\n22\t44.22\t25\t5955.78\t6000.0\tfalse\t2\t-5584.699999999999\t-5628.919999999999\t2018-01-01 00:00:20.0\tPAYMENT\t22\tfalse\t0\n23\t44.39\t26\t5955.61\t6000.0\tfalse\t2\t-5540.309999999999\t-5584.699999999999\t2018-01-01 00:00:11.0\tPAYMENT\t23\tfalse\t0\n24\t30.72\t27\t5969.28\t6000.0\tfalse\t2\t-5509.589999999998\t-5540.309999999999\t2018-01-01 00:00:19.0\tPAYMENT\t24\tfalse\t0\n25\t29.84\t28\t5970.16\t6000.0\tfalse\t2\t-5479.749999999998\t-5509.589999999998\t2018-01-01 00:00:16.0\tPAYMENT\t25\tfalse\t0\n26\t12.1\t29\t5987.9\t6000.0\tfalse\t2\t-5467.649999999998\t-5479.749999999998\t2018-01-01 00:00:23.0\tPAYMENT\t26\tfalse\t0\n27\t24.84\t30\t5975.16\t6000.0\tfalse\t2\t-5442.809999999998\t-5467.649999999998\t2018-01-01 00:00:00.0\tPAYMENT\t27\tfalse\t0\n28\t16.42\t31\t5983.58\t6000.0\tfalse\t2\t-5426.389999999998\t-5442.809999999998\t2018-01-01 00:00:12.0\tPAYMENT\t28\tfalse\t0\n29\t2.19\t32\t5997.81\t6000.0\tfalse\t2\t-5424.199999999998\t-5426.389999999998\t2018-01-01 00:00:11.0\tPAYMENT\t29\tfalse\t0\n30\t32.27\t33\t5967.73\t6000.0\tfalse\t2\t-5391.929999999998\t-5424.199999999998\t2018-01-01 00:00:07.0\tPAYMENT\t30\tfalse\t0\n31\t28.09\t34\t5971.91\t6000.0\tfalse\t2\t-5363.839999999997\t-5391.929999999998\t2018-01-01 00:00:08.0\tPAYMENT\t31\tfalse\t0\n32\t16.13\t35\t5983.87\t6000.0\tfalse\t5\t-5917.61\t-5933.74\t2018-01-01 00:00:10.0\tPAYMENT\t32\tfalse\t0\n33\t32.7\t36\t5967.3\t6000.0\tfalse\t2\t-5331.139999999998\t-5363.839999999997\t2018-01-01 00:00:06.0\tPAYMENT\t33\tfalse\t0\n34\t25.53\t37\t5974.47\t6000.0\tfalse\t2\t-5305.609999999998\t-5331.139999999998\t2018-01-01 00:00:08.0\tPAYMENT\t34\tfalse\t0\n35\t39.22\t38\t5960.78\t6000.0\tfalse\t2\t-5266.389999999998\t-5305.609999999998\t2018-01-01 00:00:17.0\tPAYMENT\t35\tfalse\t0\n36\t46.14\t39\t5953.86\t6000.0\tfalse\t2\t-5220.249999999997\t-5266.389999999998\t2018-01-01 00:00:03.0\tPAYMENT\t36\tfalse\t0\n37\t29.55\t40\t5970.45\t6000.0\tfalse\t2\t-5190.699999999997\t-5220.249999999997\t2018-01-01 00:00:23.0\tPAYMENT\t37\tfalse\t0\n38\t36.88\t41\t5963.12\t6000.0\tfalse\t5\t-5880.73\t-5917.61\t2018-01-01 00:00:22.0\tPAYMENT\t38\tfalse\t0\n39\t36.15\t42\t5963.85\t6000.0\tfalse\t2\t-5154.549999999997\t-5190.699999999997\t2018-01-01 00:00:11.0\tPAYMENT\t39\tfalse\t0\n40\t2.81\t43\t5997.19\t6000.0\tfalse\t2\t-5151.739999999997\t-5154.549999999997\t2018-01-01 00:00:06.0\tPAYMENT\t40\tfalse\t0\n41\t87.67\t44\t5912.33\t6000.0\tfalse\t45\t-5912.33\t-6000.0\t2018-01-01 00:00:00.0\tPAYMENT\t41\tfalse\t0\n42\t11.17\t46\t5988.83\t6000.0\tfalse\t5\t-5869.5599999999995\t-5880.73\t2018-01-01 00:00:13.0\tPAYMENT\t42\tfalse\t0\n43\t105.59\t47\t5894.41\t6000.0\tfalse\t48\t-5894.41\t-6000.0\t2018-01-01 00:00:23.0\tPAYMENT\t43\tfalse\t0\n44\t15.25\t49\t5984.75\t6000.0\tfalse\t2\t-5136.489999999997\t-5151.739999999997\t2018-01-01 00:00:20.0\tPAYMENT\t44\tfalse\t0\n45\t33.36\t50\t5966.64\t6000.0\tfalse\t2\t-5103.129999999997\t-5136.489999999997\t2018-01-01 00:00:20.0\tPAYMENT\t45\tfalse\t0\n46\t32.96\t51\t5967.04\t6000.0\tfalse\t2\t-5070.169999999997\t-5103.129999999997\t2018-01-01 00:00:13.0\tPAYMENT\t46\tfalse\t0\n47\t16.96\t52\t5983.04\t6000.0\tfalse\t2\t-5053.209999999997\t-5070.169999999997\t2018-01-01 00:00:08.0\tPAYMENT\t47\tfalse\t0\n48\t49.91\t53\t5950.09\t6000.0\tfalse\t5\t-5819.65\t-5869.5599999999995\t2018-01-01 00:00:14.0\tPAYMENT\t48\tfalse\t0\n49\t0.93\t54\t5999.07\t6000.0\tfalse\t2\t-5052.279999999997\t-5053.209999999997\t2018-01-01 00:00:16.0\tPAYMENT\t49\tfalse\t0\n50\t37.71\t55\t5962.29\t6000.0\tfalse\t2\t-5014.569999999997\t-5052.279999999997\t2018-01-01 00:00:00.0\tPAYMENT\t50\tfalse\t0\n51\t12.53\t56\t5987.47\t6000.0\tfalse\t5\t-5807.12\t-5819.65\t2018-01-01 00:00:09.0\tPAYMENT\t51\tfalse\t0\n52\t56.97\t57\t5943.03\t6000.0\tfalse\t2\t-4957.599999999997\t-5014.569999999997\t2018-01-01 00:00:04.0\tPAYMENT\t52\tfalse\t0\n53\t31.32\t58\t5968.68\t6000.0\tfalse\t2\t-4926.279999999997\t-4957.599999999997\t2018-01-01 00:00:20.0\tPAYMENT\t53\tfalse\t0\n54\t21.15\t59\t5978.85\t6000.0\tfalse\t2\t-4905.129999999997\t-4926.279999999997\t2018-01-01 00:00:11.0\tPAYMENT\t54\tfalse\t0\n55\t3.12\t60\t5996.88\t6000.0\tfalse\t2\t-4902.0099999999975\t-4905.129999999997\t2018-01-01 00:00:08.0\tPAYMENT\t55\tfalse\t0\n56\t33.41\t61\t5966.59\t6000.0\tfalse\t2\t-4868.599999999998\t-4902.0099999999975\t2018-01-01 00:00:10.0\tPAYMENT\t56\tfalse\t0\n57\t45.92\t62\t5954.08\t6000.0\tfalse\t5\t-5761.2\t-5807.12\t2018-01-01 00:00:12.0\tPAYMENT\t57\tfalse\t0\n58\t36.82\t63\t5963.18\t6000.0\tfalse\t2\t-4831.779999999998\t-4868.599999999998\t2018-01-01 00:00:14.0\tPAYMENT\t58\tfalse\t0\n59\t20.05\t64\t5979.95\t6000.0\tfalse\t5\t-5741.15\t-5761.2\t2018-01-01 00:00:20.0\tPAYMENT\t59\tfalse\t0\n60\t43.75\t65\t5956.25\t6000.0\tfalse\t2\t-4788.029999999998\t-4831.779999999998\t2018-01-01 00:00:22.0\tPAYMENT\t60\tfalse\t0\n61\t44.88\t66\t5955.12\t6000.0\tfalse\t2\t-4743.149999999998\t-4788.029999999998\t2018-01-01 00:00:23.0\tPAYMENT\t61\tfalse\t0\n62\t18.45\t67\t5981.55\t6000.0\tfalse\t2\t-4724.699999999998\t-4743.149999999998\t2018-01-01 00:00:01.0\tPAYMENT\t62\tfalse\t0\n63\t29.66\t68\t5970.34\t6000.0\tfalse\t2\t-4695.039999999998\t-4724.699999999998\t2018-01-01 00:00:12.0\tPAYMENT\t63\tfalse\t0\n64\t28.38\t69\t5971.62\t6000.0\tfalse\t2\t-4666.659999999998\t-4695.039999999998\t2018-01-01 00:00:06.0\tPAYMENT\t64\tfalse\t0\n65\t62.76\t70\t5937.24\t6000.0\tfalse\t2\t-4603.899999999998\t-4666.659999999998\t2018-01-01 00:00:08.0\tPAYMENT\t65\tfalse\t0\n66\t21.6\t71\t5978.4\t6000.0\tfalse\t2\t-4582.299999999997\t-4603.899999999998\t2018-01-01 00:00:01.0\tPAYMENT\t66\tfalse\t0\n67\t30.74\t72\t5969.26\t6000.0\tfalse\t2\t-4551.559999999998\t-4582.299999999997\t2018-01-01 00:00:01.0\tPAYMENT\t67\tfalse\t0\n68\t58.33\t73\t5941.67\t6000.0\tfalse\t2\t-4493.229999999998\t-4551.559999999998\t2018-01-01 00:00:08.0\tPAYMENT\t68\tfalse\t0\n69\t44.07\t74\t5955.93\t6000.0\tfalse\t2\t-4449.159999999998\t-4493.229999999998\t2018-01-01 00:00:00.0\tPAYMENT\t69\tfalse\t0\n70\t6.52\t75\t5993.48\t6000.0\tfalse\t2\t-4442.639999999998\t-4449.159999999998\t2018-01-01 00:00:03.0\tPAYMENT\t70\tfalse\t0\n71\t2.96\t76\t5997.04\t6000.0\tfalse\t5\t-5738.19\t-5741.15\t2018-01-01 00:00:00.0\tPAYMENT\t71\tfalse\t0\n72\t44.69\t77\t5955.31\t6000.0\tfalse\t2\t-4397.949999999998\t-4442.639999999998\t2018-01-01 00:00:08.0\tPAYMENT\t72\tfalse\t0\n73\t5.01\t78\t5994.99\t6000.0\tfalse\t5\t-5733.179999999999\t-5738.19\t2018-01-01 00:00:08.0\tPAYMENT\t73\tfalse\t0\n74\t9.74\t79\t5990.26\t6000.0\tfalse\t2\t-4388.209999999998\t-4397.949999999998\t2018-01-01 00:00:20.0\tPAYMENT\t74\tfalse\t0\n75\t10.1\t80\t5989.9\t6000.0\tfalse\t2\t-4378.109999999998\t-4388.209999999998\t2018-01-01 00:00:01.0\tPAYMENT\t75\tfalse\t0\n76\t58.64\t81\t5941.36\t6000.0\tfalse\t2\t-4319.4699999999975\t-4378.109999999998\t2018-01-01 00:00:11.0\tPAYMENT\t76\tfalse\t0\n77\t29.2\t82\t5970.8\t6000.0\tfalse\t2\t-4290.269999999998\t-4319.4699999999975\t2018-01-01 00:00:10.0\tPAYMENT\t77\tfalse\t0\n78\t32.6\t83\t5967.4\t6000.0\tfalse\t84\t-5967.4\t-6000.0\t2018-01-01 00:00:06.0\tPAYMENT\t78\tfalse\t0\n79\t52.35\t85\t5947.65\t6000.0\tfalse\t2\t-4237.919999999997\t-4290.269999999998\t2018-01-01 00:00:16.0\tPAYMENT\t79\tfalse\t0\n80\t159.92\t86\t5840.08\t6000.0\tfalse\t48\t-5734.49\t-5894.41\t2018-01-01 00:00:07.0\tPAYMENT\t80\tfalse\t0\n81\t26.37\t87\t5973.63\t6000.0\tfalse\t2\t-4211.549999999997\t-4237.919999999997\t2018-01-01 00:00:19.0\tPAYMENT\t81\tfalse\t0\n82\t49.07\t88\t5950.93\t6000.0\tfalse\t2\t-4162.479999999998\t-4211.549999999997\t2018-01-01 00:00:02.0\tPAYMENT\t82\tfalse\t0\n83\t35.74\t89\t5964.26\t6000.0\tfalse\t2\t-4126.739999999998\t-4162.479999999998\t2018-01-01 00:00:06.0\tPAYMENT\t83\tfalse\t0\n84\t47.53\t90\t5952.47\t6000.0\tfalse\t5\t-5685.65\t-5733.179999999999\t2018-01-01 00:00:21.0\tPAYMENT\t84\tfalse\t0\n85\t29.87\t91\t5970.13\t6000.0\tfalse\t2\t-4096.869999999998\t-4126.739999999998\t2018-01-01 00:00:20.0\tPAYMENT\t85\tfalse\t0\n86\t20.31\t92\t5979.69\t6000.0\tfalse\t2\t-4076.559999999998\t-4096.869999999998\t2018-01-01 00:00:00.0\tPAYMENT\t86\tfalse\t0\n87\t10.59\t93\t5989.41\t6000.0\tfalse\t2\t-4065.969999999998\t-4076.559999999998\t2018-01-01 00:00:10.0\tPAYMENT\t87\tfalse\t0\n88\t21.92\t94\t5978.08\t6000.0\tfalse\t2\t-4044.049999999998\t-4065.969999999998\t2018-01-01 00:00:18.0\tPAYMENT\t88\tfalse\t0\n89\t44.26\t95\t5955.74\t6000.0\ttrue\t96\t-5955.74\t-6000.0\t2018-01-01 00:00:15.0\tPAYMENT\t89\tfalse\t0\n90\t324.5\t97\t5675.5\t6000.0\ttrue\t96\t-5631.24\t-5955.74\t2018-01-01 00:00:10.0\tPAYMENT\t90\tfalse\t0\n91\t26.07\t98\t5973.93\t6000.0\tfalse\t5\t-5659.58\t-5685.65\t2018-01-01 00:00:06.0\tPAYMENT\t91\tfalse\t0\n92\t10.88\t99\t5989.12\t6000.0\tfalse\t2\t-4033.169999999998\t-4044.049999999998\t2018-01-01 00:00:13.0\tPAYMENT\t92\tfalse\t0\n93\t8.05\t100\t5991.95\t6000.0\tfalse\t2\t-4025.1199999999976\t-4033.169999999998\t2018-01-01 00:00:14.0\tPAYMENT\t93\tfalse\t0\n94\t25.59\t101\t5974.41\t6000.0\tfalse\t2\t-3999.5299999999975\t-4025.1199999999976\t2018-01-01 00:00:15.0\tPAYMENT\t94\tfalse\t0\n95\t15.26\t102\t5984.74\t6000.0\tfalse\t2\t-3984.2699999999973\t-3999.5299999999975\t2018-01-01 00:00:11.0\tPAYMENT\t95\tfalse\t0\n96\t20.73\t103\t5979.27\t6000.0\tfalse\t2\t-3963.5399999999972\t-3984.2699999999973\t2018-01-01 00:00:07.0\tPAYMENT\t96\tfalse\t0\n97\t68.17\t104\t5931.83\t6000.0\tfalse\t2\t-3895.369999999997\t-3963.5399999999972\t2018-01-01 00:00:23.0\tPAYMENT\t97\tfalse\t0\n98\t34.75\t105\t5965.25\t6000.0\tfalse\t2\t-3860.619999999997\t-3895.369999999997\t2018-01-01 00:00:14.0\tPAYMENT\t98\tfalse\t0\n99\t171.07\t106\t5828.93\t6000.0\tfalse\t107\t-5828.93\t-6000.0\t2018-01-01 00:00:00.0\tPAYMENT\t99\tfalse\t0\n100\t50.31\t108\t5949.69\t6000.0\tfalse\t2\t-3810.309999999997\t-3860.619999999997\t2018-01-01 00:00:02.0\tPAYMENT\t100\tfalse\t0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1536869149556_-1655010539",
+      "id": "20180815-194622_1956120964",
+      "dateCreated": "Sep 13, 2018 8:05:49 PM",
+      "dateStarted": "Nov 3, 2019 10:45:08 PM",
+      "dateFinished": "Nov 3, 2019 10:45:08 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n# R",
+      "user": "anonymous",
+      "dateUpdated": "Dec 9, 2018 4:12:51 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": false,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eR\u003c/h1\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1544367044261_-591136832",
+      "id": "20181209-145044_150529159",
+      "dateCreated": "Dec 9, 2018 2:50:44 PM",
+      "dateStarted": "Dec 9, 2018 2:53:32 PM",
+      "dateFinished": "Dec 9, 2018 2:53:32 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%r\n\n\ndf \u003c- read.jdbc(url\u003d\"jdbc:IRIS://datalake:51773/APP\", tableName\u003d\"IRISDemo.BC_TRANSACTIONS\", partitionColumn\u003d\"ID\", lowerBound\u003d0, upperBound\u003d500000, user\u003d\"SuperUser\", password \u003d \"sys\")\n\nhead(df)\n\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Dec 9, 2018 4:12:51 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/r",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "r",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nID BC_TRANS_AMOUNT BC_TRANS_SRC_ACC BC_TRANS_SRC_ACC_NEW_BAL\n1  1            4.55                1                  5995.45\n2  2           39.68                3                  5960.32\n3  3           26.89                4                  5973.11\n4  4           17.25                6                  5982.75\n5  5           35.72                7                  5964.28\n6  6           25.81                8                  5974.19\n  BC_TRANS_SRC_ACC_OLD_BAL BC_TRANS_IS_FRAUD BC_TRANS_DEST_ACC\n1                     6000             FALSE                 2\n2                     6000             FALSE                 2\n3                     6000             FALSE                 5\n4                     6000             FALSE                 2\n5                     6000             FALSE                 2\n6                     6000             FALSE                 2\n  BC_TRANS_DEST_ACC_NEW_BAL BC_TRANS_DEST_ACC_OLD_BAL       BC_TRANS_DATE\n1                  -5995.45                  -6000.00 2018-01-01 00:00:14\n2                  -5955.77                  -5995.45 2018-01-01 00:00:23\n3                  -5973.11                  -6000.00 2018-01-01 00:00:12\n4                  -5938.52                  -5955.77 2018-01-01 00:00:09\n5                  -5902.80                  -5938.52 2018-01-01 00:00:23\n6                  -5876.99                  -5902.80 2018-01-01 00:00:03\n  BC_TRANS_TYPE BC_TRANS_NUM BC_TRANS_WHITELISTED_BY\n1       PAYMENT            1                      NA\n2       PAYMENT            2                      NA\n3       PAYMENT            3                      NA\n4       PAYMENT            4                      NA\n5       PAYMENT            5                      NA\n6       PAYMENT            6                      NA\n\n\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1536869149566_-1657319032",
+      "id": "20180813-153326_556270505",
+      "dateCreated": "Sep 13, 2018 8:05:49 PM",
+      "dateStarted": "Dec 9, 2018 4:12:55 PM",
+      "dateFinished": "Dec 9, 2018 4:12:55 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%r\n\ndf2 \u003c- selectExpr(df, \"cast (BC_TRANS_IS_FRAUD as INTEGER) as IsFraud\", \"BC_TRANS_AMOUNT as Amount\")\n\ndf3 \u003c- filter(df2,\"IsFraud\u003c\u003e0\")",
+      "user": "anonymous",
+      "dateUpdated": "Dec 9, 2018 4:12:55 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "r",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/r"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\n\n\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1544367736358_1569223309",
+      "id": "20181209-150216_1970535111",
+      "dateCreated": "Dec 9, 2018 3:02:16 PM",
+      "dateStarted": "Dec 9, 2018 4:12:55 PM",
+      "dateFinished": "Dec 9, 2018 4:12:55 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%r {\"imageWidth\": \"400px\"}\n\nhistStats \u003d histogram(df2, \"IsFraud\")\n\nrequire(ggplot2)\n\nggplot(histStats, aes(x \u003d centroids, y \u003d counts)) +\n         geom_bar(stat \u003d \"identity\") +\n         xlab(\"IsFraud\") + ylab(\"Frequency\")\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Dec 9, 2018 4:12:55 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "r"
+        },
+        "editorMode": "ace/mode/r"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cp\u003e\u003cimg src\u003d\"data:image/png;base64,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\" alt\u003d\"plot of chunk unnamed-chunk-1\" width\u003d\"400px\"\u003e\u003c/p\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1544370987371_-864651213",
+      "id": "20181209-155627_1283214758",
+      "dateCreated": "Dec 9, 2018 3:56:27 PM",
+      "dateStarted": "Dec 9, 2018 4:12:55 PM",
+      "dateFinished": "Dec 9, 2018 4:13:00 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Scala",
+      "text": "%md\n# Scala\n\nWe have been using %irisjdbc, %spark.pyspark and %r to use Direct SQL/JDBC, Spark with Python and Spark with R. We can also don\u0027t use any % magic and use Scala, the default language of this notebook:",
+      "user": "anonymous",
+      "dateUpdated": "Dec 9, 2018 4:12:51 PM",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "title": false,
+        "results": {},
+        "enabled": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eScala\u003c/h1\u003e\n\u003cp\u003eWe have been using %irisjdbc, %spark.pyspark and %spark.r to use Direct SQL/JDBC, Spark with Python and Spark with R. We can also don\u0026rsquo;t use any % magic and use Scala, the default language of this notebook:\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1536869149556_-1655010539",
+      "id": "20180815-194438_2031050104",
+      "dateCreated": "Sep 13, 2018 8:05:49 PM",
+      "dateStarted": "Dec 9, 2018 2:53:45 PM",
+      "dateFinished": "Dec 9, 2018 2:53:45 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import com.intersystems.spark._\n\n//val df \u003d spark.read.format(\"iris\").option(\"dbtable\",\"IRISDemo.BC_TRANSACTIONS\").load().limit(10)\nval df \u003d spark.read.iris(\"IRISDemo.BC_TRANSACTIONS\").limit(10)\nz.show(df)",
+      "user": "anonymous",
+      "dateUpdated": "Dec 9, 2018 4:12:51 PM",
+      "config": {
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "results": {},
+        "enabled": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import com.intersystems.spark._\ndf: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [ID: bigint, BC_TRANS_AMOUNT: double ... 11 more fields]\n"
+          },
+          {
+            "type": "TABLE",
+            "data": "ID\tBC_TRANS_AMOUNT\tBC_TRANS_SRC_ACC\tBC_TRANS_SRC_ACC_NEW_BAL\tBC_TRANS_SRC_ACC_OLD_BAL\tBC_TRANS_IS_FRAUD\tBC_TRANS_DEST_ACC\tBC_TRANS_DEST_ACC_NEW_BAL\tBC_TRANS_DEST_ACC_OLD_BAL\tBC_TRANS_DATE\tBC_TRANS_TYPE\tBC_TRANS_NUM\tBC_TRANS_WHITELISTED_BY\n1\t4.55\t1\t5995.45\t6000.0\tfalse\t2\t-5995.45\t-6000.0\t2018-01-01 00:00:14.0\tPAYMENT\t1\t0\n2\t39.68\t3\t5960.32\t6000.0\tfalse\t2\t-5955.7699999999995\t-5995.45\t2018-01-01 00:00:23.0\tPAYMENT\t2\t0\n3\t26.89\t4\t5973.11\t6000.0\tfalse\t5\t-5973.11\t-6000.0\t2018-01-01 00:00:12.0\tPAYMENT\t3\t0\n4\t17.25\t6\t5982.75\t6000.0\tfalse\t2\t-5938.5199999999995\t-5955.7699999999995\t2018-01-01 00:00:09.0\tPAYMENT\t4\t0\n5\t35.72\t7\t5964.28\t6000.0\tfalse\t2\t-5902.799999999999\t-5938.5199999999995\t2018-01-01 00:00:23.0\tPAYMENT\t5\t0\n6\t25.81\t8\t5974.19\t6000.0\tfalse\t2\t-5876.989999999999\t-5902.799999999999\t2018-01-01 00:00:03.0\tPAYMENT\t6\t0\n7\t9.1\t9\t5990.9\t6000.0\tfalse\t2\t-5867.8899999999985\t-5876.989999999999\t2018-01-01 00:00:13.0\tPAYMENT\t7\t0\n8\t21.17\t10\t5978.83\t6000.0\tfalse\t2\t-5846.719999999998\t-5867.8899999999985\t2018-01-01 00:00:09.0\tPAYMENT\t8\t0\n9\t32.4\t11\t5967.6\t6000.0\tfalse\t2\t-5814.319999999999\t-5846.719999999998\t2018-01-01 00:00:01.0\tPAYMENT\t9\t0\n10\t35.4\t12\t5964.6\t6000.0\tfalse\t2\t-5778.919999999999\t-5814.319999999999\t2018-01-01 00:00:09.0\tPAYMENT\t10\t0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1536869149557_-1655395288",
+      "id": "20180815-193135_914958050",
+      "dateCreated": "Sep 13, 2018 8:05:49 PM",
+      "dateStarted": "Dec 9, 2018 4:12:56 PM",
+      "dateFinished": "Dec 9, 2018 4:12:59 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "Dec 9, 2018 4:12:51 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1544139895078_-585764657",
+      "id": "20181206-234455_12026",
+      "dateCreated": "Dec 6, 2018 11:44:55 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "1- Fetching Data from IRIS with SQL, PySpark, Scala and R",
+  "id": "2DPUVB6F2",
+  "angularObjects": {
+    "2DHWQ7A7V:shared_process": [],
+    "2DGTFGFBC:shared_process": [],
+    "2DHATZD9M:shared_process": [],
+    "2DKDARDPF:shared_process": [],
+    "2DG8A819A:shared_process": [],
+    "2DJVV28U3:shared_process": [],
+    "2DKCAA3TS:shared_process": [],
+    "2DHEPV9M3:shared_process": [],
+    "2DKW8P766:shared_process": [],
+    "2DGHX224C:shared_process": [],
+    "2DGRSNE7G:shared_process": [],
+    "2DGUG4SEP:shared_process": [],
+    "2DHM86BYR:shared_process": [],
+    "2DHYW1ZN6:shared_process": [],
+    "2DJ16C4UE:shared_process": [],
+    "2DJ4VH5DW:shared_process": [],
+    "2DJBEDGYM:shared_process": [],
+    "2DM19CFTF:shared_process": [],
+    "2DHHCF91E:shared_process": [],
+    "2DKCPR9P1:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

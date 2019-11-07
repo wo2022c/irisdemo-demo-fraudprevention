@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://bankingcore.demo" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://bankingcore.demo">
+    <types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://bankingcore.demo">
+            <s:element name="CreateTransaction">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" name="pTransDateTime" type="s:dateTime"/>
+                        <s:element minOccurs="0" name="pTransType">
+                            <s:simpleType>
+                                <s:restriction base="s:string">
+                                    <s:enumeration value="PAYMENT"/>
+                                    <s:enumeration value="REFUND"/>
+                                    <s:enumeration value="CASH_IN"/>
+                                    <s:enumeration value="CASH_OUT"/>
+                                    <s:enumeration value="TRANSFER"/>
+                                </s:restriction>
+                            </s:simpleType>
+                        </s:element>
+                        <s:element minOccurs="0" name="pAmount" type="s:double"/>
+                        <s:element minOccurs="0" name="pFromAccountNumber" type="s:string"/>
+                        <s:element minOccurs="0" name="pToAccountNumber" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="CreateTransactionResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="CreateTransactionResult" type="s0:CreateTransactionResp"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="CreateTransactionResp">
+                <s:sequence>
+                    <s:element minOccurs="0" name="TransactionId" type="s:string"/>
+                    <s:element minOccurs="0" name="FromAccountOldBalance" type="s:double"/>
+                    <s:element minOccurs="0" name="FromAccountNewBalance" type="s:double"/>
+                    <s:element minOccurs="0" name="ToAccountOldBalance" type="s:double"/>
+                    <s:element minOccurs="0" name="ToAccountNewBalance" type="s:double"/>
+                </s:sequence>
+            </s:complexType>
+        </s:schema>
+    </types>
+    <message name="CreateTransactionSoapIn">
+        <part name="parameters" element="s0:CreateTransaction"/>
+    </message>
+    <message name="CreateTransactionSoapOut">
+        <part name="parameters" element="s0:CreateTransactionResponse"/>
+    </message>
+    <portType name="TransactionServicesSoap">
+        <operation name="CreateTransaction">
+            <input message="s0:CreateTransactionSoapIn"/>
+            <output message="s0:CreateTransactionSoapOut"/>
+        </operation>
+    </portType>
+    <binding name="TransactionServicesSoap" type="s0:TransactionServicesSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="CreateTransaction">
+            <soap:operation soapAction="http://bankingcore.demo/IRISDemo.SOAP.TransactionServices.CreateTransaction" style="document"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="TransactionServices">
+        <port name="TransactionServicesSoap" binding="s0:TransactionServicesSoap">
+            <soap:address location="http://localhost:9090/csp/app/IRISDemo.SOAP.TransactionServices.cls"/>
+        </port>
+    </service>
+</definitions>

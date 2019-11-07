@@ -1,0 +1,6 @@
+{
+  "/csp": {
+    "target": "http://bankingtrnsrv:52773",
+    "secure": false
+  }
+}

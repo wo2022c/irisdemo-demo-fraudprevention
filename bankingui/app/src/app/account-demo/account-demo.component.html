@@ -1,0 +1,248 @@
+<section class="account__wrapper">
+  <header class="account__header">
+    <div class="container">
+      <nav class="account__navigation">
+        <ul class="account__nav-items">
+          <li class="account__nav-item">
+            <button class="account__nav-btn account__nav-btn--custom" (click)="goToHistory()">
+              <i class="account__nav-btn-icon icon-online-bank"></i>
+              Online bank
+            </button>
+          </li>
+          <li class="account__nav-item">
+            <button class="account__nav-btn" (click)="goToHistory()">
+              <i class="account__nav-btn-icon icon-dashboard"></i>
+              Dashboard
+            </button>
+          </li>
+          <li class="account__nav-item"
+              [class.account__nav-item--active]="accountTabs.isHistory"
+          >
+            <button class="account__nav-btn" (click)="goToHistory()">
+              <i class="account__nav-btn-icon icon-time"></i>
+              History of transactions
+            </button>
+          </li>
+          <li class="account__nav-item"
+              [class.account__nav-item--active]="accountTabs.isTransfer"
+          >
+            <button class="account__nav-btn" (click)="goToTransfer()">
+              <i class="account__nav-btn-icon icon-transfer"></i>
+              Transfer
+            </button>
+          </li>
+          <li class="account__nav-item">
+            <button class="account__nav-btn" (click)="goToHistory()">
+              <i class="account__nav-btn-icon icon-investments"></i>
+              Investments
+            </button>
+          </li>
+          <li class="account__nav-item">
+            <button class="account__nav-btn" (click)="goToHistory()">
+              <i class="account__nav-btn-icon icon-star"></i>
+              Bank offer
+            </button>
+          </li>
+          <li class="account__nav-item"
+              [class.account__nav-item--active]="accountTabs.isSettings"
+          >
+            <button class="account__nav-btn" (click)="goToSettings()">
+              <i class="account__nav-btn-icon icon-tune"></i>
+              Settings
+            </button>
+          </li>
+        </ul>
+      </nav>
+      <div class="account__header-buttons">
+        <button class="account__header-btn">
+          <i class="account__header-btn-icon icon-phone"></i>
+        </button>
+        <button class="account__header-btn">
+          <i class="account__header-btn-icon icon-mail"></i>
+          <span class="counter">5</span>
+        </button>
+        <button class="account__header-btn" (click)="nullAccountTabs()">Log out</button>
+      </div>
+    </div>
+  </header>
+  <main class="account__main account__history" *ngIf="accountTabs.isHistory || accountTabs.isOnlineBank">
+    <div class="container">
+      <section class="filters">
+        <div class="inputs-range">
+          <input class="date-input date-input--small" type="date" id="transactions-history-from"
+                 title="disable-transactions-protection-from" placeholder="transactions history from"
+                 [(ngModel)]="filterDateStart"
+          >
+          <span class="inputs-range__separator">-</span>
+          <input class="date-input date-input--small" type="date" id="transactions-history-to"
+                 title="disable-transactions-protection-from" placeholder="transactions history to"
+                 [(ngModel)]="filterDateEnd"
+          >
+        </div>
+        <button class="btn"
+                (click)="getFilteredTransactions('start', 'end')"
+        >
+          Filter
+        </button>
+      </section>
+      <header class="list__header">
+              <span class="list__col-name">Transaction date
+                <i class="list__dropdown-icon icon icon-arrow-drop-down"></i>
+              </span>
+        <span class="list__col-name">Description</span>
+        <span class="list__col-name">Amount</span>
+      </header>
+      <ul class="list__items">
+        <perfect-scrollbar class="list-scroll-wrapper">
+          <li class="list__item" *ngFor="let transaction of transactionsHistory">
+            <span class="list-date">{{transaction.date}}</span>
+            <span class="list-description">{{transaction.description}}</span>
+            <span class="list-amount">{{transaction.amount}}</span>
+          </li>
+        </perfect-scrollbar>
+      </ul>
+    </div>
+  </main>
+  <main class="account__main account__transfer" *ngIf="accountTabs.isTransfer">
+    <div class="container">
+      <h2 class="transfer__title">Transfer</h2>
+      <ul class="input-groups__items">
+        <li class="input-groups__item">
+          <label class="label" for="to-account-number">To account number</label>
+          <select name="operation" id="to-account-number" class="select" title="select operation type">
+            <option class="info-panel__option" value="Merchant 1">0000 1111 2222 3333</option>
+            <option class="info-panel__option" value="Merchant 2">0000 1111 2222 4444</option>
+          </select>
+        </li>
+        <li class="input-groups__item">
+          <label class="label" for="amount">Amount</label>
+          <input class="text-input" type="number" id="amount" style="text-align: right;" [(ngModel)]="transferAmount">
+        </li>
+      </ul>
+      <div class="appearing-message appearing-message--success" [hidden]="!transferState.isSuccess">Success</div>
+      <div class="appearing-message appearing-message--fail" [hidden]="!transferState.isFailed">Fail</div>
+      <button class="btn"
+              (click)="doTransfer()"
+              style="margin-left: 30px;"
+      >
+        Transfer
+      </button>
+    </div>
+  </main>
+  <main class="account__main account__settings" *ngIf="accountTabs.isSettings">
+    <div class="container">
+      <h1 class="accordion__title">
+        Settings
+      </h1>
+      <ul class="accordion">
+        <li class="accordion__item"
+            [class.accordion__item--active]="settingsSections.isFraudProtection"
+        >
+          <header class="accordion__item-header" (click)="expandFraudProtection()">
+            <span class="accordion__subtitle">Fraud protection</span>
+            <div *ngIf="!isProtectionEnabled" class="hint hint--warning">
+              <i class="hint__icon icon-info"></i>
+              <span class="hint__text">deactivated</span>
+            </div>
+          </header>
+          <div class="accordion__expandable">
+                <span class="accordion__minititle">
+                  <ng-container *ngIf="isProtectionEnabled">Temporarily disable fraud protection</ng-container>
+                  <ng-container
+                    *ngIf="!isProtectionEnabled">Fraud protection deactivated from {{startProtectionDate}} to {{endProtectionDate}}</ng-container>
+                </span>
+            <div class="flex-wrapper">
+              <div class="inputs-range" [hidden]="!isProtectionEnabled">
+                <input class="date-input date-input--small" type="date" id="disable-transactions-protection-from"
+                       title="disable-transactions-protection-from" placeholder="start protection date"
+                       [(ngModel)]="startProtectionDate"
+                >
+                <span class="inputs-range__separator">-</span>
+                <input class="date-input date-input--small" type="date" id="disable-transactions-protection-till"
+                       title="disable-transactions-protection-till" placeholder="end protection date"
+                       [(ngModel)]="endProtectionDate"
+                >
+              </div>
+              <button class="btn"
+                      (click)="toggleProtection()"
+                      [disabled]="!endProtectionDate || !startProtectionDate"
+              >
+                <ng-container *ngIf="isProtectionEnabled">
+                  Disable protection
+                </ng-container>
+                <ng-container *ngIf="!isProtectionEnabled">
+                  Enable protection
+                </ng-container>
+              </button>
+            </div>
+          </div>
+        </li>
+        <li class="accordion__item"
+            [class.accordion__item--active]="settingsSections.isLoginAndPassword"
+        >
+          <header class="accordion__item-header" (click)="expandLoginAndPassword()">
+            <span class="accordion__subtitle">Login and password</span>
+          </header>
+          <div class="accordion__expandable">
+
+            <ul class="inputs-list">
+              <li class="inputs-list__item">
+                <input type="text" class="text-input" placeholder="login" value="user@online.bank" disabled>
+              </li>
+              <li class="inputs-list__item">
+                <input type="password" class="text-input" placeholder="new password">
+              </li>
+              <li class="inputs-list__item">
+                <input type="password" class="text-input" placeholder="repeat new password" autocomplete="new-password">
+              </li>
+            </ul>
+            <button class="btn btn--mt" (click)="expandFraudProtection()">Save</button>
+          </div>
+        </li>
+        <li class="accordion__item"
+            [class.accordion__item--active]="settingsSections.isPersonalInformation"
+        >
+          <header class="accordion__item-header" (click)="expandPersonalInformation()">
+            <span class="accordion__subtitle">Personal information</span>
+          </header>
+          <div class="accordion__expandable">
+            <ul class="inputs-list">
+              <li class="inputs-list__item">
+                <input type="text" class="text-input" name="user name" placeholder="Name" value="User" disabled>
+              </li>
+              <li class="inputs-list__item">
+                <input type="text" class="text-input" name="sure name" placeholder="Sure Name" value="Bank" disabled>
+              </li>
+              <li class="inputs-list__item">
+                <input type="text" class="text-input" name="account number" placeholder="Account number"
+                       value="0000 1111 2222 3333" disabled>
+              </li>
+            </ul>
+
+
+            <button class="btn btn--mt" (click)="expandFraudProtection()">Save</button>
+          </div>
+        </li>
+        <li class="accordion__item"
+            [class.accordion__item--active]="settingsSections.isInterfaceLanguage"
+        >
+          <header class="accordion__item-header" (click)="expandInterfaceLanguage()">
+            <span class="accordion__subtitle">Interface language</span>
+          </header>
+          <div class="accordion__expandable">
+            <select name="operation" id="select-language" class="select" title="select language">
+              <option class="select__option" value="English">English</option>
+              <option class="select__option" value="Spanish">Spanish</option>
+              <option class="select__option" value="French">French</option>
+              <option class="select__option" value="German">German</option>
+              <option class="select__option" value="Portuguese">Portuguese</option>
+              <option class="select__option" value="Japanese">Japanese</option>
+              <option class="select__option" value="Chinese">Chinese</option>
+            </select>
+            <button class="btn btn--mt" (click)="expandFraudProtection()">Save</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </main>
+</section>

@@ -1,0 +1,301 @@
+// TODO(MM) add favicon
+@import "assets/styles/normalize-8-0-0.css";
+@import "assets/styles/fonts.css";
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+}
+
+body {
+  line-height: 1.2;
+  height: 100%;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.payment {
+  &__wrapper {
+    overflow: hidden;
+    width: 100vw;
+    min-height: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #FBA83E 0%, #FFCC33 60%, #fff 60%, #fff 100%);
+    padding-top: 3%;
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: flex-start;
+    }
+  }
+}
+
+.terminal {
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  position: relative;
+  margin-right: 15px;
+
+  //TODO(MM) add fallback font for Tahoma
+  &__display {
+    position: absolute;
+    width: 58.8%;
+    height: 23.5%;
+    left: 17%;
+    top: 15.3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 5px;
+    background-color: #b3e0db;
+    font-family: Tahoma;
+  }
+
+  &__display-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 3px solid #333333;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding-top: 5px;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  &__initial {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__waiting {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__declined {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-grow: 1;
+    cursor: pointer;
+  }
+
+  &__approved {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-grow: 1;
+    cursor: pointer;
+  }
+
+  &__currency {
+    margin-right: 25px;
+  }
+
+  &__value {
+    text-align: right;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  &__message {
+    text-transform: uppercase;
+  }
+
+  &__display-img {
+    margin-top: 15px;
+  }
+
+  &__buttons-items {
+    position: absolute;
+    width: 58.8%;
+    height: 35%;
+    left: 17%;
+    top: 44.5%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__buttons-item {
+    width: 30%;
+    height: 17%;
+  }
+
+  &__button {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #95969a;
+    border: none;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #ffffff;
+    cursor: pointer;
+    border-bottom: 3px solid #595a5c;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      margin-top: 1px;
+    }
+
+    &--cancel {
+      background-color: #FF363F;
+    }
+
+    &--delete {
+      background-color: #f4bb19;
+    }
+
+    &--enter {
+      background-color: #9bdb3e;
+    }
+  }
+
+  &__credit-card-mask {
+    position: absolute;
+    width: 100%;
+    height: 500px;
+    left: 0;
+    right: 0;
+    top: 94.8%;
+    overflow: hidden;
+  }
+}
+
+//TODO(MM) add fallback font for ubuntu
+.info-panel {
+  margin-top: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  max-width: 520px;
+  width: 100%;
+  padding: 50px 40px;
+  background-color: #f3f3f3;
+  box-shadow: 0 0 15px 12px rgba(0, 0, 0, 0.22);
+  border-radius: 2px;
+  font-size: 20px;
+  font-family: Ubuntu;
+  max-height: 90vh;
+  overflow: auto;
+
+  &__select {
+    font-size: 20px;
+    text-transform: uppercase;
+    padding: 15px 20px;
+    border: 2px solid #CCCCCC;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  &__label {
+    color: #666666;
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+
+  &__text {
+    padding: 15px 20px;
+    font-weight: 400;
+    min-height: 180px;
+    border: 2px solid #CCCCCC;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    overflow: auto;
+    max-height: 250px;
+
+    pre {
+      margin-top: 0;
+    }
+  }
+}
+
+.credit-card {
+  position: absolute;
+  top: 100%;
+  left: 47%;
+  transform: translateX(-50%);
+  max-width: 50%;
+  transition: all 0.5s;
+
+  &--inserted {
+    top: -55%;
+  }
+}
+
+// media queries
+@import "assets/styles/media";

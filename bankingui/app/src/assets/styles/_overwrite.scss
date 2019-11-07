@@ -1,0 +1,12 @@
+.account__history perfect-scrollbar > .ps {
+  max-height: none !important;
+}
+
+.account__nav-btn {
+  &--custom {
+    &:hover {
+      color: #ffffff;
+      border-bottom-color: transparent;
+    }
+  }
+}

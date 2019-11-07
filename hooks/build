@@ -11,11 +11,18 @@ echo "   DOCKER_TAG     : $DOCKER_TAG"
 echo "   DOCKER_TAG     : $IMAGE_NAME"
 
 echo
-echo "### HOOK - building callcenter UI WAR file..."
-	docker run --rm \
-		-v ${PWD}/projects:/usr/projects \
-		--name mavenc intersystemsdc/irisdemo-base-mavenc:latest
+echo "### HOOK - building banking core..."
+docker build -t ${DOCKER_REPO}:bankingcore-${DOCKER_TAG} ./banking_core
 
 echo
-echo "### HOOK - building $IMAGE_NAME..."
-docker build -f $DOCKERFILE_PATH -t $IMAGE_NAME .
+echo "### HOOK - building datalake..."
+docker build -t ${DOCKER_REPO}:datalake-${DOCKER_TAG} ./normalized_datalake
+
+echo
+echo "### HOOK - building banking transactions service..."
+docker build --build-arg TAG=${DOCKER_TAG} -t ${DOCKER_REPO}:bankingtrnsrv-${DOCKER_TAG} ./banking_trn_srv
+
+echo
+echo "### HOOK - building point of sale (pos)..."
+docker build -t ${DOCKER_REPO}:pos-${DOCKER_TAG} ./pos
+

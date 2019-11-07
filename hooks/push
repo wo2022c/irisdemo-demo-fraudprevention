@@ -16,4 +16,3 @@ docker build --build-arg TAG=${DOCKER_TAG} -t ${DOCKER_REPO}:bankingtrnsrv-${DOC
 echo
 echo "### HOOK - Pushing point of sale (pos)..."
 docker push ${DOCKER_REPO}:pos-${DOCKER_TAG}
-

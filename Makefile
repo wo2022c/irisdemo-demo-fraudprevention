@@ -7,7 +7,11 @@ build:
 	sudo rm -rf ./advanced_analytics/shared/zeppelin/conf
 	sudo rm -rf ./advanced_analytics/shared/zeppelin/logs
 
-	docker-compose build
+	docker build -t ${DOCKER_REPOSITORY}:bankingcore-version-${TAG} ./banking_core
+	docker build -t ${DOCKER_REPOSITORY}:datalake-version-${TAG} ./normalized_datalake
+	docker build --build-args TAG=${TAG} -t ${DOCKER_REPOSITORY}:bankingtrnsrv-version-${TAG} ./banking_trn_srv
+	docker build -t ${DOCKER_REPOSITORY}:pos-version-${TAG} ./pos
+
 clean:
 	-docker-compose rm -f
 	-docker rmi ${DOCKER_REPOSITORY}:bankingcore-version-${TAG}

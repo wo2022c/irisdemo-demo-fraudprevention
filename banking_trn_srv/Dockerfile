@@ -1,4 +1,4 @@
-FROM amirsamary/irisdemo:mobilebanking_datalake
+FROM intersystemsdc/irisdemo-demo-fraudprevention:datalake-version-${TAG}
 
 FROM intersystemsdc/irisdemo-base-irisint-community:version-1.4
 

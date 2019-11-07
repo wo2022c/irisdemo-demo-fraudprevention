@@ -1,0 +1,19 @@
+
+#!/bin/bash
+
+echo
+echo "### HOOK - Pushing banking core..."
+docker push ${DOCKER_REPO}:bankingcore-${DOCKER_TAG}
+
+echo
+echo "### HOOK - Pushing datalake..."
+docker push ${DOCKER_REPO}:datalake-${DOCKER_TAG}
+
+echo
+echo "### HOOK - Pushing banking transactions service..."
+docker build --build-arg TAG=${DOCKER_TAG} -t ${DOCKER_REPO}:bankingtrnsrv-${DOCKER_TAG}
+
+echo
+echo "### HOOK - Pushing point of sale (pos)..."
+docker push ${DOCKER_REPO}:pos-${DOCKER_TAG}
+

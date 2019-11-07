@@ -9,7 +9,7 @@ build:
 
 	docker build -t ${DOCKER_REPOSITORY}:bankingcore-version-${TAG} ./banking_core
 	docker build -t ${DOCKER_REPOSITORY}:datalake-version-${TAG} ./normalized_datalake
-	docker build --build-args TAG=${TAG} -t ${DOCKER_REPOSITORY}:bankingtrnsrv-version-${TAG} ./banking_trn_srv
+	docker build --build-arg TAG="version-${TAG}" -t ${DOCKER_REPOSITORY}:bankingtrnsrv-version-${TAG} ./banking_trn_srv
 	docker build -t ${DOCKER_REPOSITORY}:pos-version-${TAG} ./pos
 
 clean:

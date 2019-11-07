@@ -1,4 +1,6 @@
-FROM intersystemsdc/irisdemo-demo-fraudprevention:datalake-version-${TAG}
+ARG TAG
+
+FROM intersystemsdc/irisdemo-demo-fraudprevention:datalake-${TAG}
 
 FROM intersystemsdc/irisdemo-base-irisint-community:version-1.4
 

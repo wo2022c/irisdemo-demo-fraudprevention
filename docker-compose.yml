@@ -9,7 +9,7 @@ services:
     build: 
       context: ./normalized_datalake
     init: true
-    image: ${DOCKER_REPOSITORY}:datalake-version-1.4.1
+    image: ${DOCKER_REPOSITORY}:datalake-version-1.4.3
     hostname: datalake
     restart: on-failure
     ports:
@@ -26,7 +26,7 @@ services:
     build: 
       context: ./banking_core
     init: true
-    image: ${DOCKER_REPOSITORY}:bankingcore-version-1.4.1
+    image: ${DOCKER_REPOSITORY}:bankingcore-version-1.4.3
     hostname: bankingcore
     ports:
     # 51773 is the superserver default port
@@ -41,7 +41,7 @@ services:
   bankingtrnsrv:
     build: 
       context: ./banking_trn_srv
-    image: ${DOCKER_REPOSITORY}:bankingtrnsrv-version-1.4.1
+    image: ${DOCKER_REPOSITORY}:bankingtrnsrv-version-1.4.3
     hostname: bankingtrnsrv
     init: true
     ports:
@@ -58,7 +58,7 @@ services:
 
   pos:
     build: ./pos
-    image: ${DOCKER_REPOSITORY}:pos-version-1.4.1
+    image: ${DOCKER_REPOSITORY}:pos-version-1.4.3
     init: true
     ports:
       - "9099:4200"

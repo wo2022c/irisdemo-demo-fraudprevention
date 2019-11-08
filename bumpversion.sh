@@ -61,8 +61,8 @@ if [ -f VERSION ]; then
     #
     # Fix files that make reference to the new version
     #
-    sed -i "s/version-[0-9.]+/version-$INPUT_STRING/g ./docker-compose.yml
-    sed -i "s/datalake-version-[0-9.]+/datalake-version-$INPUT_STRING/g ./banking_trn_srv/Dockerfile
+    sed -i '' "s/version-[0-9][0-9.]*/version-$INPUT_STRING/g" ./docker-compose.yml
+    sed -i '' "s/datalake-version-[0-9][0-9.]*/datalake-version-$INPUT_STRING/g" ./banking_trn_srv/Dockerfile
 
     echo "## $INPUT_STRING ($NOW)" > tmpfile
     git log --pretty=format:"  - %s" "v$BASE_STRING"...HEAD >> tmpfile

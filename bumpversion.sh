@@ -55,13 +55,14 @@ if [ -f VERSION ]; then
         INPUT_STRING=$SUGGESTED_VERSION
     fi
     echo -e "${NOTICE_FLAG} Will set new version to be ${WHITE}$INPUT_STRING"
+    
     echo $INPUT_STRING > VERSION
 
     #
     # Fix files that make reference to the new version
     #
-    sed -i "s/version-$BASE_STRING/version-$INPUT_STRING/g ./docker-compose.yml
-    sed -i "s/datalake-version-$BASE_STRING/datalake-version-$INPUT_STRING/g ./banking_trn_srv/Dockerfile
+    sed -i "s/version-[0-9.]+/version-$INPUT_STRING/g ./docker-compose.yml
+    sed -i "s/datalake-version-[0-9.]+/datalake-version-$INPUT_STRING/g ./banking_trn_srv/Dockerfile
 
     echo "## $INPUT_STRING ($NOW)" > tmpfile
     git log --pretty=format:"  - %s" "v$BASE_STRING"...HEAD >> tmpfile

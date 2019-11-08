@@ -1,5 +1,3 @@
-ARG TAG
-
 FROM intersystemsdc/irisdemo-demo-fraudprevention:datalake-version-1.4.1
 
 FROM intersystemsdc/irisdemo-base-irisint-community:version-1.4

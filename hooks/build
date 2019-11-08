@@ -20,7 +20,7 @@ docker build -t ${DOCKER_REPO}:datalake-${DOCKER_TAG} ./normalized_datalake
 
 echo
 echo "### HOOK - building banking transactions service..."
-docker build --build-arg TAG=${DOCKER_TAG} -t ${DOCKER_REPO}:bankingtrnsrv-${DOCKER_TAG} ./banking_trn_srv
+docker build -t ${DOCKER_REPO}:bankingtrnsrv-${DOCKER_TAG} ./banking_trn_srv
 
 echo
 echo "### HOOK - building point of sale (pos)..."

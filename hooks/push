@@ -10,7 +10,7 @@ docker push ${DOCKER_REPO}:datalake-${DOCKER_TAG}
 
 echo
 echo "### HOOK - Pushing banking transactions service..."
-docker build --build-arg TAG=${DOCKER_TAG} -t ${DOCKER_REPO}:bankingtrnsrv-${DOCKER_TAG}
+docker push -t ${DOCKER_REPO}:bankingtrnsrv-${DOCKER_TAG}
 
 echo
 echo "### HOOK - Pushing point of sale (pos)..."

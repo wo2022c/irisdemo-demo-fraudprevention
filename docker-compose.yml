@@ -5,29 +5,11 @@ volumes:
 
 services:
 
-  bankingtrnsrv:
-    build: 
-      context: ./banking_trn_srv
-    image: ${DOCKER_REPOSITORY}:bankingtrnsrv-version-${TAG}
-    hostname: bankingtrnsrv
-    init: true
-    ports:
-    # 51773 is the superserver default port
-    - "9093:51773"
-    # 52773 is the webserver/management portal port
-    - "9092:52773"
-    volumes:
-    - common_shared:/common_shared   # The production will be looking into this folder for new PMML files
-                                       # that will be sent by the advancedanalytics service.
-    - type: bind
-      source: ./banking_trn_srv/shared/
-      target: /shared
-
   datalake:
     build: 
       context: ./normalized_datalake
     init: true
-    image: ${DOCKER_REPOSITORY}:datalake-version-${TAG}
+    image: ${DOCKER_REPOSITORY}:datalake-version-1.4.1
     hostname: datalake
     restart: on-failure
     ports:
@@ -44,7 +26,7 @@ services:
     build: 
       context: ./banking_core
     init: true
-    image: ${DOCKER_REPOSITORY}:bankingcore-version-${TAG}
+    image: ${DOCKER_REPOSITORY}:bankingcore-version-1.4.1
     hostname: bankingcore
     ports:
     # 51773 is the superserver default port
@@ -56,9 +38,27 @@ services:
       source: ./banking_core/shared/
       target: /shared
 
+  bankingtrnsrv:
+    build: 
+      context: ./banking_trn_srv
+    image: ${DOCKER_REPOSITORY}:bankingtrnsrv-version-1.4.1
+    hostname: bankingtrnsrv
+    init: true
+    ports:
+    # 51773 is the superserver default port
+    - "9093:51773"
+    # 52773 is the webserver/management portal port
+    - "9092:52773"
+    volumes:
+    - common_shared:/common_shared   # The production will be looking into this folder for new PMML files
+                                       # that will be sent by the advancedanalytics service.
+    - type: bind
+      source: ./banking_trn_srv/shared/
+      target: /shared
+
   pos:
     build: ./pos
-    image: ${DOCKER_REPOSITORY}:pos-version-${TAG}
+    image: ${DOCKER_REPOSITORY}:pos-version-1.4.1
     init: true
     ports:
       - "9099:4200"

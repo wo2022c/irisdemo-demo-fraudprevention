@@ -56,6 +56,13 @@ if [ -f VERSION ]; then
     fi
     echo -e "${NOTICE_FLAG} Will set new version to be ${WHITE}$INPUT_STRING"
     echo $INPUT_STRING > VERSION
+
+    #
+    # Fix files that make reference to the new version
+    #
+    sed -i "s/version-$BASE_STRING/version-$INPUT_STRING/g ./docker-compose.yml
+    sed -i "s/datalake-version-$BASE_STRING/datalake-version-$INPUT_STRING/g ./banking_trn_srv/Dockerfile
+
     echo "## $INPUT_STRING ($NOW)" > tmpfile
     git log --pretty=format:"  - %s" "v$BASE_STRING"...HEAD >> tmpfile
     echo "" >> tmpfile
@@ -65,7 +72,12 @@ if [ -f VERSION ]; then
     echo -e "$ADJUSTMENTS_MSG"
     read
     echo -e "$PUSHING_MSG"
-    git add CHANGELOG.md VERSION
+
+    #
+    # Add files that were changed by the bumpversion.sh:
+    #
+    git add CHANGELOG.md VERSION docker-compose.yml ./banking_trn_srv/Dockerfile
+
     git commit -m "Bump version to ${INPUT_STRING}."
     git tag -a -m "Tag version ${INPUT_STRING}." "v$INPUT_STRING"
     git push origin --tags

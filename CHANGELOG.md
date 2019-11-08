@@ -1,3 +1,6 @@
+## 1.4.2 (November 08, 2019)
+
+
 ## 1.4.1 (November 08, 2019)
 
 Changes:

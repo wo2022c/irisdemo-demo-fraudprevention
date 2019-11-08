@@ -1,3 +1,7 @@
+## 1.5.0 (November 08, 2019)
+  - Bump version to 1.4.3.
+  - Fixing bumpversion
+
 ## 1.4.3 (November 08, 2019)
   - Fixing bumpversion
   - Running now on IRIS Community 2019.3

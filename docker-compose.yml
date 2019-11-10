@@ -9,7 +9,7 @@ services:
     build: 
       context: ./normalized_datalake
     init: true
-    image: ${DOCKER_REPOSITORY}:datalake-version-1.6.0
+    image: intersystemsdc/irisdemo-demo-fraudprevention:datalake-version-1.6.0
     hostname: datalake
     restart: on-failure
     ports:
@@ -26,7 +26,7 @@ services:
     build: 
       context: ./banking_core
     init: true
-    image: ${DOCKER_REPOSITORY}:bankingcore-version-1.6.0
+    image: intersystemsdc/irisdemo-demo-fraudprevention:bankingcore-version-1.6.0
     hostname: bankingcore
     ports:
     # 51773 is the superserver default port
@@ -41,7 +41,7 @@ services:
   bankingtrnsrv:
     build: 
       context: ./banking_trn_srv
-    image: ${DOCKER_REPOSITORY}:bankingtrnsrv-version-1.6.0
+    image: intersystemsdc/irisdemo-demo-fraudprevention:bankingtrnsrv-version-1.6.0
     hostname: bankingtrnsrv
     init: true
     ports:
@@ -58,7 +58,7 @@ services:
 
   pos:
     build: ./pos
-    image: ${DOCKER_REPOSITORY}:pos-version-1.6.0
+    image: intersystemsdc/irisdemo-demo-fraudprevention:pos-version-1.6.0
     init: true
     ports:
       - "9099:4200"
@@ -69,7 +69,7 @@ services:
     command: "npm run proxy"
 
   advancedanalytics:
-    image: intersystemsdc/irisdemo-base-zeppelin:${ZEPPELIN_IMAGE_VERSION}
+    image: intersystemsdc/irisdemo-base-zeppelin:ersion-1.3
     init: true
     ports:
     - "9096:9090"   # Zeppelin
@@ -88,7 +88,7 @@ services:
     - IRIS_MASTER_NAMESPACE=APP 
 
   sparkmaster:
-    image: intersystemsdc/irisdemo-base-spark-iris:${SPARK_IMAGE_VERSION}
+    image: intersystemsdc/irisdemo-base-spark-iris:version-1.1
     hostname: sparkmaster # Must be always sparkmaster
     init: true
     environment:
@@ -110,7 +110,7 @@ services:
   worker1:
     depends_on: 
       - sparkmaster
-    image: intersystemsdc/irisdemo-base-spark-iris:${SPARK_IMAGE_VERSION}
+    image: intersystemsdc/irisdemo-base-spark-iris:version-1.1
     hostname: worker1
     init: true
     environment:
@@ -134,7 +134,7 @@ services:
   worker2:
     depends_on: 
       - sparkmaster
-    image: intersystemsdc/irisdemo-base-spark-iris:${SPARK_IMAGE_VERSION}
+    image: intersystemsdc/irisdemo-base-spark-iris:version-1.1
     hostname: worker2
     init: true
     environment:

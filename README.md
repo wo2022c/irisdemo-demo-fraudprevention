@@ -25,14 +25,9 @@ The application brings a POS (point of sale) simulator. It is a simple Angular U
 
 ## How to run the application
 
-To just run the application on your PC, make sure you have Docker installed on your machine. You can quickly get it up and running with the folloing commands:
+To just run the application on your PC, make sure you have git and Docker installed on your machine.
 
-```bash
-wget https://raw.githubusercontent.com/intersystems-community/irisdemo-demo-fraudprevention/master/docker-compose.yml
-docker-compose up
-```
-
-You can also clone this repository to you local machine to get the entire source code. You will need git installed and you would need to be on your git folder:
+You will need to fork or clone this repository to you local machine to get the entire source code. So, go to your git folder and run the following:
 
 ```bash
 git clone https://github.com/intersystems-community/irisdemo-demo-fraudprevention
@@ -40,15 +35,17 @@ cd irisdemo-demo-fraudprevention
 docker-compose up
 ```
 
-Both techniques should work and should trigger the download of the images that compose this application and it will soon start all the containers. 
-
-When starting, it is going to show you lots of messages from all the containers that are staring. That is fine. Don't worry.
+That should trigger the download of the images that compose this application and it will soon start all the containers. When starting, it is going to show you lots of messages from all the containers that are staring. That is fine. Don't worry.
 
 When it is done, it will just hang there, without returning control to you. That is fine too. Just leave this window open. If you CTRL+C on this window, docker compose will stop all the containers (and stop the application!).
 
-After all the containers have started, open the application landing page on [http://localhost:52773/csp/appint/demo.csp](http://localhost:52773/csp/appint/demo.csp).
+After all the containers have started, open the application landing page on [http://localhost:9092/csp/appint/demo.csp](http://localhost:9092/csp/appint/demo.csp).
 
 Use the username **SuperUser** and the password **sys**. This is just a demo application that is running on your machine, so we are using a default password. The landing page has instructions about how to use the demo application.
+
+### Why do I need to clone/fork the entire repo?
+
+You don't need all the source code to run the application. But the application relies on a folder structure that allow the containers to access configuration files, zeppelin notebooks with the source code for the models built and also to exchange files (in this case, PMML files between zeppelin and IRIS). It is just easier to clone the repository and get this out of the box folder structure.
 
 ## Where does the data come from?
 

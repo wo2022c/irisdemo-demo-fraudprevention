@@ -6,8 +6,6 @@ volumes:
 services:
 
   datalake:
-    build: 
-      context: ./normalized_datalake
     init: true
     image: intersystemsdc/irisdemo-demo-fraudprevention:datalake-version-1.6.0
     hostname: datalake
@@ -23,8 +21,6 @@ services:
       target: /shared
 
   bankingcore:
-    build: 
-      context: ./banking_core
     init: true
     image: intersystemsdc/irisdemo-demo-fraudprevention:bankingcore-version-1.6.0
     hostname: bankingcore
@@ -39,8 +35,6 @@ services:
       target: /shared
 
   bankingtrnsrv:
-    build: 
-      context: ./banking_trn_srv
     image: intersystemsdc/irisdemo-demo-fraudprevention:bankingtrnsrv-version-1.6.0
     hostname: bankingtrnsrv
     init: true
@@ -57,7 +51,6 @@ services:
       target: /shared
 
   pos:
-    build: ./pos
     image: intersystemsdc/irisdemo-demo-fraudprevention:pos-version-1.6.0
     init: true
     ports:
@@ -69,7 +62,7 @@ services:
     command: "npm run proxy"
 
   advancedanalytics:
-    image: intersystemsdc/irisdemo-base-zeppelin:ersion-1.3
+    image: intersystemsdc/irisdemo-base-zeppelin:version-1.3
     init: true
     ports:
     - "9096:9090"   # Zeppelin

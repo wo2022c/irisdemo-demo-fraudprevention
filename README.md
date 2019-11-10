@@ -1,15 +1,69 @@
-## Intelligent Interoperability Example with Financial Data
+# Intelligent Interoperability Example with Financial Data
 
-This demos seeks to show how IRIS can be used on different scenarios:
-* Intelligente Interoperability - IRIS is the service gateway that will receive banking transactions,
-evaluate it with business rules and AI (PMML) for frauds, and route it to the banking core system or
-decline them.
-* Normalized Data Lake - IRIS can hold data from different systems in the organization, building a normalized 
-data model that can be kept on-line with the business. This opens many possibilites of innovation and it differs from the traditional data lake because data from one system is not simply thrown at it. It is stored and normalized with data form other systems on the organization so that is is immediately useful for reporting, business intelligence, building new innovative applications that can make use of the data and using as the single source of truth for tranining and improving machine learning models with Spark.
-* Operational Database - IRIS can be the database of web applications built with modern web libraries and frameworks such as REACT and Angular.
+This sample application shows one of the ways IRIS can be used to create a service that:
+- Uses Machine Learning to detect suspicious financial transactions. We create the model using Spark/Scala/Zeppelin and export it to PMML to use it inside IRIS
+- Calls a CRM to verify if customers are traveling to a place where he/she would not normally do transactions
+- Uses business processes and business rules to verify if the transaction should be processed or not
+- Calls the back end system to process the transaction
+- Store aggregated data about the transactions on a normalized data lake. The data can be used to retrain the ML model
+- Shows how applications can be built with IRIS using containers and docker-compose
 
-The demo simulates a Bank that is receiveing money transfers transactinos from its Internet Banking application and some of the processes and workflows inside the bank to process these transactions with the required traceability, connecting with the back end systems while detecting frauds with Artificial Intelligente (Intelligent Interoperability). The demo shows how to train the AI model with Spark and Zeppelin notebook, how to export the model as PMML and put it to use on a Business Process. How to use REST, SOAP and JDBC connectors, and many other things.
+The following image shows the architecture of the solution:
 
-The data used on the demo comes from an academic work from Edgar Alonzo Lopez-Rojas and Stephan Axelsson. If you are doing this demo, their [paper](https://www.researchgate.net/publication/265736405_BankSim_A_Bank_Payment_Simulation_for_Fraud_Detection_Research) is an interesting read since it will explain why the simulated data they have produced is valid and useful. It can also be found on [Kaggle](https://www.kaggle.com/ntnu-testimon/banksim1). 
+![Fraud Prevention Example](https://raw.githubusercontent.com/intersystems-community/irisdemo-demo-fraudprevention/master/README.png?raw=true)
 
-Details on how this demo was built can be found [here](Building_the_Demo.md).
+## Normalized Data Lake?
+To expose this new service, IRIS still relies on other systems such as the core banking system and the CRM. To interoperate with these systems, IRIS uses business process orchestration, business rules and look up tables (for coding system normalization). 
+
+When the service is operating, clean, normalized data starts to flow through IRIS. Instead of throwing this data away, IRIS can easily store it on a normalized data lake. This data can be used to monitor the business in real time, monitor the ML model performance over time and also to train better ML models.
+
+There is no need to do the ETL (Extract, Transform and Load) all over again. Clean data is the side effect of using IRIS to expose your service!
+
+## POS UI written in Angular
+
+The application brings a POS (point of sale) simulator. It is a simple Angular UI that we can use to swipe our cards and simulate transactions.  
+
+## How to run the application
+
+To just run the application on your PC, make sure you have Docker installed on your machine. You can quickly get it up and running with the folloing commands:
+
+```bash
+wget https://raw.githubusercontent.com/intersystems-community/irisdemo-demo-fraudprevention/master/docker-compose.yml
+docker-compose up
+```
+
+You can also clone this repository to you local machine to get the entire source code. You will need git installed and you would need to be on your git folder:
+
+```bash
+git clone https://github.com/intersystems-community/irisdemo-demo-fraudprevention
+cd irisdemo-demo-fraudprevention
+docker-compose up
+```
+
+Both techniques should work and should trigger the download of the images that compose this application and it will soon start all the containers. 
+
+When starting, it is going to show you lots of messages from all the containers that are staring. That is fine. Don't worry.
+
+When it is done, it will just hang there, without returning control to you. That is fine too. Just leave this window open. If you CTRL+C on this window, docker compose will stop all the containers (and stop the application!).
+
+After all the containers have started, open the application landing page on [http://localhost:52773/csp/appint/demo.csp](http://localhost:52773/csp/appint/demo.csp).
+
+Use the username **SuperUser** and the password **sys**. This is just a demo application that is running on your machine, so we are using a default password. The landing page has instructions about how to use the demo application.
+
+## Where does the data come from?
+
+The data used on the application comes from an academic work from Edgar Alonzo Lopez-Rojas and Stephan Axelsson. Their [paper](https://www.researchgate.net/publication/265736405_BankSim_A_Bank_Payment_Simulation_for_Fraud_Detection_Research) is an interesting read since it will explain why the simulated data they have produced is valid and useful. It can also be found on [Kaggle](https://www.kaggle.com/ntnu-testimon/banksim1). 
+
+More details on how this application was built can be found [here](Building_the_Demo.md).
+
+# Other demo applications
+
+There are other IRIS demo applications that touch different subjects such as NLP, ML, Integration with AWS services, Twitter services, performance benchmarks etc. Here are some of them:
+* [HTAP Demo](https://github.com/intersystems-community/irisdemo-demo-htap) - Hybrid Transaction-Analytical Processing benchmark
+* [Twitter Sentiment Analysis](https://github.com/intersystems-community/irisdemo-demo-twittersentiment) - Shows how IRIS can be used to consume Tweets in realtime and use its NLP (natural language processing) and business rules capabilities to evaluate the tweet's sentiment and the metadata to make decisions on when to contact someone to offer support.
+* [HL7 Appointments and SMS (text messages) application](https://github.com/intersystems-community/irisdemo-demo-appointmentsms) -  Shows how IRIS for Health can be used to parse HL7 appointment messages to send SMS (text messages) appointment reminders to patients. It also shows real time dashboards based on appointments data stored in a normalized data lake.
+* [Fraud Prevention](https://github.com/intersystems-community/irisdemo-demo-fraudprevention) - This demo
+
+# Report any Issues
+
+Please, report any issues on the [Issues section](https://github.com/intersystems-community/irisdemo-demo-htap/issues).

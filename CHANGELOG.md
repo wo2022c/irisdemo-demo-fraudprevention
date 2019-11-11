@@ -1,3 +1,7 @@
+## 1.6.3 (November 11, 2019)
+  - Fixing bumpversion to only change versions of images belonging to this repo.
+  - bumpversion will also push to master
+
 ## 1.6.2 (November 11, 2019)
   - Fixing autobuild push hook. 
   - Improving documentation

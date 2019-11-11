@@ -1,6 +1,11 @@
+## 1.6.1 (November 11, 2019)
+  - Security fixes to image-map-resizer
+  - Better README
+  - Adding .gitignore to root folder
+  - Making docker-compose rely on images on docker hub. build.sh now builds without docker-compose.
+  - Eliminating the need for .env
+  
 ## 1.6.0 (November 08, 2019)
-  - Merge branch 'master' of https://github.com/intersystems-community/irisdemo-demo-fraudprevention
-  - Merge pull request #3 from intersystems-community/ui-package-updates
   - adding updates to Docker file to run on node10 and package updates for UI
 
 ## 1.5.0 (November 08, 2019)

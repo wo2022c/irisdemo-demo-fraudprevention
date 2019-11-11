@@ -1,3 +1,6 @@
+## 1.6.2 (November 11, 2019)
+
+
 ## 1.6.1 (November 11, 2019)
   - Security fixes to image-map-resizer
   - Better README

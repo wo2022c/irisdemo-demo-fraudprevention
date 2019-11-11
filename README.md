@@ -43,9 +43,14 @@ After all the containers have started, open the application landing page on [htt
 
 Use the username **SuperUser** and the password **sys**. This is just a demo application that is running on your machine, so we are using a default password. The landing page has instructions about how to use the demo application.
 
-### Why do I need to clone/fork the entire repo?
+### Why do I need to clone/fork the entire repo to run the app?
 
-You don't need all the source code to run the application. But the application relies on a folder structure that allow the containers to access configuration files, zeppelin notebooks with the source code for the models built and also to exchange files (in this case, PMML files between zeppelin and IRIS). It is just easier to clone the repository and get this out of the box folder structure.
+You don't need all the source code to run the application. But the application relies on a folder structure that allows:
+* Zeppelin to store its configuration and log files outside of the containers
+* Zeppelin to read/save the notebooks from/to outside of the containers
+* Have a shared folder that allows IRIS to read a ML model exported as PMML
+
+It is just easier to clone the repository and get this folder structure "out of the box" instead of having to recreate it.
 
 ## Where does the data come from?
 

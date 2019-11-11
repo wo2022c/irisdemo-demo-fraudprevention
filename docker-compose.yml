@@ -62,7 +62,7 @@ services:
     command: "npm run proxy"
 
   advancedanalytics:
-    image: intersystemsdc/irisdemo-base-zeppelin:version-1.6.2
+    image: intersystemsdc/irisdemo-base-zeppelin:version-1.3
     init: true
     ports:
     - "9096:9090"   # Zeppelin
@@ -81,7 +81,7 @@ services:
     - IRIS_MASTER_NAMESPACE=APP 
 
   sparkmaster:
-    image: intersystemsdc/irisdemo-base-spark-iris:version-1.6.2
+    image: intersystemsdc/irisdemo-base-spark-iris:version-1.1
     hostname: sparkmaster # Must be always sparkmaster
     init: true
     environment:
@@ -103,7 +103,7 @@ services:
   worker1:
     depends_on: 
       - sparkmaster
-    image: intersystemsdc/irisdemo-base-spark-iris:version-1.6.2
+    image: intersystemsdc/irisdemo-base-spark-iris:version-1.1
     hostname: worker1
     init: true
     environment:
@@ -127,7 +127,7 @@ services:
   worker2:
     depends_on: 
       - sparkmaster
-    image: intersystemsdc/irisdemo-base-spark-iris:version-1.6.2
+    image: intersystemsdc/irisdemo-base-spark-iris:version-1.1
     hostname: worker2
     init: true
     environment:

@@ -12,6 +12,8 @@ The following image shows the architecture of the solution:
 
 ![Fraud Prevention Example](https://raw.githubusercontent.com/intersystems-community/irisdemo-demo-fraudprevention/master/README.png?raw=true)
 
+You can see a video of this demo on [YouTube](https://youtu.be/hsQPiKXJlX8).
+
 ## Normalized Data Lake?
 To expose this new service, IRIS still relies on other systems such as the core banking system and the CRM. To interoperate with these systems, IRIS uses business process orchestration, business rules and look up tables (for coding system normalization). 
 

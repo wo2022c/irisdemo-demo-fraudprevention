@@ -54,11 +54,12 @@ You don't need all the source code to run the application. But the application r
 
 It is just easier to clone the repository and get this folder structure "out of the box" instead of having to recreate it.
 
-## Where does the data come from?
+# Other Resources
 
-The data used on the application comes from an academic work from Edgar Alonzo Lopez-Rojas and Stephan Axelsson. Their [paper](https://www.researchgate.net/publication/265736405_BankSim_A_Bank_Payment_Simulation_for_Fraud_Detection_Research) is an interesting read since it will explain why the simulated data they have produced is valid and useful. It can also be found on [Kaggle](https://www.kaggle.com/ntnu-testimon/banksim1). 
-
-More details on how this application was built can be found [here](Building_the_Demo.md).
+Here are some additional resources:
+* [YouTube Video of this demo](https://youtu.be/hsQPiKXJlX8)
+* An [academic paper](https://www.researchgate.net/publication/265736405_BankSim_A_Bank_Payment_Simulation_for_Fraud_Detection_Research) writen by Edgar Alonzo Lopez-Rojas and Stephan Axelsson about using simulated data for developing fraud detection solutions. It is an interesting read since it will explain why the simulated data they have produced is valid and useful. We are using their data on this demo. It can also be found on [Kaggle](https://www.kaggle.com/ntnu-testimon/banksim1).
+* More details on how this application was built can be found [here](Building_the_Demo.md).
 
 # Other demo applications
 

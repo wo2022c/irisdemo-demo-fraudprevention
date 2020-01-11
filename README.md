@@ -10,7 +10,7 @@ This sample application shows one of the ways IRIS can be used to create a servi
 
 The following image shows the architecture of the solution:
 
-![Fraud Prevention Example](https://raw.githubusercontent.com/intersystems-community/irisdemo-demo-fraudprevention/master/README.png?raw=true)
+[![Fraud Prevention Example](https://raw.githubusercontent.com/intersystems-community/irisdemo-demo-fraudprevention/master/README.png?raw=true)](https://youtu.be/hsQPiKXJlX8)
 
 You can see a video of this demo on [YouTube](https://youtu.be/hsQPiKXJlX8).
 

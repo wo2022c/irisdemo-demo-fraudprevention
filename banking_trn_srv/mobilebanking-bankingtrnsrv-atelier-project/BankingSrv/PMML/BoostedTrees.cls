@@ -1,3 +1,8 @@
+Class BankingSrv.PMML.BoostedTrees Extends %DeepSee.PMML.Definition [ ProcedureBlock ]
+{
+
+XData PMML [ XMLNamespace = "http://www.intersystems.com/deepsee/pmml" ]
+{
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PMML xmlns="http://www.dmg.org/PMML-4_3" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.3">
 	<Header>
@@ -604,3 +609,6 @@
 		</Segmentation>
 	</MiningModel>
 </PMML>
+}
+
+}

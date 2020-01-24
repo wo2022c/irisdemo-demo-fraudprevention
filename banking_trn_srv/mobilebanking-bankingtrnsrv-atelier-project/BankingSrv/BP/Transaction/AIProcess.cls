@@ -2,10 +2,15 @@
 Class BankingSrv.BP.Transaction.AIProcess Extends Ens.BusinessProcessBPL [ ClassType = persistent, ProcedureBlock ]
 {
 
+Storage Default
+{
+<Type>%Storage.Persistent</Type>
+}
+
 /// BPL Definition
 XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 {
-<process language='objectscript' request='BankingSrv.BS.Transaction.NewTransactionReq' response='BankingSrv.BS.Transaction.NewTransactionResp' height='2350' width='2000' >
+<process language='objectscript' request='BankingSrv.BS.Transaction.NewTransactionReq' response='BankingSrv.BS.Transaction.NewTransactionResp' height='2550' width='2000' >
 <context>
 <property name='Request' type='BankingSrv.BS.Transaction.NewTransactionReq' instantiate='0' />
 <property name='QueryWhiteListResp' type='WhiteList.BO.QueryWhiteListResp' instantiate='0' />
@@ -13,24 +18,23 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 <property name='DatalakeReq' type='Datalake.BO.Transaction.NewTransactionReq' instantiate='0' />
 <property name='TransactionResp' type='BankingCore.Transaction.WSProxy.s0.CreateTransactionResp' instantiate='0' />
 <property name='ExecuteModelReq' type='IRISDemo.BO.PMML.ExecuteModelReq' instantiate='0' />
-<property name='ProbabilityOfFraud' type='%Library.Decimal' instantiate='0' />
 <property name='LooksLikeFraud' type='%Library.Boolean' instantiate='0' />
 <property name='LooksLikeFraudReason' type='%Library.String' instantiate='0' />
+<property name='ExecuteMLModelRequest' type='ML.Model.BO.Executor.ExecuteModelReq' instantiate='0' />
+<property name='FraudPrediction' type='%Integer' instantiate='0' />
 </context>
-<sequence xend='335' yend='2185' >
-<transform name='Prepare Model Features' class='BankingSrv.DTL.BuildFeatures' source='request' target='context.ExecuteModelReq' xpos='200' ypos='250' >
-<annotation><![CDATA[Translate transactional data into features to call the ML model]]></annotation>
-</transform>
-<call name='Execute ML Model' target='Fraud Prediction ML Model' async='0' xpos='200' ypos='350' >
-<annotation><![CDATA[Call the ML model to determine if this is a fraudulent transaction]]></annotation>
-<request type='IRISDemo.BO.PMML.ExecuteModelReq' >
-<assign property="callrequest" value="context.ExecuteModelReq" action="set" />
+<sequence xend='200' yend='2100' >
+<transform name='Prepare ML Model Features' class='BankingSrv.DTL.BuildMLFeatures' source='request' target='context.ExecuteMLModelRequest' xpos='200' ypos='250' />
+<call name='Execute ML Model' target='Fraud Prediction ML Model Executor' async='0' xpos='200' ypos='350' >
+<annotation><![CDATA[Call the new ML Model using the ML package to determine if this is a fraudulent transaction]]></annotation>
+<request type='ML.Model.BO.Executor.ExecuteModelReq' >
+<assign property="callrequest" value="context.ExecuteMLModelRequest" action="set" />
 </request>
-<response type='IRISDemo.BO.PMML.ExecuteModelResp' >
-<assign property="context.ProbabilityOfFraud" value="callresponse.ModelOutput.GetAt(&quot;probability1&quot;)" action="set" />
+<response type='ML.Model.BO.Executor.ExecuteModelResp' >
+<assign property="context.FraudPrediction" value="callresponse.ModelOutput.GetAt(&quot;fraud&quot;)" action="set" />
 </response>
 </call>
-<trace name='Trace Probability of Fraud' value='"Probability of Fraud: "_(context.ProbabilityOfFraud*100)_"%"' xpos='200' ypos='450' />
+<trace name='Trace If Flagged As Fraud' value='"Is Fraud: "_(context.FraudPrediction)' xpos='200' ypos='450' />
 <assign name="Save Request into Context" property="context.Request" value="request" action="set" xpos='200' ypos='550' />
 <rule name='Hard rules' rule='BankingSrv.Rule.AIRule'  resultLocation='context.LooksLikeFraud' reasonLocation='context.LooksLikeFraudReason' ruleContext='context' xpos='200' ypos='650' >
 <annotation><![CDATA[Evaluate response of ML model together with transactional data. Combining business rules and ML insight]]></annotation>
@@ -61,10 +65,10 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </if>
 </true>
 </if>
-<if name='Allowed?' condition='context.TransactionAllowed' xpos='200' ypos='1550' xend='336' yend='1857' >
+<if name='Allowed?' condition='context.TransactionAllowed' xpos='200' ypos='1550' xend='200' yend='2000' >
 <true>
 <assign name="Transaction Approved!" property="response.TransactionApproved" value="1" action="set" xpos='470' ypos='1700' />
-<call name='Call Core Banking' target='Banking Core Transaction Operation' async='0' xpos='335' ypos='1956' >
+<call name='Call Core Banking' target='Banking Core Transaction Operation' async='0' xpos='470' ypos='1800' >
 <request type='BankingCore.Transaction.CreateTransactionRequest' >
 <assign property="callrequest.pTransDateTime" value="request.TransDateTime" action="set" />
 <assign property="callrequest.pTransType" value="request.TransType" action="set" />
@@ -77,7 +81,7 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 <assign property="context.TransactionResp" value="callresponse.CreateTransactionResult" action="set" />
 </response>
 </call>
-<call name='Populate the data lake' target='Datalake Transaction Operations' async='1' xpos='338' ypos='2055' >
+<call name='Populate the data lake' target='Datalake Transaction Operations' async='1' xpos='470' ypos='1900' >
 <annotation><![CDATA[Asynchronous]]></annotation>
 <request type='Datalake.BO.Transaction.NewTransactionReq' >
 <assign property="callrequest.TransDateTime" value="request.TransDateTime" action="set" />
@@ -98,7 +102,7 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </true>
 <false>
 <assign name="Transaction declined!" property="response.TransactionApproved" value="0" action="set" xpos='200' ypos='1700' />
-<call name='Populate the data lake' target='Datalake Transaction Operations' async='1' xpos='338' ypos='2055' >
+<call name='Populate the data lake' target='Datalake Transaction Operations' async='1' xpos='200' ypos='1800' >
 <annotation><![CDATA[Asynchronous]]></annotation>
 <request type='Datalake.BO.Transaction.NewTransactionReq' >
 <assign property="callrequest.TransDateTime" value="request.TransDateTime" action="set" />
@@ -118,15 +122,8 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </call>
 </false>
 </if>
-
-
 </sequence>
 </process>
-}
-
-Storage Default
-{
-<Type>%Storage.Persistent</Type>
 }
 
 }

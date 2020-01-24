@@ -303,7 +303,7 @@
 					on a message bank that is searchable and allow you to resend messages if necessary. Focus on the concepts that
 					you think are important for this customer.</li>
 
-				<li>Show that we called the PMML model and we got a probability of fraud of only 10%. The business rule decided
+				<li>Show that we called the PMML model and we got a classification prediction of 0, meaning the transaction was not predicted to be fraudulent. The business rule decided
 				that this threshold doesn't represent a threat and that is why the transaction
 				was processed immediately. Tell them that we will see where that PMML model came from soon.</li>
 				<li>Now jump back to the POS simulator. Refresh the entire tab and execute a new transaction of US$ 1000. This

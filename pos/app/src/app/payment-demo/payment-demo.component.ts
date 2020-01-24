@@ -18,7 +18,7 @@ export class PaymentDemoComponent implements OnInit {
     TransType: 'PAYMENT',
     Amount: '0',
     FromAccountNumber: 'C1822295676',
-    ToAccountNumber: 'M85975013'
+    ToAccountNumber: 'M1353266412'
   };
   public isCreditCardInserted = false;
   public Object = Object;

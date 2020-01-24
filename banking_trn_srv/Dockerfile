@@ -6,14 +6,6 @@ LABEL maintainer="Amir Samary <amir.samary@intersystems.com>"
 # Let's copy the exported file whitelist.csv from the datalake image into our image
 COPY --from=0 /tmp/whitelist.csv /tmp/
 
-USER root
-# This folder will be shared with the other containers (i.e.: normalized_datalake)
-RUN mkdir /common_shared/ && \
-    mkdir /common_shared/pmml && \
-    mkdir /common_shared/pmml/imported && \
-    chown irisowner:irisuser -R /common_shared && \
-    chmod g+w -R /common_shared/
-
 USER irisowner
 
 # Name of the project folder ex.: my-atelier-project

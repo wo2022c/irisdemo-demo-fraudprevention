@@ -1,0 +1,27 @@
+ROUTINE TestPMML
+
+	Try
+	{
+		Set tSC = $System.Status.OK()
+
+		Set pModel = ##class(IRISDemo.ImportedModel.NewRandomForest.MiningModel).%New()
+		set tInput("age") = 30
+		set tInput("gender") = 2
+		set tInput("amount") =20.25
+		set tInput("merchant") = 43
+		set tInput("category") = 12
+
+		ZWrite tInput
+
+		// Now, let's execute the model...
+		Set tSC = pModel.%ExecuteModel(.tInput, .pModelDataOutput)
+		Quit:$System.Status.IsError(tSC)
+		
+		ZWrite pModelDataOutput
+	}
+	Catch (oException)
+	{
+		Set tSC = oException.AsStatus()
+	}
+	
+	Do $System.Status.DisplayError(tSC)

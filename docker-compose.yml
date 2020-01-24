@@ -1,7 +1,7 @@
 version: '3.7'
 
-volumes:
-  common_shared:
+#volumes:
+#  common_shared:
 
 services:
 
@@ -44,7 +44,9 @@ services:
     # 52773 is the webserver/management portal port
     - "9092:52773"
     volumes:
-    - common_shared:/common_shared   # The production will be looking into this folder for new PMML files
+    - type: bind
+      source: ./common_shared/
+      target: /common_shared   # The production will be looking into this folder for new PMML files
                                        # that will be sent by the advancedanalytics service.
     - type: bind
       source: ./banking_trn_srv/shared/
@@ -68,7 +70,9 @@ services:
     - "9096:9090"   # Zeppelin
     - 4141:4040     # Zeppelin Spark UI
     volumes:
-    - common_shared:/common_shared   # The production will be looking into this folder for new PMML files
+    - type: bind
+      source: ./common_shared/
+      target: /common_shared   # The production will be looking into this folder for new PMML files
                                        # that will be sent by the advancedanalytics service.
     - type: bind
       source: ./advanced_analytics/shared/
@@ -98,7 +102,9 @@ services:
       - 7077:7077
       - 8080:8080   # Spark Master Portal
     volumes:
-    - common_shared:/common_shared   # Shared between all spark nodes. Good place to place a file we are working with.
+    - type: bind
+      source: ./common_shared/
+      target: /common_shared   # Shared between all spark nodes. Good place to place a file we are working with.
 
   worker1:
     depends_on: 
@@ -122,7 +128,9 @@ services:
     ports:
       - 8081:8081   # Spark Worker Portal
     volumes:
-    - common_shared:/common_shared   # Shared between all spark nodes. Good place to place a file we are working with.  
+    - type: bind
+      source: ./common_shared/
+      target: /common_shared   # Shared between all spark nodes. Good place to place a file we are working with.  
 
   worker2:
     depends_on: 
@@ -146,4 +154,6 @@ services:
     ports:
       - 8082:8082   # Spark Worker Portal
     volumes:
-    - common_shared:/common_shared   # Shared between all spark nodes. Good place to place a file we are working with.
+    - type: bind
+      source: ./common_shared/
+      target: /common_shared   # Shared between all spark nodes. Good place to place a file we are working with.

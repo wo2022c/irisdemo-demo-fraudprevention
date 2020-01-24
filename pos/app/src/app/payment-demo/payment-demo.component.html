@@ -146,22 +146,17 @@
     <section class="info-panel">
       <select name="operation" id="operation-type" class="info-panel__select" title="select operation type">
         <option class="info-panel__option" value="Merchant 1">Merchant 1</option>
-        <option class="info-panel__option" value="Merchant 2">Merchant 2</option>
       </select>
       <span class="info-panel__label">request</span>
       <section class="info-panel__text">
         <ng-container *ngIf="!terminal.state.isInitial && !terminal.state.isWaiting">
-                    <pre>
-{{requestValue | json }}
-          </pre>
+            <pre>{{requestValue | json }}</pre>
         </ng-container>
       </section>
       <span class="info-panel__label">response</span>
       <div class="info-panel__text">
         <ng-container *ngIf="terminal.state.isApproved || terminal.state.isDeclined">
-          <pre>
-{{response | json }}
-          </pre>
+          <pre>{{response | json }}</pre>
         </ng-container>
       </div>
     </section>

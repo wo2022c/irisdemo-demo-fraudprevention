@@ -57,11 +57,8 @@ Merchant_Feature, IRISDemo.BC_MERCH_ACCOUNT, BC_ACC_NUMBER, BC_MERCH_CODE]]></Se
     <Setting Target="Host" Name="ReplyCodeActions">E=R</Setting>
     <Setting Target="Host" Name="FailureTimeout">-1</Setting>
   </Item>
-  <Item Name="Fraud Prediction ML Model" Category="" ClassName="IRISDemo.BO.PMML.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
-    <Setting Target="Host" Name="PMML">BankingSrv.PMML.FraudPrevModel</Setting>
-  </Item>
   <Item Name="Fraud Prediction ML Model Executor" Category="" ClassName="ML.Model.BO.Executor.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Host" Name="PMML">BankingSrv.PMML.BoostedTrees</Setting>
+    <Setting Target="Host" Name="PMML">BankingSrv.PMML.FraudPreventionBoostedTreeModel</Setting>
   </Item>
   <Item Name="PMML File Loader" Category="" ClassName="ML.PMML.BS.Loader.File.Service" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Adapter" Name="ArchivePath">/common_shared/imported_pmml</Setting>

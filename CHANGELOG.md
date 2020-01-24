@@ -1,3 +1,18 @@
+## 1.7.0 (January 24, 2020)
+  - Merge pull request #5 from intersystems-community/ML-package-version
+  - adding final updates for business process and updates to instructions for running demo
+  - adding final updates for switching demo over to ML Package
+  - updated notebook
+  - adding MAcro file for quick PMML Model testing
+  - updating the DTL to set amount instead of dollars
+  - updated notebook
+  - Adding updates for converting the demo to ML package and use of boosted trees as ML model
+  - added ML notebook
+  - Update README.md
+  - Eliminating test notebook
+  - Update README.md
+  - Update README.md
+
 ## 1.6.3 (November 11, 2019)
   - Fixing bumpversion to only change versions of images belonging to this repo.
   - bumpversion will also push to master

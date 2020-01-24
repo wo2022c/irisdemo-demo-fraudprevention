@@ -18,11 +18,10 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 <property name='DatalakeReq' type='Datalake.BO.Transaction.NewTransactionReq' instantiate='0' />
 <property name='TransactionResp' type='BankingCore.Transaction.WSProxy.s0.CreateTransactionResp' instantiate='0' />
 <property name='ExecuteModelReq' type='IRISDemo.BO.PMML.ExecuteModelReq' instantiate='0' />
-<property name='ProbabilityOfFraud' type='%Library.Decimal' instantiate='0' />
 <property name='LooksLikeFraud' type='%Library.Boolean' instantiate='0' />
 <property name='LooksLikeFraudReason' type='%Library.String' instantiate='0' />
 <property name='ExecuteMLModelRequest' type='ML.Model.BO.Executor.ExecuteModelReq' instantiate='0' />
-<property name='ProbabilityOfFraudML' type='%Library.Decimal' instantiate='0' />
+<property name='FraudPrediction' type='%Integer' instantiate='0' />
 </context>
 <sequence xend='200' yend='2100' >
 <transform name='Prepare ML Model Features' class='BankingSrv.DTL.BuildMLFeatures' source='request' target='context.ExecuteMLModelRequest' xpos='200' ypos='250' />
@@ -32,10 +31,10 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 <assign property="callrequest" value="context.ExecuteMLModelRequest" action="set" />
 </request>
 <response type='ML.Model.BO.Executor.ExecuteModelResp' >
-<assign property="context.isFraud" value="callresponse.ModelOutput.GetAt(&quot;fraud&quot;)" action="set" />
+<assign property="context.FraudPrediction" value="callresponse.ModelOutput.GetAt(&quot;fraud&quot;)" action="set" />
 </response>
 </call>
-<trace name='Trace If Flagged As Fraud' value='"Is Fraud: "_(context.isFraud)' xpos='200' ypos='450' />
+<trace name='Trace If Flagged As Fraud' value='"Is Fraud: "_(context.FraudPrediction)' xpos='200' ypos='450' />
 <assign name="Save Request into Context" property="context.Request" value="request" action="set" xpos='200' ypos='550' />
 <rule name='Hard rules' rule='BankingSrv.Rule.AIRule'  resultLocation='context.LooksLikeFraud' reasonLocation='context.LooksLikeFraudReason' ruleContext='context' xpos='200' ypos='650' >
 <annotation><![CDATA[Evaluate response of ML model together with transactional data. Combining business rules and ML insight]]></annotation>

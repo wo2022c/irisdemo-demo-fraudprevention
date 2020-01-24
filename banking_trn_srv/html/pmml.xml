@@ -2,62 +2,12 @@
 <PMML xmlns="http://www.dmg.org/PMML-4_3" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.3">
 	<Header>
 		<Application name="JPMML-SparkML" version="1.2.12"/>
-		<Timestamp>2020-01-15T20:28:21Z</Timestamp>
+		<Timestamp>2020-01-24T20:28:32Z</Timestamp>
 	</Header>
 	<DataDictionary>
+		<DataField name="amount" optype="continuous" dataType="double"/>
 		<DataField name="merchant" optype="categorical" dataType="integer">
-			<Value value="2.0"/>
-			<Value value="5.0"/>
-			<Value value="16.0"/>
-			<Value value="45.0"/>
-			<Value value="48.0"/>
-			<Value value="84.0"/>
-			<Value value="96.0"/>
-			<Value value="107.0"/>
-			<Value value="137.0"/>
-			<Value value="141.0"/>
-			<Value value="160.0"/>
-			<Value value="166.0"/>
-			<Value value="205.0"/>
-			<Value value="222.0"/>
-			<Value value="240.0"/>
-			<Value value="270.0"/>
-			<Value value="274.0"/>
-			<Value value="301.0"/>
-			<Value value="303.0"/>
-			<Value value="333.0"/>
-			<Value value="336.0"/>
-			<Value value="345.0"/>
-			<Value value="370.0"/>
-			<Value value="402.0"/>
-			<Value value="546.0"/>
-			<Value value="630.0"/>
-			<Value value="679.0"/>
-			<Value value="714.0"/>
-			<Value value="746.0"/>
-			<Value value="887.0"/>
-			<Value value="930.0"/>
-			<Value value="1011.0"/>
-			<Value value="1138.0"/>
-			<Value value="1353.0"/>
-			<Value value="1462.0"/>
-			<Value value="1720.0"/>
-			<Value value="1728.0"/>
-			<Value value="2471.0"/>
-			<Value value="2516.0"/>
-			<Value value="2620.0"/>
-			<Value value="2669.0"/>
-			<Value value="2742.0"/>
-			<Value value="2811.0"/>
-			<Value value="2934.0"/>
-			<Value value="2952.0"/>
-			<Value value="3059.0"/>
-			<Value value="3469.0"/>
-			<Value value="3485.0"/>
-			<Value value="3659.0"/>
-			<Value value="3843.0"/>
-		</DataField>
-		<DataField name="category" optype="categorical" dataType="integer">
+			<Value value="0.0"/>
 			<Value value="1.0"/>
 			<Value value="2.0"/>
 			<Value value="3.0"/>
@@ -73,284 +23,250 @@
 			<Value value="13.0"/>
 			<Value value="14.0"/>
 			<Value value="15.0"/>
+			<Value value="16.0"/>
+			<Value value="17.0"/>
+			<Value value="18.0"/>
+			<Value value="19.0"/>
+			<Value value="20.0"/>
+			<Value value="21.0"/>
+			<Value value="22.0"/>
+			<Value value="23.0"/>
+			<Value value="24.0"/>
+			<Value value="25.0"/>
+			<Value value="26.0"/>
+			<Value value="27.0"/>
+			<Value value="28.0"/>
+			<Value value="29.0"/>
+			<Value value="30.0"/>
+			<Value value="31.0"/>
+			<Value value="32.0"/>
+			<Value value="33.0"/>
+			<Value value="34.0"/>
+			<Value value="35.0"/>
+			<Value value="36.0"/>
+			<Value value="37.0"/>
+			<Value value="38.0"/>
+			<Value value="39.0"/>
+			<Value value="40.0"/>
+			<Value value="41.0"/>
+			<Value value="42.0"/>
+			<Value value="43.0"/>
+			<Value value="44.0"/>
+			<Value value="45.0"/>
+			<Value value="46.0"/>
+			<Value value="47.0"/>
+			<Value value="48.0"/>
+			<Value value="49.0"/>
 		</DataField>
-		<DataField name="dollars" optype="continuous" dataType="integer"/>
 		<DataField name="fraud" optype="categorical" dataType="integer">
 			<Value value="0"/>
 			<Value value="1"/>
 		</DataField>
 	</DataDictionary>
 	<TransformationDictionary>
-		<DerivedField name="features[2]" optype="categorical" dataType="integer">
+		<DerivedField name="features[3]" optype="categorical" dataType="integer">
 			<MapValues outputColumn="data:output">
 				<FieldColumnPair field="merchant" column="data:input"/>
 				<InlineTable>
 					<row>
-						<data:input>2.0</data:input>
+						<data:input>0.0</data:input>
 						<data:output>0</data:output>
 					</row>
-					<row>
-						<data:input>5.0</data:input>
-						<data:output>1</data:output>
-					</row>
-					<row>
-						<data:input>16.0</data:input>
-						<data:output>2</data:output>
-					</row>
-					<row>
-						<data:input>45.0</data:input>
-						<data:output>3</data:output>
-					</row>
-					<row>
-						<data:input>48.0</data:input>
-						<data:output>4</data:output>
-					</row>
-					<row>
-						<data:input>84.0</data:input>
-						<data:output>5</data:output>
-					</row>
-					<row>
-						<data:input>96.0</data:input>
-						<data:output>6</data:output>
-					</row>
-					<row>
-						<data:input>107.0</data:input>
-						<data:output>7</data:output>
-					</row>
-					<row>
-						<data:input>137.0</data:input>
-						<data:output>8</data:output>
-					</row>
-					<row>
-						<data:input>141.0</data:input>
-						<data:output>9</data:output>
-					</row>
-					<row>
-						<data:input>160.0</data:input>
-						<data:output>10</data:output>
-					</row>
-					<row>
-						<data:input>166.0</data:input>
-						<data:output>11</data:output>
-					</row>
-					<row>
-						<data:input>205.0</data:input>
-						<data:output>12</data:output>
-					</row>
-					<row>
-						<data:input>222.0</data:input>
-						<data:output>13</data:output>
-					</row>
-					<row>
-						<data:input>240.0</data:input>
-						<data:output>14</data:output>
-					</row>
-					<row>
-						<data:input>270.0</data:input>
-						<data:output>15</data:output>
-					</row>
-					<row>
-						<data:input>274.0</data:input>
-						<data:output>16</data:output>
-					</row>
-					<row>
-						<data:input>301.0</data:input>
-						<data:output>17</data:output>
-					</row>
-					<row>
-						<data:input>303.0</data:input>
-						<data:output>18</data:output>
-					</row>
-					<row>
-						<data:input>333.0</data:input>
-						<data:output>19</data:output>
-					</row>
-					<row>
-						<data:input>336.0</data:input>
-						<data:output>20</data:output>
-					</row>
-					<row>
-						<data:input>345.0</data:input>
-						<data:output>21</data:output>
-					</row>
-					<row>
-						<data:input>370.0</data:input>
-						<data:output>22</data:output>
-					</row>
-					<row>
-						<data:input>402.0</data:input>
-						<data:output>23</data:output>
-					</row>
-					<row>
-						<data:input>546.0</data:input>
-						<data:output>24</data:output>
-					</row>
-					<row>
-						<data:input>630.0</data:input>
-						<data:output>25</data:output>
-					</row>
-					<row>
-						<data:input>679.0</data:input>
-						<data:output>26</data:output>
-					</row>
-					<row>
-						<data:input>714.0</data:input>
-						<data:output>27</data:output>
-					</row>
-					<row>
-						<data:input>746.0</data:input>
-						<data:output>28</data:output>
-					</row>
-					<row>
-						<data:input>887.0</data:input>
-						<data:output>29</data:output>
-					</row>
-					<row>
-						<data:input>930.0</data:input>
-						<data:output>30</data:output>
-					</row>
-					<row>
-						<data:input>1011.0</data:input>
-						<data:output>31</data:output>
-					</row>
-					<row>
-						<data:input>1138.0</data:input>
-						<data:output>32</data:output>
-					</row>
-					<row>
-						<data:input>1353.0</data:input>
-						<data:output>33</data:output>
-					</row>
-					<row>
-						<data:input>1462.0</data:input>
-						<data:output>34</data:output>
-					</row>
-					<row>
-						<data:input>1720.0</data:input>
-						<data:output>35</data:output>
-					</row>
-					<row>
-						<data:input>1728.0</data:input>
-						<data:output>36</data:output>
-					</row>
-					<row>
-						<data:input>2471.0</data:input>
-						<data:output>37</data:output>
-					</row>
-					<row>
-						<data:input>2516.0</data:input>
-						<data:output>38</data:output>
-					</row>
-					<row>
-						<data:input>2620.0</data:input>
-						<data:output>39</data:output>
-					</row>
-					<row>
-						<data:input>2669.0</data:input>
-						<data:output>40</data:output>
-					</row>
-					<row>
-						<data:input>2742.0</data:input>
-						<data:output>41</data:output>
-					</row>
-					<row>
-						<data:input>2811.0</data:input>
-						<data:output>42</data:output>
-					</row>
-					<row>
-						<data:input>2934.0</data:input>
-						<data:output>43</data:output>
-					</row>
-					<row>
-						<data:input>2952.0</data:input>
-						<data:output>44</data:output>
-					</row>
-					<row>
-						<data:input>3059.0</data:input>
-						<data:output>45</data:output>
-					</row>
-					<row>
-						<data:input>3469.0</data:input>
-						<data:output>46</data:output>
-					</row>
-					<row>
-						<data:input>3485.0</data:input>
-						<data:output>47</data:output>
-					</row>
-					<row>
-						<data:input>3659.0</data:input>
-						<data:output>48</data:output>
-					</row>
-					<row>
-						<data:input>3843.0</data:input>
-						<data:output>49</data:output>
-					</row>
-				</InlineTable>
-			</MapValues>
-		</DerivedField>
-		<DerivedField name="features[3]" optype="categorical" dataType="integer">
-			<MapValues outputColumn="data:output">
-				<FieldColumnPair field="category" column="data:input"/>
-				<InlineTable>
 					<row>
 						<data:input>1.0</data:input>
-						<data:output>0</data:output>
+						<data:output>1</data:output>
 					</row>
 					<row>
 						<data:input>2.0</data:input>
-						<data:output>1</data:output>
+						<data:output>2</data:output>
 					</row>
 					<row>
 						<data:input>3.0</data:input>
-						<data:output>2</data:output>
-					</row>
-					<row>
-						<data:input>4.0</data:input>
 						<data:output>3</data:output>
 					</row>
 					<row>
-						<data:input>5.0</data:input>
+						<data:input>4.0</data:input>
 						<data:output>4</data:output>
 					</row>
 					<row>
-						<data:input>6.0</data:input>
+						<data:input>5.0</data:input>
 						<data:output>5</data:output>
 					</row>
 					<row>
-						<data:input>7.0</data:input>
+						<data:input>6.0</data:input>
 						<data:output>6</data:output>
 					</row>
 					<row>
-						<data:input>8.0</data:input>
+						<data:input>7.0</data:input>
 						<data:output>7</data:output>
 					</row>
 					<row>
-						<data:input>9.0</data:input>
+						<data:input>8.0</data:input>
 						<data:output>8</data:output>
 					</row>
 					<row>
-						<data:input>10.0</data:input>
+						<data:input>9.0</data:input>
 						<data:output>9</data:output>
 					</row>
 					<row>
-						<data:input>11.0</data:input>
+						<data:input>10.0</data:input>
 						<data:output>10</data:output>
 					</row>
 					<row>
-						<data:input>12.0</data:input>
+						<data:input>11.0</data:input>
 						<data:output>11</data:output>
 					</row>
 					<row>
-						<data:input>13.0</data:input>
+						<data:input>12.0</data:input>
 						<data:output>12</data:output>
 					</row>
 					<row>
-						<data:input>14.0</data:input>
+						<data:input>13.0</data:input>
 						<data:output>13</data:output>
 					</row>
 					<row>
-						<data:input>15.0</data:input>
+						<data:input>14.0</data:input>
 						<data:output>14</data:output>
+					</row>
+					<row>
+						<data:input>15.0</data:input>
+						<data:output>15</data:output>
+					</row>
+					<row>
+						<data:input>16.0</data:input>
+						<data:output>16</data:output>
+					</row>
+					<row>
+						<data:input>17.0</data:input>
+						<data:output>17</data:output>
+					</row>
+					<row>
+						<data:input>18.0</data:input>
+						<data:output>18</data:output>
+					</row>
+					<row>
+						<data:input>19.0</data:input>
+						<data:output>19</data:output>
+					</row>
+					<row>
+						<data:input>20.0</data:input>
+						<data:output>20</data:output>
+					</row>
+					<row>
+						<data:input>21.0</data:input>
+						<data:output>21</data:output>
+					</row>
+					<row>
+						<data:input>22.0</data:input>
+						<data:output>22</data:output>
+					</row>
+					<row>
+						<data:input>23.0</data:input>
+						<data:output>23</data:output>
+					</row>
+					<row>
+						<data:input>24.0</data:input>
+						<data:output>24</data:output>
+					</row>
+					<row>
+						<data:input>25.0</data:input>
+						<data:output>25</data:output>
+					</row>
+					<row>
+						<data:input>26.0</data:input>
+						<data:output>26</data:output>
+					</row>
+					<row>
+						<data:input>27.0</data:input>
+						<data:output>27</data:output>
+					</row>
+					<row>
+						<data:input>28.0</data:input>
+						<data:output>28</data:output>
+					</row>
+					<row>
+						<data:input>29.0</data:input>
+						<data:output>29</data:output>
+					</row>
+					<row>
+						<data:input>30.0</data:input>
+						<data:output>30</data:output>
+					</row>
+					<row>
+						<data:input>31.0</data:input>
+						<data:output>31</data:output>
+					</row>
+					<row>
+						<data:input>32.0</data:input>
+						<data:output>32</data:output>
+					</row>
+					<row>
+						<data:input>33.0</data:input>
+						<data:output>33</data:output>
+					</row>
+					<row>
+						<data:input>34.0</data:input>
+						<data:output>34</data:output>
+					</row>
+					<row>
+						<data:input>35.0</data:input>
+						<data:output>35</data:output>
+					</row>
+					<row>
+						<data:input>36.0</data:input>
+						<data:output>36</data:output>
+					</row>
+					<row>
+						<data:input>37.0</data:input>
+						<data:output>37</data:output>
+					</row>
+					<row>
+						<data:input>38.0</data:input>
+						<data:output>38</data:output>
+					</row>
+					<row>
+						<data:input>39.0</data:input>
+						<data:output>39</data:output>
+					</row>
+					<row>
+						<data:input>40.0</data:input>
+						<data:output>40</data:output>
+					</row>
+					<row>
+						<data:input>41.0</data:input>
+						<data:output>41</data:output>
+					</row>
+					<row>
+						<data:input>42.0</data:input>
+						<data:output>42</data:output>
+					</row>
+					<row>
+						<data:input>43.0</data:input>
+						<data:output>43</data:output>
+					</row>
+					<row>
+						<data:input>44.0</data:input>
+						<data:output>44</data:output>
+					</row>
+					<row>
+						<data:input>45.0</data:input>
+						<data:output>45</data:output>
+					</row>
+					<row>
+						<data:input>46.0</data:input>
+						<data:output>46</data:output>
+					</row>
+					<row>
+						<data:input>47.0</data:input>
+						<data:output>47</data:output>
+					</row>
+					<row>
+						<data:input>48.0</data:input>
+						<data:output>48</data:output>
+					</row>
+					<row>
+						<data:input>49.0</data:input>
+						<data:output>49</data:output>
 					</row>
 				</InlineTable>
 			</MapValues>
@@ -360,8 +276,7 @@
 		<MiningSchema>
 			<MiningField name="fraud" usageType="target"/>
 			<MiningField name="merchant"/>
-			<MiningField name="dollars"/>
-			<MiningField name="category"/>
+			<MiningField name="amount"/>
 		</MiningSchema>
 		<Segmentation multipleModelMethod="modelChain">
 			<Segment id="1">
@@ -369,8 +284,7 @@
 				<MiningModel functionName="regression">
 					<MiningSchema>
 						<MiningField name="merchant"/>
-						<MiningField name="dollars"/>
-						<MiningField name="category"/>
+						<MiningField name="amount"/>
 					</MiningSchema>
 					<Output>
 						<OutputField name="gbtValue" optype="continuous" dataType="double" feature="predictedValue" isFinalResult="false"/>
@@ -390,26 +304,41 @@
 							<True/>
 							<TreeModel functionName="regression" missingValueStrategy="nullPrediction" noTrueChildStrategy="returnLastPrediction" splitCharacteristic="multiSplit">
 								<MiningSchema>
-									<MiningField name="dollars"/>
+									<MiningField name="amount"/>
 									<MiningField name="merchant"/>
 								</MiningSchema>
-								<Node score="0.9874182067122838">
+								<Node score="0.8388241256969082">
 									<True/>
-									<Node score="-1.0">
-										<SimpleSetPredicate field="features[2]" booleanOperator="isIn">
-											<Array type="int">0 1 4 5 14 23 24 28 29 32 33 34 36 37 40 42 43 46 47 49</Array>
+									<Node score="0.2939914163090129">
+										<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+											<Array type="int">0 1 2 4 5 7 8 9 10 11 12 13 16 17 18 19 20 22 23 24 27 29 30 31 33 35 36 37 38 39 41 42 43 45 47 48</Array>
 										</SimpleSetPredicate>
-									</Node>
-									<Node score="0.9254223320972393">
-										<SimpleSetPredicate field="features[2]" booleanOperator="isIn">
-											<Array type="int">2 7 9 13 15 44</Array>
-										</SimpleSetPredicate>
-										<Node score="-0.07303182579564489">
-											<SimplePredicate field="dollars" operator="lessOrEqual" value="117.0"/>
+										<Node score="-0.8946090335114133">
+											<SimplePredicate field="amount" operator="lessOrEqual" value="144.57"/>
+											<Node score="-0.9990436689847298">
+												<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+													<Array type="int">0 1 4 5 7 8 9 11 12 17 18 19 20 23 24 27 30 31 33 36 38 39 41 43 45 47 48</Array>
+												</SimpleSetPredicate>
+											</Node>
+										</Node>
+										<Node score="-0.8951271186440678">
+											<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+												<Array type="int">0 1 4 5 7 8 11 12 13 17 19 20 23 24 29 31 33 35 36 38 39 42 48</Array>
+											</SimpleSetPredicate>
 										</Node>
 									</Node>
-									<Node score="0.8293888713579468">
-										<SimplePredicate field="dollars" operator="lessOrEqual" value="117.0"/>
+									<Node score="0.12897196261682242">
+										<SimplePredicate field="amount" operator="lessOrEqual" value="144.57"/>
+										<Node score="-0.6073808303434136">
+											<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+												<Array type="int">6 14 15 25 26 28 32 34 46</Array>
+											</SimpleSetPredicate>
+										</Node>
+									</Node>
+									<Node score="0.4080287597363691">
+										<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+											<Array type="int">15 26 28 34 46</Array>
+										</SimpleSetPredicate>
 									</Node>
 								</Node>
 							</TreeModel>
@@ -418,35 +347,39 @@
 							<True/>
 							<TreeModel functionName="regression" missingValueStrategy="nullPrediction" noTrueChildStrategy="returnLastPrediction" splitCharacteristic="multiSplit">
 								<MiningSchema>
-									<MiningField name="dollars"/>
+									<MiningField name="amount"/>
 									<MiningField name="merchant"/>
 								</MiningSchema>
-								<Node score="0.4790034605125961">
+								<Node score="0.522912830637052">
 									<True/>
-									<Node score="-0.4466501918704571">
-										<SimpleSetPredicate field="features[2]" booleanOperator="isIn">
-											<Array type="int">0 1 4 5 7 9 14 23 24 28 29 32 33 34 36 37 40 42 43 46 47 49</Array>
+									<Node score="0.2664543564747193">
+										<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+											<Array type="int">0 1 4 5 7 8 9 10 11 13 16 17 18 19 20 22 23 24 27 29 30 31 33 36 37 38 39 41 43 45 46 47 48</Array>
 										</SimpleSetPredicate>
-										<Node score="-0.4781332814290388">
-											<SimplePredicate field="dollars" operator="lessOrEqual" value="93.0"/>
-											<Node score="-1.0717993915713253">
-												<SimplePredicate field="features[2]" operator="equal" value="7"/>
+										<Node score="-0.5477131118104336">
+											<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+												<Array type="int">0 1 4 5 7 8 9 10 11 13 17 18 19 20 23 24 27 30 31 33 38 39 41 45 46 47 48</Array>
+											</SimpleSetPredicate>
+											<Node score="-0.47690483251108723">
+												<SimplePredicate field="amount" operator="lessOrEqual" value="148.87"/>
 											</Node>
 										</Node>
-										<Node score="0.5737245941308714">
-											<SimplePredicate field="features[2]" operator="equal" value="9"/>
+										<Node score="-0.3937856440495859">
+											<SimplePredicate field="amount" operator="lessOrEqual" value="148.87"/>
 										</Node>
 									</Node>
-									<Node score="0.4636819967144003">
-										<SimpleSetPredicate field="features[2]" booleanOperator="isIn">
-											<Array type="int">2 8 10 12 15 21 25 27 44</Array>
+									<Node score="0.08479679650587263">
+										<SimplePredicate field="amount" operator="lessOrEqual" value="148.87"/>
+										<Node score="-0.27956210414731275">
+											<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+												<Array type="int">2 12 15 34 35 40 42 44</Array>
+											</SimpleSetPredicate>
+										</Node>
+									</Node>
+									<Node score="0.07275254171459962">
+										<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+											<Array type="int">14 15 25 34 40 44</Array>
 										</SimpleSetPredicate>
-										<Node score="-0.21629645185591037">
-											<SimplePredicate field="dollars" operator="lessOrEqual" value="195.0"/>
-										</Node>
-									</Node>
-									<Node score="0.3221656150660744">
-										<SimplePredicate field="dollars" operator="lessOrEqual" value="50.0"/>
 									</Node>
 								</Node>
 							</TreeModel>
@@ -455,40 +388,41 @@
 							<True/>
 							<TreeModel functionName="regression" missingValueStrategy="nullPrediction" noTrueChildStrategy="returnLastPrediction" splitCharacteristic="multiSplit">
 								<MiningSchema>
-									<MiningField name="dollars"/>
+									<MiningField name="amount"/>
 									<MiningField name="merchant"/>
-									<MiningField name="category"/>
 								</MiningSchema>
-								<Node score="0.4386063897301809">
+								<Node score="0.4881735265045118">
 									<True/>
-									<Node score="0.548172431800189">
-										<SimpleSetPredicate field="features[2]" booleanOperator="isIn">
-											<Array type="int">0 1 4 5 7 9 14 23 24 28 29 32 33 34 36 37 40 42 43 46 47 49</Array>
+									<Node score="0.32795681094377277">
+										<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+											<Array type="int">0 1 4 5 7 8 9 10 11 13 16 17 18 19 20 22 23 24 27 29 30 31 33 36 37 38 39 41 43 45 46 47 48</Array>
 										</SimpleSetPredicate>
-										<Node score="-0.4380904571383047">
-											<SimplePredicate field="dollars" operator="lessOrEqual" value="82.0"/>
-											<Node score="-0.5901024472753532">
-												<SimpleSetPredicate field="features[2]" booleanOperator="isIn">
-													<Array type="int">7 9</Array>
+										<Node score="-0.3911817703335933">
+											<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+												<Array type="int">0 1 4 5 7 8 9 10 11 13 17 18 19 20 23 24 27 30 31 33 38 39 41 45 46 48</Array>
+											</SimpleSetPredicate>
+											<Node score="-0.4394945769162677">
+												<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+													<Array type="int">0 1 4 5 7 8 11 13 17 18 19 20 23 24 27 30 31 33 38 41 45 48</Array>
 												</SimpleSetPredicate>
 											</Node>
 										</Node>
-										<Node score="-0.4181178474687586">
+										<Node score="-0.3679329120602293">
+											<SimplePredicate field="amount" operator="lessOrEqual" value="153.24"/>
+										</Node>
+									</Node>
+									<Node score="-0.1261491534673165">
+										<SimplePredicate field="amount" operator="lessOrEqual" value="153.24"/>
+										<Node score="-0.3824344130295734">
 											<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
-												<Array type="int">0 1 3 4 6 7 8 10 11 12 13</Array>
+												<Array type="int">12 15 40 42 44</Array>
 											</SimpleSetPredicate>
 										</Node>
 									</Node>
-									<Node score="0.38321778022018693">
-										<SimpleSetPredicate field="features[2]" booleanOperator="isIn">
-											<Array type="int">2 8 10 12 15 21 25 27 44</Array>
+									<Node score="0.10467095910560595">
+										<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+											<Array type="int">14 15 25 34 40 44</Array>
 										</SimpleSetPredicate>
-										<Node score="-0.24648772129672902">
-											<SimplePredicate field="dollars" operator="lessOrEqual" value="150.0"/>
-										</Node>
-									</Node>
-									<Node score="0.2886182337248347">
-										<SimplePredicate field="dollars" operator="lessOrEqual" value="56.0"/>
 									</Node>
 								</Node>
 							</TreeModel>
@@ -497,35 +431,39 @@
 							<True/>
 							<TreeModel functionName="regression" missingValueStrategy="nullPrediction" noTrueChildStrategy="returnLastPrediction" splitCharacteristic="multiSplit">
 								<MiningSchema>
-									<MiningField name="dollars"/>
+									<MiningField name="amount"/>
 									<MiningField name="merchant"/>
 								</MiningSchema>
-								<Node score="0.40200447788243415">
+								<Node score="0.3777111008491697">
 									<True/>
-									<Node score="0.592310518198765">
-										<SimpleSetPredicate field="features[2]" booleanOperator="isIn">
-											<Array type="int">0 1 4 5 7 9 14 23 24 28 29 32 33 34 36 37 40 42 43 46 47 49</Array>
+									<Node score="-0.06854211857555137">
+										<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+											<Array type="int">0 1 4 5 7 8 9 10 11 13 16 17 18 19 20 22 23 24 27 29 30 31 33 36 37 38 39 41 43 45 46 47 48</Array>
 										</SimpleSetPredicate>
-										<Node score="0.24738332083778605">
-											<SimplePredicate field="features[2]" operator="equal" value="9"/>
-											<Node score="-1.0973051154041378">
-												<SimplePredicate field="dollars" operator="lessOrEqual" value="30.0"/>
+										<Node score="-0.4633924731084894">
+											<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+												<Array type="int">0 1 4 5 7 8 9 11 13 17 18 19 20 23 24 27 30 31 33 38 39 41 45 47 48</Array>
+											</SimpleSetPredicate>
+											<Node score="-0.4050428818379134">
+												<SimplePredicate field="amount" operator="lessOrEqual" value="134.81"/>
 											</Node>
 										</Node>
-										<Node score="-0.4066663228182316">
-											<SimplePredicate field="dollars" operator="lessOrEqual" value="396.0"/>
+										<Node score="-0.3688532445227401">
+											<SimplePredicate field="amount" operator="lessOrEqual" value="86.53"/>
 										</Node>
 									</Node>
-									<Node score="0.36972071555466846">
-										<SimpleSetPredicate field="features[2]" booleanOperator="isIn">
-											<Array type="int">2 8 10 12 15 21 25 27 44</Array>
+									<Node score="-0.034759571292846576">
+										<SimplePredicate field="amount" operator="lessOrEqual" value="134.81"/>
+										<Node score="-0.27998057186688174">
+											<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+												<Array type="int">2 3 12 15 40 42 44</Array>
+											</SimpleSetPredicate>
+										</Node>
+									</Node>
+									<Node score="0.015991464490783154">
+										<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+											<Array type="int">15 25 34 40 44</Array>
 										</SimpleSetPredicate>
-										<Node score="-0.19279599562925637">
-											<SimplePredicate field="dollars" operator="lessOrEqual" value="167.0"/>
-										</Node>
-									</Node>
-									<Node score="0.24985733570302787">
-										<SimplePredicate field="dollars" operator="lessOrEqual" value="49.0"/>
 									</Node>
 								</Node>
 							</TreeModel>
@@ -534,35 +472,39 @@
 							<True/>
 							<TreeModel functionName="regression" missingValueStrategy="nullPrediction" noTrueChildStrategy="returnLastPrediction" splitCharacteristic="multiSplit">
 								<MiningSchema>
-									<MiningField name="dollars"/>
+									<MiningField name="amount"/>
 									<MiningField name="merchant"/>
 								</MiningSchema>
-								<Node score="0.3760307972501843">
+								<Node score="0.3543596039778477">
 									<True/>
-									<Node score="0.5205596517294411">
-										<SimpleSetPredicate field="features[2]" booleanOperator="isIn">
-											<Array type="int">0 1 4 5 7 9 14 23 24 28 29 32 33 34 36 37 40 42 43 46 47 49</Array>
+									<Node score="-0.05302237559424388">
+										<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+											<Array type="int">0 1 4 5 7 8 9 10 11 13 16 17 18 19 20 22 23 24 27 29 30 31 33 36 37 38 39 41 43 45 46 47 48</Array>
 										</SimpleSetPredicate>
-										<Node score="0.22647015986667635">
-											<SimplePredicate field="features[2]" operator="equal" value="9"/>
-											<Node score="-0.911972611907434">
-												<SimplePredicate field="dollars" operator="lessOrEqual" value="31.0"/>
+										<Node score="-0.43552593530636013">
+											<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+												<Array type="int">0 1 4 5 7 8 9 11 13 17 18 19 20 23 24 27 30 31 33 38 39 41 45 48</Array>
+											</SimpleSetPredicate>
+											<Node score="-0.37643283075645795">
+												<SimplePredicate field="amount" operator="lessOrEqual" value="146.91"/>
 											</Node>
 										</Node>
-										<Node score="-0.3779014681138808">
-											<SimplePredicate field="dollars" operator="lessOrEqual" value="388.0"/>
+										<Node score="-0.3387049281173342">
+											<SimplePredicate field="amount" operator="lessOrEqual" value="89.4"/>
 										</Node>
 									</Node>
-									<Node score="0.33530046443053196">
-										<SimpleSetPredicate field="features[2]" booleanOperator="isIn">
-											<Array type="int">2 3 8 10 12 15 20 21 25 27 44 48</Array>
+									<Node score="-0.015097519910275381">
+										<SimplePredicate field="amount" operator="lessOrEqual" value="146.91"/>
+										<Node score="-0.255439279828959">
+											<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+												<Array type="int">2 12 15 35 40 42 44</Array>
+											</SimpleSetPredicate>
+										</Node>
+									</Node>
+									<Node score="0.01753892649612073">
+										<SimpleSetPredicate field="features[3]" booleanOperator="isIn">
+											<Array type="int">15 25 34 40 44</Array>
 										</SimpleSetPredicate>
-										<Node score="-0.11759176325575613">
-											<SimplePredicate field="dollars" operator="lessOrEqual" value="140.0"/>
-										</Node>
-									</Node>
-									<Node score="0.2194362113603652">
-										<SimplePredicate field="dollars" operator="lessOrEqual" value="25.0"/>
 									</Node>
 								</Node>
 							</TreeModel>

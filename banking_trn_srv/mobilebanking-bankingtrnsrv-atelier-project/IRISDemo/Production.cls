@@ -22,7 +22,7 @@ XData ProductionDefinition
   </Item>
   <Item Name="Datalake Transaction Operations" Category="Datalake" ClassName="Datalake.BO.Transaction.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="Credentials">Datalake</Setting>
-    <Setting Target="Adapter" Name="DSN">jdbc:IRIS://datalake:51773/APP</Setting>
+    <Setting Target="Adapter" Name="DSN">jdbc:IRIS://datalake:1972/APP</Setting>
     <Setting Target="Adapter" Name="JDBCDriver">com.intersystems.jdbc.IRISDriver</Setting>
     <Setting Target="Adapter" Name="JGService">Java Gateway Service</Setting>
     <Setting Target="Adapter" Name="StayConnected">30</Setting>
@@ -36,7 +36,7 @@ XData ProductionDefinition
   <Item Name="Datalake White List Operation" Category="Datalake,White List" ClassName="Datalake.BO.WhiteList.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="JGService">Java Gateway Service</Setting>
     <Setting Target="Adapter" Name="Credentials">Datalake</Setting>
-    <Setting Target="Adapter" Name="DSN">jdbc:IRIS://datalake:51773/APP</Setting>
+    <Setting Target="Adapter" Name="DSN">jdbc:IRIS://datalake:1972/APP</Setting>
     <Setting Target="Adapter" Name="JDBCDriver">com.intersystems.jdbc.IRISDriver</Setting>
     <Setting Target="Host" Name="FailureTimeout">-1</Setting>
     <Setting Target="Host" Name="ReplyCodeActions">E=R</Setting>
@@ -50,7 +50,7 @@ Merchant_Feature, IRISDemo.BC_MERCH_ACCOUNT, BC_ACC_NUMBER, BC_MERCH_CODE]]></Se
   </Item>
   <Item Name="Datalake Lookup Table Download Operation" Category="Datalake" ClassName="IRISDemo.BO.LookupTable.Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Adapter" Name="Credentials">Datalake</Setting>
-    <Setting Target="Adapter" Name="DSN">jdbc:IRIS://datalake:51773/APP</Setting>
+    <Setting Target="Adapter" Name="DSN">jdbc:IRIS://datalake:1972/APP</Setting>
     <Setting Target="Adapter" Name="JGService">Java Gateway Service</Setting>
     <Setting Target="Adapter" Name="StayConnected">-1</Setting>
     <Setting Target="Adapter" Name="JDBCDriver">com.intersystems.jdbc.IRISDriver</Setting>

@@ -1,6 +1,6 @@
 FROM intersystemsdc/irisdemo-demo-fraudprevention:datalake-version-1.7.0
 
-FROM intersystemsdc/irisdemo-base-irisint-community:version-1.4
+FROM intersystemsdc/irisdemo-base-irisint-community:version-1.9.7
 
 LABEL maintainer="Amir Samary <amir.samary@intersystems.com>"
 # Let's copy the exported file whitelist.csv from the datalake image into our image

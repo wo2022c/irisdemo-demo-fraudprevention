@@ -44,14 +44,14 @@
       "title": "Merchant Categories",
       "text": "%irisjdbc\n\nselect * from \nIRISDemo.BC_MERCH_CATEGORY",
       "user": "anonymous",
-      "dateUpdated": "Nov 7, 2019 6:44:55 PM",
+      "dateUpdated": "Dec 6, 2021 4:43:40 PM",
       "config": {
         "editorSetting": {
-          "language": "sql",
+          "language": "text",
           "editOnDblClick": false
         },
         "colWidth": 12.0,
-        "editorMode": "ace/mode/sql",
+        "editorMode": "ace/mode/text",
         "title": false,
         "results": {
           "0": {
@@ -82,8 +82,8 @@
       "jobName": "paragraph_1536869149554_-1652702045",
       "id": "20180827-231906_879263362",
       "dateCreated": "Sep 13, 2018 8:05:49 PM",
-      "dateStarted": "Nov 7, 2019 6:44:56 PM",
-      "dateFinished": "Nov 7, 2019 6:44:58 PM",
+      "dateStarted": "Dec 6, 2021 4:43:40 PM",
+      "dateFinished": "Dec 6, 2021 4:43:42 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },

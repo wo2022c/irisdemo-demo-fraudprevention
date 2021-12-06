@@ -1,3 +1,9 @@
+## 1.8.0 (December 06, 2021)
+  - Upgrading demo to use IRIS 2021.1
+  - Adding reference to the Kafka demo
+  - Adding reference to the readmission demo
+  - Improving run.sh command
+
 ## 1.7.0 (January 24, 2020)
   - Merge pull request #5 from intersystems-community/ML-package-version
   - adding final updates for business process and updates to instructions for running demo

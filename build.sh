@@ -15,7 +15,14 @@ docker-compose rm -f
 sudo rm -rf ./advanced_analytics/shared/zeppelin/conf
 sudo rm -rf ./advanced_analytics/shared/zeppelin/logs
 
+echo Building ./normalized_datalake...
 docker build -t ${DOCKER_REPO}:datalake-version-${VERSION} ./normalized_datalake
+
+echo Building Banking ./banking_core...
 docker build -t ${DOCKER_REPO}:bankingcore-version-${VERSION} ./banking_core
+
+echo Building ./banking_trn_srv...
 docker build -t ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION} ./banking_trn_srv
+
+echo Building ./pos...
 docker build -t ${DOCKER_REPO}:pos-version-${VERSION} ./pos

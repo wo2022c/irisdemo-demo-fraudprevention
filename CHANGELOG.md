@@ -1,3 +1,6 @@
+## 1.9.0 (December 29, 2021)
+  - Bumping IRIS version to 2021.2.0.619.0
+
 ## 1.8.0 (December 06, 2021)
   - Upgrading demo to use IRIS 2021.1
   - Adding reference to the Kafka demo

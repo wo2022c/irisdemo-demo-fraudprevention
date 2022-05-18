@@ -10,6 +10,9 @@ services:
     image: intersystemsdc/irisdemo-demo-fraudprevention:datalake-version-1.9.1
     hostname: datalake
     restart: on-failure
+    security_opt:             
+    - seccomp:unconfined
+    privileged: true   
     ports:
     # 1972 is the superserver default port
     - "9095:1972"
@@ -24,6 +27,9 @@ services:
     init: true
     image: intersystemsdc/irisdemo-demo-fraudprevention:bankingcore-version-1.9.1
     hostname: bankingcore
+    security_opt:             
+    - seccomp:unconfined
+    privileged: true   
     ports:
     # 1972 is the superserver default port
     - "9091:1972"
@@ -37,6 +43,9 @@ services:
   bankingtrnsrv:
     image: intersystemsdc/irisdemo-demo-fraudprevention:bankingtrnsrv-version-1.9.1
     hostname: bankingtrnsrv
+    security_opt:             
+    - seccomp:unconfined
+    privileged: true   
     init: true
     ports:
     # 1972 is the superserver default port

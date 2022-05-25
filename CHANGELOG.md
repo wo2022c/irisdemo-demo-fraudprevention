@@ -1,3 +1,8 @@
+## 1.10.1 (May 25, 2022)
+  - The name of the model class has changed to BankingSrv.PMML.FraudPreventionBoostedTreeModel.cls
+  - Adding --check-caps false to IRIS in docker-compose
+  - Changing composition to start IRIS without SECCOMP so that IRIS can start.
+
 ## 1.9.1 (January 25, 2022)
   - Bumping IRIS version to 2021.2.0.649.0
 

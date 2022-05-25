@@ -111,7 +111,7 @@
 
 			function openPMMLTestPage()
 			{
-				window_open('BankingSrv.PMML.FraudPrevModel.cls?$NAMESPACE=APPINT&IRISUserName=SuperUser&IRISPassword=sys')
+				window_open('BankingSrv.PMML.FraudPreventionBoostedTreeModel.cls?$NAMESPACE=APPINT&IRISUserName=SuperUser&IRISPassword=sys')
 			}
 
 			function openPMML()

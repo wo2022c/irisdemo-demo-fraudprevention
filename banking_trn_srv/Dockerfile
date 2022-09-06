@@ -1,6 +1,6 @@
 FROM intersystemsdc/irisdemo-demo-fraudprevention:datalake-version-1.10.1
 
-FROM intersystemsdc/irisdemo-base-irisint-community:version-1.10.3
+FROM intersystemsdc/irisdemo-base-irisint-community:version-1.10.5
 
 LABEL maintainer="Amir Samary <amir.samary@intersystems.com>"
 

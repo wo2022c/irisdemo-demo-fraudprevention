@@ -1,4 +1,4 @@
-FROM intersystemsdc/irisdemo-demo-fraudprevention:datalake-version-1.10.1
+FROM intersystemsdc/irisdemo-demo-fraudprevention:datalake-version-1.11.0
 
 FROM intersystemsdc/irisdemo-base-irisint-community:version-1.10.5
 

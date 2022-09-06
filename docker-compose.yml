@@ -7,7 +7,7 @@ services:
 
   datalake:
     init: true
-    image: intersystemsdc/irisdemo-demo-fraudprevention:datalake-version-1.10.1
+    image: intersystemsdc/irisdemo-demo-fraudprevention:datalake-version-1.11.0
     hostname: datalake
     restart: on-failure
     command: --check-caps false
@@ -23,7 +23,7 @@ services:
 
   bankingcore:
     init: true
-    image: intersystemsdc/irisdemo-demo-fraudprevention:bankingcore-version-1.10.1
+    image: intersystemsdc/irisdemo-demo-fraudprevention:bankingcore-version-1.11.0
     hostname: bankingcore
     command: --check-caps false
     ports:
@@ -37,7 +37,7 @@ services:
       target: /shared
 
   bankingtrnsrv:
-    image: intersystemsdc/irisdemo-demo-fraudprevention:bankingtrnsrv-version-1.10.1
+    image: intersystemsdc/irisdemo-demo-fraudprevention:bankingtrnsrv-version-1.11.0
     hostname: bankingtrnsrv
     command: --check-caps false
     init: true
@@ -56,7 +56,7 @@ services:
       target: /shared
 
   pos:
-    image: intersystemsdc/irisdemo-demo-fraudprevention:pos-version-1.10.1
+    image: intersystemsdc/irisdemo-demo-fraudprevention:pos-version-1.11.0
     init: true
     ports:
       - "9099:4200"

@@ -1,3 +1,6 @@
+## 1.13.0 (May 21, 2024)
+  - Bumping IRIS version to 2024.1
+
 ## 1.12.0 (June 14, 2023)
   - Bumping IRIS version to 2023.2
 

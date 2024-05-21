@@ -1,4 +1,4 @@
-FROM intersystemsdc/irisdemo-base-irisdb-community:version-1.9.6
+FROM intersystemsdc/irisdemo-base-irisdb-community:version-1.9.7
 
 LABEL maintainer="Amir Samary <amir.samary@intersystems.com>"
 

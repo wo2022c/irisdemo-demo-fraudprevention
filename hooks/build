@@ -14,25 +14,17 @@ echo "   DOCKER_TAG     : $IMAGE_NAME"
 
 echo
 echo "### HOOK - building banking core..."
-# docker build -t ${DOCKER_REPO}:bankingcore-${DOCKER_TAG} ./banking_core
-docker buildx build --builder default --load --platform linux/amd64 -t ${DOCKER_REPO}:bankingcore-version-${VERSION}-amd64 ./banking_core
-docker buildx build --builder default --load --platform linux/arm64 -t ${DOCKER_REPO}:bankingcore-version-${VERSION}-arm64 ./banking_core
+docker build -t ${DOCKER_REPO}:bankingcore-${DOCKER_TAG} ./banking_core
 
 echo
 echo "### HOOK - building datalake..."
-# docker build -t ${DOCKER_REPO}:datalake-${DOCKER_TAG} ./normalized_datalake
-docker buildx build --builder default --load --platform linux/amd64 -t ${DOCKER_REPO}:datalake-version-${VERSION}-amd64 ./normalized_datalake
-docker buildx build --builder default --load --platform linux/arm64 -t ${DOCKER_REPO}:datalake-version-${VERSION}-arm64 ./normalized_datalake
+docker build -t ${DOCKER_REPO}:datalake-${DOCKER_TAG} ./normalized_datalake
 
 echo
 echo "### HOOK - building banking transactions service..."
-# docker build -t ${DOCKER_REPO}:bankingtrnsrv-${DOCKER_TAG} ./banking_trn_srv
-docker buildx build --builder default --load --platform linux/amd64 -t ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}-amd64 ./banking_trn_srv
-docker buildx build --builder default --load --platform linux/arm64 -t ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}-arm64 ./banking_trn_srv
+docker build -t ${DOCKER_REPO}:bankingtrnsrv-${DOCKER_TAG} ./banking_trn_srv
 
 echo
 echo "### HOOK - building point of sale (pos)..."
-# docker build -t ${DOCKER_REPO}:pos-${DOCKER_TAG} ./pos
-docker buildx build --builder default --load --platform linux/amd64 -t ${DOCKER_REPO}:pos-version-${VERSION}-amd64 ./pos
-docker buildx build --builder default --load --platform linux/arm64 -t ${DOCKER_REPO}:pos-version-${VERSION}-arm64 ./pos
+docker build -t ${DOCKER_REPO}:pos-${DOCKER_TAG} ./pos
 

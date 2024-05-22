@@ -4,16 +4,32 @@ set -e
 
 echo
 echo "### HOOK - Pushing banking core..."
-docker push ${DOCKER_REPO}:bankingcore-${DOCKER_TAG}
+# docker push ${DOCKER_REPO}:bankingcore-${DOCKER_TAG}
+docker push ${DOCKER_REPO}:bankingcore-version-${VERSION}-amd64
+docker push ${DOCKER_REPO}:bankingcore-version-${VERSION}-arm64
+docker manifest create ${DOCKER_REPO}:bankingcore-version-${VERSION} --amend ${DOCKER_REPO}:bankingcore-version-${VERSION}-amd64 ${DOCKER_REPO}:bankingcore-version-${VERSION}-arm64
+docker manifest push ${DOCKER_REPO}:bankingcore-version-${VERSION}
 
 echo
 echo "### HOOK - Pushing datalake..."
-docker push ${DOCKER_REPO}:datalake-${DOCKER_TAG}
+# docker push ${DOCKER_REPO}:datalake-${DOCKER_TAG}
+docker push ${DOCKER_REPO}:datalake-version-${VERSION}-amd64
+docker push ${DOCKER_REPO}:datalake-version-${VERSION}-arm64
+docker manifest create ${DOCKER_REPO}:datalake-version-${VERSION} --amend ${DOCKER_REPO}:datalake-version-${VERSION}-amd64 ${DOCKER_REPO}:datalake-version-${VERSION}-arm64
+docker manifest push ${DOCKER_REPO}:datalake-version-${VERSION}
 
 echo
 echo "### HOOK - Pushing banking transactions service..."
-docker push ${DOCKER_REPO}:bankingtrnsrv-${DOCKER_TAG}
+# docker push ${DOCKER_REPO}:bankingtrnsrv-${DOCKER_TAG}
+docker push ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}-amd64
+docker push ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}-arm64
+docker manifest create ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION} --amend ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}-amd64 ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}-arm64
+docker manifest push ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}
 
 echo
 echo "### HOOK - Pushing point of sale (pos)..."
-docker push ${DOCKER_REPO}:pos-${DOCKER_TAG}
+# docker push ${DOCKER_REPO}:pos-${DOCKER_TAG}
+docker push ${DOCKER_REPO}:pos-version-${VERSION}-amd64
+docker push ${DOCKER_REPO}:pos-version-${VERSION}-arm64
+docker manifest create ${DOCKER_REPO}:pos-version-${VERSION} --amend ${DOCKER_REPO}:pos-version-${VERSION}-amd64 ${DOCKER_REPO}:pos-version-${VERSION}-arm64
+docker manifest push ${DOCKER_REPO}:pos-version-${VERSION}

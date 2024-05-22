@@ -19,26 +19,40 @@ echo Building ./normalized_datalake...
 # docker build -t ${DOCKER_REPO}:datalake-version-${VERSION} ./normalized_datalake
 docker buildx build --builder default --load --platform linux/amd64 -t ${DOCKER_REPO}:datalake-version-${VERSION}-amd64 ./normalized_datalake
 docker buildx build --builder default --load --platform linux/arm64 -t ${DOCKER_REPO}:datalake-version-${VERSION}-arm64 ./normalized_datalake
-docker manifest create ${DOCKER_REPO}:datalake-version-${VERSION} --amend ${DOCKER_REPO}:datalake-version-${VERSION}-amd64 ${DOCKER_REPO}:datalake-version-${VERSION}-arm64
-docker manifest push ${DOCKER_REPO}:datalake-version-${VERSION}
 
 echo Building Banking ./banking_core...
 # docker build -t ${DOCKER_REPO}:bankingcore-version-${VERSION} ./banking_core
 docker buildx build --builder default --load --platform linux/amd64 -t ${DOCKER_REPO}:bankingcore-version-${VERSION}-amd64 ./banking_core
 docker buildx build --builder default --load --platform linux/arm64 -t ${DOCKER_REPO}:bankingcore-version-${VERSION}-arm64 ./banking_core
-docker manifest create ${DOCKER_REPO}:bankingcore-version-${VERSION} --amend ${DOCKER_REPO}:bankingcore-version-${VERSION}-amd64 ${DOCKER_REPO}:bankingcore-version-${VERSION}-arm64
-docker manifest push ${DOCKER_REPO}:bankingcore-version-${VERSION}
 
 echo Building ./banking_trn_srv...
 # docker build -t ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION} ./banking_trn_srv
 docker buildx build --builder default --load --platform linux/amd64 -t ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}-amd64 ./banking_trn_srv
 docker buildx build --builder default --load --platform linux/arm64 -t ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}-arm64 ./banking_trn_srv
-docker manifest create ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION} --amend ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}-amd64 ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}-arm64
-docker manifest push ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}
 
 echo Building ./pos...
 # docker build -t ${DOCKER_REPO}:pos-version-${VERSION} ./pos
 docker buildx build --builder default --load --platform linux/amd64 -t ${DOCKER_REPO}:pos-version-${VERSION}-amd64 ./pos
 docker buildx build --builder default --load --platform linux/arm64 -t ${DOCKER_REPO}:pos-version-${VERSION}-arm64 ./pos
+
+echo Pushing images...
+
+docker push ${DOCKER_REPO}:datalake-version-${VERSION}-amd64
+docker push ${DOCKER_REPO}:datalake-version-${VERSION}-arm64
+docker manifest create ${DOCKER_REPO}:datalake-version-${VERSION} --amend ${DOCKER_REPO}:datalake-version-${VERSION}-amd64 ${DOCKER_REPO}:datalake-version-${VERSION}-arm64
+docker manifest push ${DOCKER_REPO}:datalake-version-${VERSION}
+
+docker push ${DOCKER_REPO}:bankingcore-version-${VERSION}-amd64
+docker push ${DOCKER_REPO}:bankingcore-version-${VERSION}-arm64
+docker manifest create ${DOCKER_REPO}:bankingcore-version-${VERSION} --amend ${DOCKER_REPO}:bankingcore-version-${VERSION}-amd64 ${DOCKER_REPO}:bankingcore-version-${VERSION}-arm64
+docker manifest push ${DOCKER_REPO}:bankingcore-version-${VERSION}
+
+docker push ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}-amd64
+docker push ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}-arm64
+docker manifest create ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION} --amend ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}-amd64 ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}-arm64
+docker manifest push ${DOCKER_REPO}:bankingtrnsrv-version-${VERSION}
+
+docker push ${DOCKER_REPO}:pos-version-${VERSION}-amd64
+docker push ${DOCKER_REPO}:pos-version-${VERSION}-arm64
 docker manifest create ${DOCKER_REPO}:pos-version-${VERSION} --amend ${DOCKER_REPO}:pos-version-${VERSION}-amd64 ${DOCKER_REPO}:pos-version-${VERSION}-arm64
 docker manifest push ${DOCKER_REPO}:pos-version-${VERSION}

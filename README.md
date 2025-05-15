@@ -6,7 +6,7 @@ This sample application shows one of the ways IRIS can be used to create a servi
 - Uses business processes and business rules to verify if the transaction should be processed or not
 - Calls the back end system to process the transaction
 - Store aggregated data about the transactions on a normalized data lake. The data can be used to retrain the ML model
-- Shows how applications can be built with IRIS using containers and docker-compose
+- Shows how applications can be built with IRIS using containers and docker compose
 
 The following image shows the architecture of the solution:
 
@@ -34,7 +34,7 @@ You will need to fork or clone this repository to you local machine to get the e
 ```bash
 git clone https://github.com/intersystems-community/irisdemo-demo-fraudprevention
 cd irisdemo-demo-fraudprevention
-docker-compose up
+docker compose up
 ```
 
 That should trigger the download of the images that compose this application and it will soon start all the containers. When starting, it is going to show you lots of messages from all the containers that are staring. That is fine. Don't worry.

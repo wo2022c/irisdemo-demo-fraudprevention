@@ -1,5 +1,5 @@
 ## 1.13.0 (May 21, 2024)
-  - Bumping IRIS version to 2024.1
+  - Bumping IRIS version to latest-cd
 
 ## 1.12.0 (June 14, 2023)
   - Bumping IRIS version to 2023.2
@@ -9,7 +9,7 @@
 
 ## 1.10.1 (May 25, 2022)
   - The name of the model class has changed to BankingSrv.PMML.FraudPreventionBoostedTreeModel.cls
-  - Adding --check-caps false to IRIS in docker-compose
+  - Adding --check-caps false to IRIS in docker compose
   - Changing composition to start IRIS without SECCOMP so that IRIS can start.
 
 ## 1.9.1 (January 25, 2022)
@@ -51,7 +51,7 @@
   - Security fixes to image-map-resizer
   - Better README
   - Adding .gitignore to root folder
-  - Making docker-compose rely on images on docker hub. build.sh now builds without docker-compose.
+  - Making docker compose rely on images on docker hub. build.sh now builds without docker compose.
   - Eliminating the need for .env
   
 ## 1.6.0 (November 08, 2019)

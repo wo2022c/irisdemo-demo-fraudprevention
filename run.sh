@@ -9,8 +9,8 @@ RESET="\033[0m"
 cleanup()
 {
     printf "\n\n${PURPLE}CTRL+C detected. Removing containters...${RESET}\n"
-    docker-compose stop
-    docker-compose rm -f
+    docker compose stop
+    docker compose rm -f
 
     printf "\n\n${PURPLE}Cleaning up complete.${RESET}\n"
     trap - INT
@@ -18,6 +18,6 @@ cleanup()
 trap cleanup INT
 
 printf "\n\nStopping and deleting previous containers...\n"
-docker-compose stop
-docker-compose rm -f
-docker-compose up
+docker compose stop
+docker compose rm -f
+docker compose up

@@ -2,7 +2,7 @@
     "objectscript.conn": {
         "server": "BankingTrnSrv",
         "ns": "APPINT",
-        "active": true
+        "active": false
     },
         "intersystems.servers": {
         "BankingCore": {
@@ -33,5 +33,16 @@
             "password": "sys"
         }
 
-    }
+    },
+    "folder-path-color.folders": [
+    { "path": "advanced_analytics", "symbol": "AA", "tooltip": "advanced_analytics" },
+    { "path": "banking_trn_srv", "symbol": "TR", "tooltip": "trn_srv" },
+    { "path": "normalized_datalake", "symbol": "DL", "tooltip": "datalake" },
+    { "path": "banking_core", "symbol": "BC", "tooltip": "banking_core" },
+    { "path": "pos", "symbol": "PS", "tooltip": "POS" },
+    { "path": "hooks", "symbol": "HK", "tooltip": "hooks" },
+    { "path": "common_shared", "symbol": "CS", "tooltip": "datalake" },
+    { "path": "bankingui", "symbol": "UI", "tooltip": "banking_core" },
+    
+]
 }

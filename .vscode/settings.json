@@ -1,0 +1,37 @@
+{
+    "objectscript.conn": {
+        "server": "BankingTrnSrv",
+        "ns": "APPINT",
+        "active": true
+    },
+        "intersystems.servers": {
+        "BankingCore": {
+            "webServer": {
+                "scheme": "http",
+                "host": "sojen0",
+                "port": 9090
+            },
+            "username": "_system",
+            "password": "sys"
+        },
+        "BankingTrnSrv": {
+            "webServer": {
+                "scheme": "http",
+                "host": "sojen0",
+                "port": 9092
+            },
+            "username": "_system",
+            "password": "sys"
+        },
+        "Datalake": {
+            "webServer": {
+                "scheme": "http",
+                "host": "sojen0",
+                "port": 9094
+            },
+            "username": "_system",
+            "password": "sys"
+        }
+
+    }
+}

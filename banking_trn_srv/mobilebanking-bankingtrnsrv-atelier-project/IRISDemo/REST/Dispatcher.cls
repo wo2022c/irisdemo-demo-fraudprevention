@@ -15,9 +15,18 @@ Parameter CHARSET = "utf-8";
 
 Parameter HandleCorsRequest = 1;
 
+ClassMethod HandleDefaultCorsRequest(pUrl As %String) As %Status [ Private ]
+{
+    Do %response.SetHeader("Access-Control-Allow-Origin","*")
+    Do %response.SetHeader("Access-Control-Allow-Credentials","true")
+    Do %response.SetHeader("Access-Control-Allow-Methods","GET, PUT, POST, DELETE, PATCH, OPTIONS")
+    Do %response.SetHeader("Access-Control-Allow-Headers","Access-Control-*, Content-Type, Authorization, Accept, Accept-Language, X-Requested-With, Origin")
+    Quit $$$OK
+}
+
 XData UrlMap
 {
-  <Routes>
+<Routes>
     <Map Prefix="/transaction" Forward="BankingSrv.BS.Transaction.Service"/>
     <Map Prefix="/whitelist" Forward="WhiteList.BS.Service"/>
   </Routes>

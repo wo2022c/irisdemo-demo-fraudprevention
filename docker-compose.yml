@@ -64,7 +64,11 @@ services:
     environment:
       - NODE_ENV=production
       - OVERRID_BANKINGTRNSRV_HOST=
-    command: "npm run proxy"
+    command: "sh -c 'npm install && npm run proxy'"
+    volumes:
+      - ./pos/app/src:/home/node/app/src
+      - ./pos/app/proxy.config.json:/home/node/app/proxy.config.json
+
 
   advancedanalytics:
     image: intersystemsdc/irisdemo-base-zeppelin:version-1.3
@@ -88,7 +92,7 @@ services:
     - IRIS_MASTER_NAMESPACE=APP 
 
   sparkmaster:
-    image: intersystemsdc/irisdemo-base-spark-iris:version-1.1
+    image: intersystemsdc/irisdemo-base-spark-iris:version-1.2.3
     hostname: sparkmaster # Must be always sparkmaster
     init: true
     environment:
@@ -112,7 +116,7 @@ services:
   worker1:
     depends_on: 
       - sparkmaster
-    image: intersystemsdc/irisdemo-base-spark-iris:version-1.1
+    image: intersystemsdc/irisdemo-base-spark-iris:version-1.2.3
     hostname: worker1
     init: true
     environment:
@@ -138,7 +142,7 @@ services:
   worker2:
     depends_on: 
       - sparkmaster
-    image: intersystemsdc/irisdemo-base-spark-iris:version-1.1
+    image: intersystemsdc/irisdemo-base-spark-iris:version-1.2.3
     hostname: worker2
     init: true
     environment:

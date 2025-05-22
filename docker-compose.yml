@@ -164,3 +164,12 @@ services:
     - type: bind
       source: ./common_shared/
       target: /common_shared   # Shared between all spark nodes. Good place to place a file we are working with.
+
+  transgen:
+    build: 
+      context: .
+      dockerfile: mock-transaction/Dockerfile
+    container_name: transgen
+    restart: unless-stopped
+    volumes:
+      - ./mock-transaction/mock-generator:/workspace

@@ -1,0 +1,8 @@
+Faker
+pandas
+requests
+pyodbc
+# numpy
+# pytest
+# freezegun
+# demographics

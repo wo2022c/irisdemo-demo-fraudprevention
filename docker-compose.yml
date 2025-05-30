@@ -1,4 +1,3 @@
-version: '3.7'
 
 #volumes:
 #  common_shared:
@@ -70,100 +69,100 @@ services:
       - ./pos/app/proxy.config.json:/home/node/app/proxy.config.json
 
 
-  advancedanalytics:
-    image: intersystemsdc/irisdemo-base-zeppelin:version-1.3
-    init: true
-    ports:
-    - "9096:9090"   # Zeppelin
-    - 4141:4040     # Zeppelin Spark UI
-    volumes:
-    - type: bind
-      source: ./common_shared/
-      target: /common_shared   # The production will be looking into this folder for new PMML files
-                                       # that will be sent by the advancedanalytics service.
-    - type: bind
-      source: ./advanced_analytics/shared/
-      target: /shared
-    environment:
-    - IRIS_MASTER_HOST=datalake # DNS based on the name of the service!
-    - IRIS_MASTER_PORT=1972 
-    - IRIS_MASTER_USERNAME=SuperUser 
-    - IRIS_MASTER_PASSWORD=sys 
-    - IRIS_MASTER_NAMESPACE=APP 
+  # advancedanalytics:
+  #   image: intersystemsdc/irisdemo-base-zeppelin:version-1.3
+  #   init: true
+  #   ports:
+  #   - "9096:9090"   # Zeppelin
+  #   - 4141:4040     # Zeppelin Spark UI
+  #   volumes:
+  #   - type: bind
+  #     source: ./common_shared/
+  #     target: /common_shared   # The production will be looking into this folder for new PMML files
+  #                                      # that will be sent by the advancedanalytics service.
+  #   - type: bind
+  #     source: ./advanced_analytics/shared/
+  #     target: /shared
+  #   environment:
+  #   - IRIS_MASTER_HOST=datalake # DNS based on the name of the service!
+  #   - IRIS_MASTER_PORT=1972 
+  #   - IRIS_MASTER_USERNAME=SuperUser 
+  #   - IRIS_MASTER_PASSWORD=sys 
+  #   - IRIS_MASTER_NAMESPACE=APP 
 
-  sparkmaster:
-    image: intersystemsdc/irisdemo-base-spark-iris:version-1.2.3
-    hostname: sparkmaster # Must be always sparkmaster
-    init: true
-    environment:
-      SPARK_NODE_TYPE: Master
-      SPARK_PUBLIC_DNS: localhost
-      IRIS_MASTER_HOST: datalake # DNS based on the name of the service!
-      IRIS_MASTER_PORT: 1972 
-      IRIS_MASTER_USERNAME: SuperUser 
-      IRIS_MASTER_PASSWORD: sys 
-      IRIS_MASTER_NAMESPACE: APP 
-    ports:
-      - 4040:4040
-      - 6066:6066
-      - 7077:7077
-      - 8080:8080   # Spark Master Portal
-    volumes:
-    - type: bind
-      source: ./common_shared/
-      target: /common_shared   # Shared between all spark nodes. Good place to place a file we are working with.
+  # sparkmaster:
+  #   image: intersystemsdc/irisdemo-base-spark-iris:version-1.2.3
+  #   hostname: sparkmaster # Must be always sparkmaster
+  #   init: true
+  #   environment:
+  #     SPARK_NODE_TYPE: Master
+  #     SPARK_PUBLIC_DNS: localhost
+  #     IRIS_MASTER_HOST: datalake # DNS based on the name of the service!
+  #     IRIS_MASTER_PORT: 1972 
+  #     IRIS_MASTER_USERNAME: SuperUser 
+  #     IRIS_MASTER_PASSWORD: sys 
+  #     IRIS_MASTER_NAMESPACE: APP 
+  #   ports:
+  #     - 4040:4040
+  #     - 6066:6066
+  #     - 7077:7077
+  #     - 8080:8080   # Spark Master Portal
+  #   volumes:
+  #   - type: bind
+  #     source: ./common_shared/
+  #     target: /common_shared   # Shared between all spark nodes. Good place to place a file we are working with.
 
-  worker1:
-    depends_on: 
-      - sparkmaster
-    image: intersystemsdc/irisdemo-base-spark-iris:version-1.2.3
-    hostname: worker1
-    init: true
-    environment:
-      IRIS_MASTER_HOST: datalake # DNS based on the name of the service!
-      IRIS_MASTER_PORT: 1972 
-      IRIS_MASTER_USERNAME: SuperUser 
-      IRIS_MASTER_PASSWORD: sys 
-      IRIS_MASTER_NAMESPACE: APP 
+  # worker1:
+  #   depends_on: 
+  #     - sparkmaster
+  #   image: intersystemsdc/irisdemo-base-spark-iris:version-1.2.3
+  #   hostname: worker1
+  #   init: true
+  #   environment:
+  #     IRIS_MASTER_HOST: datalake # DNS based on the name of the service!
+  #     IRIS_MASTER_PORT: 1972 
+  #     IRIS_MASTER_USERNAME: SuperUser 
+  #     IRIS_MASTER_PASSWORD: sys 
+  #     IRIS_MASTER_NAMESPACE: APP 
 
-      SPARK_NODE_TYPE: Worker
-      SPARK_WORKER_CORES: 1
-      SPARK_WORKER_MEMORY: 1g   # You can give more memory to your work if you are getting errors when using Spark
-      SPARK_WORKER_PORT: 8881
-      SPARK_WORKER_WEBUI_PORT: 8081
-      SPARK_PUBLIC_DNS: localhost
-    ports:
-      - 8081:8081   # Spark Worker Portal
-    volumes:
-    - type: bind
-      source: ./common_shared/
-      target: /common_shared   # Shared between all spark nodes. Good place to place a file we are working with.  
+  #     SPARK_NODE_TYPE: Worker
+  #     SPARK_WORKER_CORES: 1
+  #     SPARK_WORKER_MEMORY: 1g   # You can give more memory to your work if you are getting errors when using Spark
+  #     SPARK_WORKER_PORT: 8881
+  #     SPARK_WORKER_WEBUI_PORT: 8081
+  #     SPARK_PUBLIC_DNS: localhost
+  #   ports:
+  #     - 8081:8081   # Spark Worker Portal
+  #   volumes:
+  #   - type: bind
+  #     source: ./common_shared/
+  #     target: /common_shared   # Shared between all spark nodes. Good place to place a file we are working with.  
 
-  worker2:
-    depends_on: 
-      - sparkmaster
-    image: intersystemsdc/irisdemo-base-spark-iris:version-1.2.3
-    hostname: worker2
-    init: true
-    environment:
-      IRIS_MASTER_HOST: datalake # DNS based on the name of the service!
-      IRIS_MASTER_PORT: 1972 
-      IRIS_MASTER_USERNAME: SuperUser 
-      IRIS_MASTER_PASSWORD: sys 
-      IRIS_MASTER_NAMESPACE: APP 
+  # worker2:
+  #   depends_on: 
+  #     - sparkmaster
+  #   image: intersystemsdc/irisdemo-base-spark-iris:version-1.2.3
+  #   hostname: worker2
+  #   init: true
+  #   environment:
+  #     IRIS_MASTER_HOST: datalake # DNS based on the name of the service!
+  #     IRIS_MASTER_PORT: 1972 
+  #     IRIS_MASTER_USERNAME: SuperUser 
+  #     IRIS_MASTER_PASSWORD: sys 
+  #     IRIS_MASTER_NAMESPACE: APP 
 
-      SPARK_NODE_TYPE: Worker
-      SPARK_WORKER_CORES: 1
-      SPARK_WORKER_MEMORY: 1g   # You can give more memory to your work if you are getting errors when using Spark
-      SPARK_WORKER_PORT: 8882
-      SPARK_WORKER_WEBUI_PORT: 8082
-      SPARK_PUBLIC_DNS: localhost
-    ports:
-      - 8082:8082   # Spark Worker Portal
-    volumes:
-    - type: bind
-      source: ./common_shared/
-      target: /common_shared   # Shared between all spark nodes. Good place to place a file we are working with.
+  #     SPARK_NODE_TYPE: Worker
+  #     SPARK_WORKER_CORES: 1
+  #     SPARK_WORKER_MEMORY: 1g   # You can give more memory to your work if you are getting errors when using Spark
+  #     SPARK_WORKER_PORT: 8882
+  #     SPARK_WORKER_WEBUI_PORT: 8082
+  #     SPARK_PUBLIC_DNS: localhost
+  #   ports:
+  #     - 8082:8082   # Spark Worker Portal
+  #   volumes:
+  #   - type: bind
+  #     source: ./common_shared/
+  #     target: /common_shared   # Shared between all spark nodes. Good place to place a file we are working with.
 
   transgen:
     build: 
@@ -173,3 +172,24 @@ services:
     restart: unless-stopped
     volumes:
       - ./mock-transaction/mock-generator:/workspace
+
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./servers_mntring/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9190:9090"
+    depends_on:
+      - datalake
+    restart: always
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    restart: always      

@@ -3,7 +3,7 @@ FROM intersystemsdc/irisdemo-demo-fraudprevention:datalake-version-1.13.0
 FROM intersystemsdc/irisdemo-base-irisint-community:version-1.12.0
 
 LABEL maintainer="Amir Samary <amir.samary@intersystems.com>"
-
+RUN iris session IRIS -U %SYS "##class(Security.Applications).Modify(\"/csp/appint\", .sc, \"AutheEnabled=64,Enabled=1,Roles='%ALL'\")"
 # Name of the project folder ex.: my-atelier-project
 ARG IRIS_PROJECT_FOLDER_NAME=mobilebanking-bankingtrnsrv-atelier-project
 

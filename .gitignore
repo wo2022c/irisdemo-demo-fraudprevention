@@ -1,3 +1,9 @@
 .metals
 
 **/.DS_Store
+
+bankingui/
+src/
+normalized_datalake/
+pos/
+mock-transaction/mock-generator/transaction_*

@@ -2,37 +2,8 @@
     "objectscript.conn": {
         "server": "BankingTrnSrv",
         "ns": "APPINT",
-        "active": false
-    },
-        "intersystems.servers": {
-        "BankingCore": {
-            "webServer": {
-                "scheme": "http",
-                "host": "sojen0",
-                "port": 9090
-            },
-            "username": "_system",
-            "password": "sys"
-        },
-        "BankingTrnSrv": {
-            "webServer": {
-                "scheme": "http",
-                "host": "sojen0",
-                "port": 9092
-            },
-            "username": "_system",
-            "password": "sys"
-        },
-        "Datalake": {
-            "webServer": {
-                "scheme": "http",
-                "host": "sojen0",
-                "port": 9094
-            },
-            "username": "_system",
-            "password": "sys"
-        }
-
+        "password": "sys",
+        "active": true
     },
     "folder-path-color.folders": [
     { "path": "advanced_analytics", "symbol": "AA", "tooltip": "advanced_analytics" },
@@ -44,5 +15,22 @@
     { "path": "common_shared", "symbol": "CS", "tooltip": "datalake" },
     { "path": "bankingui", "symbol": "UI", "tooltip": "banking_core" },
     
-]
+],
+    "files.watcherExclude": {
+        "bankingui/**": true,
+        "advanced_analytics/**": true,
+        "pos/**": true
+    },
+    "files.exclude": {
+        "bankingui/**": true,
+        "advanced_analytics/**": true,
+        "pos/**": true
+    },
+    "search.exclude": {
+        "bankingui/**": true,
+        "advanced_analytics/**": true,
+        "pos/**": true
+    },
+    "git.ignoreLimitWarning": true,
+    
 }

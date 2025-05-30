@@ -63,6 +63,7 @@ def random_transaction(accounts, merch_accounts):
 def send_transaction(data):
     try:
         response = requests.post(URL, headers=HEADERS, json=data, timeout=5)
+        #print(f"Status: {response.status_code} | Body: {response.text} \n\n")
         return response.status_code, response.text, data, response
     except Exception as e:
         return None, str(e), data, None

@@ -1,0 +1,165 @@
+{
+  "id": null,
+  "title": "Datalake Production Monitoring",
+  "tags": ["iris", "prometheus", "production"],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "System State",      
+      "targets": [
+        { "expr": "iris_system_state", "legendFormat": "State" }
+      ],
+      "description": "-1: Hung, 0: OK, 1: Warning, 2: Alert",
+      "id": 1,
+      "gridPos": { "h": 3, "w": 4, "x": 0, "y": 0 }
+    },
+    {
+      "type": "stat",
+      "title": "Process Count",      
+      "targets": [
+        { "expr": "iris_process_count", "legendFormat": "Count" }
+      ],
+      "id": 2,
+      "gridPos": { "h": 3, "w": 4, "x": 4, "y": 0 }
+    },
+    {
+      "type": "stat",
+      "title": "CPU Usage (%)",      
+      "targets": [
+        { "expr": "iris_cpu_usage", "legendFormat": "CPU" }
+      ],
+      "id": 3,
+      "gridPos": { "h": 3, "w": 4, "x": 8, "y": 0 }
+    },
+    {
+      "type": "stat",
+      "title": "Physical Memory Used (%)",      
+      "targets": [
+        { "expr": "iris_phys_mem_percent_used", "legendFormat": "RAM" }
+      ],
+      "id": 4,
+      "gridPos": { "h": 3, "w": 4, "x": 12, "y": 0 }
+    },
+    {
+      "type": "graph",
+      "title": "Logical Reads/sec",      
+      "targets": [
+        { "expr": "iris_log_reads_per_sec", "legendFormat": "Reads/sec" }
+      ],
+      "id": 5,
+      "gridPos": { "h": 5, "w": 8, "x": 0, "y": 3 }
+    },
+    {
+      "type": "graph",
+      "title": "Global References/sec",      
+      "targets": [
+        { "expr": "iris_glo_ref_per_sec", "legendFormat": "Global refs/sec" }
+      ],
+      "id": 6,
+      "gridPos": { "h": 5, "w": 8, "x": 8, "y": 3 }
+    },
+    {
+      "type": "table",
+      "title": "DB Free Space (MB)",      
+      "targets": [
+        {
+          "expr": "iris_db_free_space",
+          "legendFormat": "{{id}}",
+          "format": "table"
+        }
+      ],
+      "id": 7,
+      "gridPos": { "h": 6, "w": 8, "x": 0, "y": 8 },
+      "transformations": []
+    },
+    {
+      "type": "stat",
+      "title": "Licenses Used",      
+      "targets": [
+        { "expr": "iris_license_consumed", "legendFormat": "Used" }
+      ],
+      "id": 8,
+      "gridPos": { "h": 3, "w": 4, "x": 8, "y": 8 }
+    },
+    {
+      "type": "stat",
+      "title": "License % Used",      
+      "targets": [
+        { "expr": "iris_license_percent_used", "legendFormat": "% Used" }
+      ],
+      "id": 9,
+      "gridPos": { "h": 3, "w": 4, "x": 12, "y": 8 }
+    },
+    {
+      "type": "stat",
+      "title": "License Days Remaining",      
+      "targets": [
+        { "expr": "iris_license_days_remaining", "legendFormat": "Days" }
+      ],
+      "id": 10,
+      "gridPos": { "h": 3, "w": 4, "x": 8, "y": 11 }
+    },
+    {
+      "type": "stat",
+      "title": "Cache Efficiency (%)",      
+      "targets": [
+        { "expr": "iris_cache_efficiency", "legendFormat": "Cache" }
+      ],
+      "id": 11,
+      "gridPos": { "h": 3, "w": 4, "x": 12, "y": 11 }
+    },
+    {
+      "type": "table",
+      "title": "Disk % Full (all DBs)",      
+      "targets": [
+        {
+          "expr": "iris_disk_percent_full",
+          "legendFormat": "{{id}}",
+          "format": "table"
+        }
+      ],
+      "id": 12,
+      "gridPos": { "h": 6, "w": 8, "x": 0, "y": 14 }
+    },
+    {
+      "type": "stat",
+      "title": "Active Sessions",      
+      "targets": [
+        { "expr": "iris_csp_sessions", "legendFormat": "Sessions" }
+      ],
+      "id": 13,
+      "gridPos": { "h": 3, "w": 4, "x": 8, "y": 14 }
+    },
+    {
+      "type": "stat",
+      "title": "System Alerts",      
+      "targets": [
+        { "expr": "iris_system_alerts", "legendFormat": "Alerts" }
+      ],
+      "id": 14,
+      "gridPos": { "h": 3, "w": 4, "x": 12, "y": 14 }
+    },
+    {
+      "type": "graph",
+      "title": "SQL Connections",      
+      "targets": [
+        { "expr": "iris_sql_current_connections", "legendFormat": "{{id}}" }
+      ],
+      "id": 15,
+      "gridPos": { "h": 5, "w": 8, "x": 0, "y": 17 }
+    },
+    {
+      "type": "graph",
+      "title": "SQL Avg Runtime (sec)",      
+      "targets": [
+        { "expr": "iris_sql_queries_avg_runtime", "legendFormat": "{{id}}" }
+      ],
+      "id": 16,
+      "gridPos": { "h": 5, "w": 8, "x": 8, "y": 17 }
+    }
+  ]
+}

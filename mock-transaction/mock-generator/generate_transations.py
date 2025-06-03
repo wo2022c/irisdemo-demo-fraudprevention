@@ -48,9 +48,9 @@ def fetch_stats():
     conn.close()
     return number_of_transactions, number_of_frauds_compliant, fraud_type_counts, blocked_type_counts
 
-def random_transaction(accounts, merch_accounts):
+def random_transaction(accounts, merch_accounts, min_amount=5000, max_amount=5002):
     trans_type = random.choice(TRANS_TYPES)
-    amount = random.randint(5000, 5002)
+    amount = random.randint(min_amount, max_amount)
     from_account = random.choice(accounts)
     to_account = random.choice(merch_accounts)
     return {
@@ -63,7 +63,6 @@ def random_transaction(accounts, merch_accounts):
 def send_transaction(data):
     try:
         response = requests.post(URL, headers=HEADERS, json=data, timeout=5)
-        #print(f"Status: {response.status_code} | Body: {response.text} \n\n")
         return response.status_code, response.text, data, response
     except Exception as e:
         return None, str(e), data, None
@@ -98,15 +97,39 @@ def add_million_to_balances():
     conn.close()
     print("Added 1000000 to all Balance fields in Account and CustomerAccount.")
 
+def delete_all_rows():
+    conn = irisnative.createConnection(DB_HOST, DB_PORT, DB_NAMESPACE, DB_USER, DB_PASS)
+    cursor = conn.cursor()
+    for table in ["IRISDemo.CS_FRAUD_COMPLAINT", "IRISDemo.BC_TRANSACTIONS"]:
+        cursor.execute(f"DELETE FROM {table}")
+    conn.commit()
+    cursor.close()
+    conn.close()
+    print("Deleted all rows from CS_FRAUD_COMPLAINT and BC_TRANSACTIONS.")
+
 def main():
-    parser = argparse.ArgumentParser(description="Send random banking transactions")
-    parser.add_argument("--num", type=int, required=True, help="Number of random POST calls to execute")
-    parser.add_argument("--add-balance", action='store_true', help="Add 1,000,000 to Balance fields in Account tables")
+    parser = argparse.ArgumentParser(description="Send random banking transactions or update balances or delete data")
+    parser.add_argument("--num", type=int, help="Number of random POST calls to execute")
+    parser.add_argument("--increase-balances", action="store_true", help="Increase all balances by 1,000,000")
+    parser.add_argument("--min-amount", type=int, help="Minimum transaction amount (default: 5000)")
+    parser.add_argument("--max-amount", type=int, help="Maximum transaction amount (default: 5002)")
+    parser.add_argument("--delete", action="store_true", help="Delete all rows from CS_FRAUD_COMPLAINT and BC_TRANSACTIONS")
     args = parser.parse_args()
 
-    if args.add_balance:
+    if args.increase_balances:
         add_million_to_balances()
         return
+
+    if args.delete:
+        delete_all_rows()
+        return
+
+    if not args.num:
+        print("You must provide --num for transactions or --increase-balances or --delete.")
+        return
+
+    min_amount = args.min_amount if args.min_amount is not None else 5000
+    max_amount = args.max_amount if args.max_amount is not None else 5002
 
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     logfilename = f"transaction_{timestamp}.log"
@@ -115,17 +138,19 @@ def main():
 
     with open(logfilename, "w") as logf:
         for idx in range(args.num):
-            data = random_transaction(accounts, merch_accounts)
+            data = random_transaction(accounts, merch_accounts, min_amount, max_amount)
             status, body, tx_data, response = send_transaction(data)
             sys.stdout.write("\r" + " " * 120 + "\r")
             if status:
                 resp_code = response.status_code if response is not None else "NA"
-                last_status = f"#{idx+1:02d} | Status: {status} | RespCode: {resp_code} | Amount: {tx_data['Amount']} | From: {tx_data['FromAccountNumber']} -> To: {tx_data['ToAccountNumber']} | Type: {tx_data['TransType']}"
+                last_status = (f"#{idx+1:02d} | Status: {status} | RespCode: {resp_code} | Amount: {tx_data['Amount']} | "
+                               f"From: {tx_data['FromAccountNumber']} -> To: {tx_data['ToAccountNumber']} | "
+                               f"Type: {tx_data['TransType']}")
             else:
                 last_status = f"#{idx+1:02d} | FAILED | {body}"
             sys.stdout.write(last_status)
             sys.stdout.flush()
-            logf.write(last_status+"\n")
+            logf.write(last_status + "\n")
             time.sleep(0.1)
         print()
         stats = fetch_stats()
@@ -138,6 +163,7 @@ if __name__ == "__main__":
 
 
 
+
 # /appint/rest
 # http://sojen0:9092/csp/sys/sec/%25CSP.UI.Portal.Applications.Web.zen?PID=%2Fcsp%2Fappint%2Frest#0
 # unthauthenticated + app role
@@ -145,3 +171,6 @@ if __name__ == "__main__":
 # python3 generate_transations.py --num 10
 
 #python3 generate_transations.py --add-balance --num 2
+#   python3 generate_transations.py  --min-amount 150 --max-amount 500 --num 10
+#   python3 generate_transations.py --delete
+#   python3 generate_transations.py --increase-balances

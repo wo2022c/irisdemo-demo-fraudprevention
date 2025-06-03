@@ -1,6 +1,7 @@
 Include DEMOMACROS
 
-Class Datalake.BO.Transaction.Operation extends Ens.BusinessOperation {
+Class Datalake.BO.Transaction.Operation Extends Ens.BusinessOperation
+{
 
 Parameter ADAPTER = "EnsLib.SQL.OutboundAdapter";
 
@@ -71,10 +72,10 @@ Method InsertTransaction(pSourceAccountId As %Integer, pDestinationAccountId As 
 		Set tInsertSQL = "insert into IRISDemo.BC_TRANSACTIONS "_
 						 "(BC_TRANS_NUM, BC_TRANS_DATE, BC_TRANS_TYPE, BC_TRANS_AMOUNT, BC_TRANS_SRC_ACC, BC_TRANS_SRC_ACC_OLD_BAL, "_
 						 "BC_TRANS_SRC_ACC_NEW_BAL, BC_TRANS_DEST_ACC, BC_TRANS_DEST_ACC_OLD_BAL, BC_TRANS_DEST_ACC_NEW_BAL, "_
-						 "BC_TRANS_WHITELISTED_BY, BC_TRANS_WAS_BLOCKED) "_
-						 "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+						 "BC_TRANS_WHITELISTED_BY, BC_TRANS_WAS_BLOCKED, BC_TRANS_IS_FRAUD) "_
+						 "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 		
-		Set pInsertParams=11
+		Set pInsertParams=12
 		
 		Set pInsertParams(1)=pInput.TransactionNumber
 		Set pInsertParams(2)=pInput.TransDateTime
@@ -88,6 +89,7 @@ Method InsertTransaction(pSourceAccountId As %Integer, pDestinationAccountId As 
 		Set pInsertParams(10)=pInput.ToAccountNewBalance
 		Set pInsertParams(11)=pInput.WhiteListRequestId
 		Set pInsertParams(12)='pInput.TransactionAllowed
+		Set pInsertParams(13)='pInput.TransactionAllowed
 		
 		Set tSC =  ..Adapter.ExecuteUpdateParmArray(.iNumRowsAffected, tInsertSQL, .pInsertParams)
 	}
@@ -138,8 +140,8 @@ Method FindAccountId(pAccountNumber As %String) As %String
 	$$$ThrowException("DataLakeAccountNumberNotFoundException", "pAccountNumber: "_pAccountNumber)
 }
 
-
-XData MessageMap {
+XData MessageMap
+{
 <MapItems>
     <MapItem MessageType="Datalake.BO.Transaction.NewTransactionReq">
         <Method>NewTransaction</Method>

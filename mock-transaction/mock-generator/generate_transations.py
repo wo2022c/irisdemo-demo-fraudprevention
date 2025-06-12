@@ -151,7 +151,7 @@ def main():
             sys.stdout.write(last_status)
             sys.stdout.flush()
             logf.write(last_status + "\n")
-            time.sleep(0.1)
+            time.sleep(0.3)
         print()
         stats = fetch_stats()
         print_stats(*stats, logf=logf)
@@ -170,7 +170,8 @@ if __name__ == "__main__":
 # Example usage:
 # python3 generate_transations.py --num 10
 
-#python3 generate_transations.py --add-balance --num 2
-#   python3 generate_transations.py  --min-amount 150 --max-amount 500 --num 10
+#   
 #   python3 generate_transations.py --delete
 #   python3 generate_transations.py --increase-balances
+
+#   python3 generate_transations.py  --min-amount 150 --max-amount 500 --num 10

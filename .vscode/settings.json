@@ -3,7 +3,7 @@
         "server": "BankingTrnSrv",
         "ns": "APPINT",
         "password": "sys",
-        "active": true
+        "active": false
     },
     "folder-path-color.folders": [
     { "path": "advanced_analytics", "symbol": "AA", "tooltip": "advanced_analytics" },

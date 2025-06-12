@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+//***************************** Copyright © InterSystems. All rights reserved.
+//*
+//*
+//*  Version : $Header:$
+//*
+//*
+//*  Purpose : InterSystems IRIS JDBC Driver.
+//*
+//*
+//*  Comments: This file uses a tab size of 2 spaces.
+//*
+//*
+//****************************************************************************-->
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.intersystems</groupId>
+  <artifactId>intersystems-jdbc</artifactId>
+  <version>3.10.3</version>
+  <name>InterSystems IRIS JDBC Driver</name>
+  <description>InterSystems IRIS JDBC Driver</description>
+  <url>http://intersystems.com</url>
+  <licenses>
+    <license>
+      <url>https://www.intersystems.com/IERTU/</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>Release Engineering External</name>
+      <email>re-external@intersystems.com</email>
+      <organization>InterSystems</organization>
+      <organizationUrl>http://intersystems.com/</organizationUrl>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:svn:https://www.intersystems.com/NotOpenSource</connection>
+    <developerConnection>scm:svn:https://www.intersystems.com/NotOpenSource</developerConnection>
+    <url>https://www.intersystems.com/NotOpenSource</url>
+  </scm>
+</project>

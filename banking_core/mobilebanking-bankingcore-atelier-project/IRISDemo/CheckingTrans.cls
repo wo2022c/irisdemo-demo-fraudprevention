@@ -1,39 +1,46 @@
 Include DEMOMACROS
 
-Class IRISDemo.CheckingTrans Extends %Persistent
-{	
-	Property TransDateTime as %TimeStamp;
-	
-	Property TransType As %Library.String(VALUELIST=",PAYMENT,REFUND,CASH_IN,CASH_OUT,TRANSFER") [ SqlColumnNumber = 3 ];
-	
-	Property Amount As %Library.Double;
-	
-	/// Customer/Merchant who started the transaction
-	Property FromAccount As Account;
-	
-	ForeignKey FromAccountFK(FromAccount) References IRISDemo.Account();
-	
-	/// Initial balance before the transaction
-	Property FromAccountOldBalance As %Library.Double;
-	
-	/// new balance after the transaction
-	Property FromAccountNewBalance As %Library.Double;
+Class IRISDemo.CheckingTrans Extends %Persistent [ DdlAllowed ]
+{
 
-	/// customer who is the recipient of the transaction
-	Property ToAccount As Account;
-	
-	ForeignKey ToAccountFK(ToAccount) References IRISDemo.Account();
-	
-	/// Initial balance recipient before the transaction. Note that there is not information for customers that start with M (Merchants).
-	Property ToAccountOldBalance As %Library.Double;
-	
-	/// new balance recipient after the transaction. Note that there is not information for customers that start with M (Merchants).
-	Property ToAccountNewBalance As %Library.Double;
-	
+Property TransDateTime As %TimeStamp;
+
+Property TransType As %Library.String(VALUELIST = ",PAYMENT,REFUND,CASH_IN,CASH_OUT,TRANSFER") [ SqlColumnNumber = 3 ];
+
+Property Amount As %Library.Double;
+
+/// Customer/Merchant who started the transaction
+Property FromAccount As Account;
+
+ForeignKey FromAccountFK(FromAccount) References IRISDemo.Account();
+
+/// Initial balance before the transaction
+Property FromAccountOldBalance As %Library.Double;
+
+/// new balance after the transaction
+Property FromAccountNewBalance As %Library.Double;
+
+/// customer who is the recipient of the transaction
+Property ToAccount As Account;
+
+ForeignKey ToAccountFK(ToAccount) References IRISDemo.Account();
+
+/// Initial balance recipient before the transaction. Note that there is not information for customers that start with M (Merchants).
+Property ToAccountOldBalance As %Library.Double;
+
+/// new balance recipient after the transaction. Note that there is not information for customers that start with M (Merchants).
+Property ToAccountNewBalance As %Library.Double;
+
+Property City As %Library.String [ SqlFieldName = CITY ];
+
+Property LATITUDE As %Library.Double [ SqlFieldName = LATITUDE ];
+
+Property LONGITUDE As %Library.Double [ SqlFieldName = LONGITUDE ];
+
 /// Throws exceptions!
 /// If successful, returns new transaction ID
 /// This method is called by a SOAP service on class IRISDemo.Services.TransactionServices  
-ClassMethod CreateTransaction(pTransDateTime As %TimeStamp, pTransType As %String, pAmount As %Double, pFromAccountNumber As %String, pToAccountNumber As %String, pIgnoreLackOfFounds As %Boolean = 0) As IRISDemo.CheckingTrans 
+ClassMethod CreateTransaction(pTransDateTime As %TimeStamp, pTransType As %String, pAmount As %Double, pFromAccountNumber As %String, pToAccountNumber As %String, pIgnoreLackOfFounds As %Boolean = 0) As IRISDemo.CheckingTrans
 {
 	#Dim oTrans As IRISDemo.MobileTransaction
 	Set tSC = $$$OK
@@ -69,7 +76,7 @@ ClassMethod CreateTransaction(pTransDateTime As %TimeStamp, pTransType As %Strin
 }
 
 /// Throws exception if validation fails!
-Method ValidateTransaction(pIgnoreLackOfFounds As %Boolean = 0) 
+Method ValidateTransaction(pIgnoreLackOfFounds As %Boolean = 0)
 {
 	#Dim oTrans As IRISDemo.MobileTransaction
 	Set tRet=1
@@ -90,8 +97,7 @@ Method ValidateTransaction(pIgnoreLackOfFounds As %Boolean = 0)
 	If 'pIgnoreLackOfFounds && (..FromAccount.Balance<0)
 	{
 		$$$ThrowException("InsufficientFundsOnSourceException", "Source account has insufficient funds.")
-	} 
-
+	}
 }
 
 Storage Default
@@ -132,6 +138,15 @@ Storage Default
 </Value>
 <Value name="12">
 <Value>TransactionNumber</Value>
+</Value>
+<Value name="13">
+<Value>City</Value>
+</Value>
+<Value name="14">
+<Value>LATITUDE</Value>
+</Value>
+<Value name="15">
+<Value>LONGITUDE</Value>
 </Value>
 </Data>
 <DataLocation>^IRISDemo.CheckingTransD</DataLocation>

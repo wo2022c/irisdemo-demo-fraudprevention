@@ -102,6 +102,19 @@ XData BPL [ XMLNamespace = "http://www.intersystems.com/bpl" ]
 </true>
 <false>
 <assign name="Transaction declined!" property="response.TransactionApproved" value="0" action="set" xpos='200' ypos='1700' />
+<!-- NOUVEAU : appel e‑mail de notification fraude -->
+<call name='Send Fraud Email' target='Fraud Notification Email Operation' async='1' xpos='200' ypos='1750' >
+    <request type='FraudNotification.Msg.EmailReq' >
+        <assign property="callrequest.AccountId"        value="request.FromAccountNumber" action="set" />
+        <assign property="callrequest.EmailAddress"     value="request.FromAccountEmail" action="set" />
+        <assign property="callrequest.TransactionNumber" value="context.TransactionNumber" action="set" />
+        <assign property="callrequest.Amount"           value="request.Amount" action="set" />
+        <assign property="callrequest.TransDateTime"    value="request.TransDateTime" action="set" />
+        <assign property="callrequest.FraudReason"      value="context.LooksLikeFraudReason" action="set" />
+    </request>
+    <response type='Ens.Response' />
+</call>
+<!-- Fin ajout e‑mail -->
 <call name='Populate the data lake' target='Datalake Transaction Operations' async='1' xpos='200' ypos='1800' >
 <annotation><![CDATA[Asynchronous]]></annotation>
 <request type='Datalake.BO.Transaction.NewTransactionReq' >

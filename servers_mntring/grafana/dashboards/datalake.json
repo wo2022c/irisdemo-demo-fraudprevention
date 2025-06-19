@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -542,7 +542,7 @@
         "x": 4,
         "y": 13
       },
-      "id": 8,
+      "id": 14,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -563,12 +563,12 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "iris_license_consumed",
-          "legendFormat": "Used",
+          "expr": "iris_system_alerts",
+          "legendFormat": "Alerts",
           "refId": "A"
         }
       ],
-      "title": "Licenses Used",
+      "title": "System Alerts",
       "type": "stat"
     },
     {
@@ -596,7 +596,7 @@
         "x": 8,
         "y": 13
       },
-      "id": 9,
+      "id": 3,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -617,12 +617,12 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "iris_license_percent_used",
-          "legendFormat": "% Used",
+          "expr": "iris_cpu_usage",
+          "legendFormat": "CPU",
           "refId": "A"
         }
       ],
-      "title": "License % Used",
+      "title": "CPU Usage (%)",
       "type": "stat"
     },
     {
@@ -844,7 +844,7 @@
         "x": 4,
         "y": 16
       },
-      "id": 14,
+      "id": 8,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -865,12 +865,12 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "iris_system_alerts",
-          "legendFormat": "Alerts",
+          "expr": "iris_license_consumed",
+          "legendFormat": "Used",
           "refId": "A"
         }
       ],
-      "title": "System Alerts",
+      "title": "Licenses Used",
       "type": "stat"
     },
     {
@@ -898,7 +898,7 @@
         "x": 8,
         "y": 16
       },
-      "id": 3,
+      "id": 9,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -919,16 +919,15 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "iris_cpu_usage",
-          "legendFormat": "CPU",
+          "expr": "iris_license_percent_used",
+          "legendFormat": "% Used",
           "refId": "A"
         }
       ],
-      "title": "CPU Usage (%)",
+      "title": "License % Used",
       "type": "stat"
     },
     {
-      "description": "-1: Hung, 0: OK, 1: Warning, 2: Alert",
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -953,7 +952,7 @@
         "x": 12,
         "y": 16
       },
-      "id": 1,
+      "id": 2,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -974,12 +973,12 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "iris_system_state",
-          "legendFormat": "State",
+          "expr": "iris_process_count",
+          "legendFormat": "Count",
           "refId": "A"
         }
       ],
-      "title": "System State",
+      "title": "Process Count",
       "type": "stat"
     },
     {
@@ -1151,6 +1150,7 @@
       "type": "stat"
     },
     {
+      "description": "-1: Hung, 0: OK, 1: Warning, 2: Alert",
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -1172,10 +1172,10 @@
       "gridPos": {
         "h": 3,
         "w": 4,
-        "x": 4,
-        "y": 25
+        "x": 12,
+        "y": 19
       },
-      "id": 2,
+      "id": 1,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1196,12 +1196,12 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "iris_process_count",
-          "legendFormat": "Count",
+          "expr": "iris_system_state",
+          "legendFormat": "State",
           "refId": "A"
         }
       ],
-      "title": "Process Count",
+      "title": "System State",
       "type": "stat"
     }
   ],
@@ -1223,5 +1223,5 @@
   "timepicker": {},
   "timezone": "browser",
   "title": "Datalake Production Monitoring",
-  "version": 11
+  "version": 2
 }

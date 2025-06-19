@@ -9,5 +9,5 @@ datasources:
     editable: false
     jsonData:
       httpMethod: POST
-      timeInterval: "5s"
+      timeInterval: "15s"
       tlsSkipVerify: true

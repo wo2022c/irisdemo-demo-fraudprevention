@@ -65,6 +65,12 @@ Merchant_Feature, IRISDemo.BC_MERCH_ACCOUNT, BC_ACC_NUMBER, BC_MERCH_CODE]]></Se
     <Setting Target="Adapter" Name="FilePath">/common_shared/pmml/</Setting>
     <Setting Target="Adapter" Name="FileSpec">*.pmml</Setting>
   </Item>
+  <Item Name="Fraud Notification Email Operation" Category="FraudNotification" ClassName="FraudNotification.BO.EmailOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="SMTPServer">smtp</Setting>
+    <Setting Target="Adapter" Name="SMTPPort">25</Setting>
+    <Setting Target="Adapter" Name="SMTPUser">bankingdemo</Setting>
+    <Setting Target="Adapter" Name="SMTPPassword">bankingdemo</Setting>
+  </Item>
 </Production>
 }
 

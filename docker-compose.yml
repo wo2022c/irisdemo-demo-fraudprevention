@@ -169,7 +169,8 @@ services:
       context: .
       dockerfile: mock-transaction/Dockerfile
     container_name: transgen
-    restart: unless-stopped
+    depends_on:
+      - datalake
     volumes:
       - ./mock-transaction/mock-generator:/workspace
 
@@ -197,7 +198,24 @@ services:
       - ./servers_mntring/grafana/provisioning:/etc/grafana/provisioning
       - ./servers_mntring/grafana/dashboards/dashboards.yml:/etc/grafana/provisioning/dashboards/main.yaml
       - ./servers_mntring/grafana/dashboards:/var/lib/grafana/dashboards
-      #- grafana_storage:/var/lib/grafana
     depends_on:
-      - prometheus
-    #restart: always      
+      - prometheus  
+
+  superset:
+    build:
+      context: .
+      dockerfile: superset/Dockerfile
+    ports:
+      - 8088:8088
+    environment:
+      - SUPERSET_SECRET_KEY=someverysecretrandomkey
+      - SUPERSET_PUBLIC_ROLE_LIKE=Alpha
+      - SUPERSET_SQLALCHEMY_EXAMPLES_URI=iris://_system:sys@datalake:1972/APP
+    depends_on:
+      - datalake
+    volumes:
+      # persisted dashboards and charts
+      - ./superset/superset_home:/app/pythonpath/superset_home
+      # configuration files
+      - ./superset/superset_config:/app/pythonpath/superset_config
+      - ./superset/.superset:/root/.superset/

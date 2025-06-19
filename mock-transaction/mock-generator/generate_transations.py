@@ -7,166 +7,161 @@ import time
 import datetime
 
 # db config
-DB_HOST = "datalake"
-DB_PORT = 1972
-DB_NAMESPACE = "APP"
-DB_USER = "_system"
-DB_PASS = "sys"
+db_host = "datalake"
+db_port = 1972
+db_ns = "APP"
+db_user = "_system"
+db_pass = "sys"
 
 # api config
 URL = "http://bankingtrnsrv:52773/csp/appint/rest/transaction/"
-HEADERS = {
-    "accept": "application/json",
-    "Content-Type": "application/json"
-}
+HEADERS = {"accept": "application/json", "Content-Type": "application/json"}
 
-TRANS_TYPES = ["PAYMENT"]  # add more types if needed
+TRANS_TYPES = ["PAYMENT"]
+
+# fetch accounts
 
 def fetch_accounts():
-    conn = irisnative.createConnection(DB_HOST, DB_PORT, DB_NAMESPACE, DB_USER, DB_PASS)
-    cursor = conn.cursor()
-    cursor.execute("SELECT BC_ACC_NUMBER FROM IRISDEMO.BC_MERCH_ACCOUNT")
-    merch_accounts = [row[0] for row in cursor.fetchall()]
-    cursor.execute("SELECT BC_ACC_NUMBER FROM IRISDEMO.BC_ACCOUNT")
-    accounts = [row[0] for row in cursor.fetchall()]
-    cursor.close()
+    conn = irisnative.createConnection(db_host, db_port, db_ns, db_user, db_pass)
+    cur = conn.cursor()
+    cur.execute("SELECT BC_ACC_NUMBER FROM IRISDEMO.BC_MERCH_ACCOUNT")
+    merch = [r[0] for r in cur.fetchall()]
+    cur.execute("SELECT BC_ACC_NUMBER FROM IRISDEMO.BC_ACCOUNT")
+    acc = [r[0] for r in cur.fetchall()]
+    cur.close()
     conn.close()
-    return accounts, merch_accounts
+    return acc, merch
 
-def fetch_stats():
-    conn = irisnative.createConnection(DB_HOST, DB_PORT, DB_NAMESPACE, DB_USER, DB_PASS)
-    cursor = conn.cursor()
-    cursor.execute("SELECT count(*) FROM IRISDemo.BC_TRANSACTIONS")
-    number_of_transactions = cursor.fetchone()[0]
-    cursor.execute("SELECT count(*) FROM IRISDEMO.CS_FRAUD_COMPLAINT")
-    number_of_frauds_compliant = cursor.fetchone()[0]
-    cursor.execute("SELECT count(*), BC_TRANS_IS_FRAUD FROM IRISDemo.BC_TRANSACTIONS group by BC_TRANS_IS_FRAUD")
-    fraud_type_counts = cursor.fetchall()
-    cursor.execute("SELECT count(*), BC_TRANS_WAS_BLOCKED FROM IRISDemo.BC_TRANSACTIONS group by BC_TRANS_WAS_BLOCKED")
-    blocked_type_counts = cursor.fetchall()
-    cursor.close()
+# update city for fraud
+def update_city():
+    conn = irisnative.createConnection(db_host, db_port, db_ns, db_user, db_pass)
+    cur = conn.cursor()
+    cur.execute("""
+        UPDATE IRISDemo.BC_TRANSACTIONS
+        SET CITY = CASE
+            WHEN FLOOR(MOD(ID,95)+1) < 10
+                THEN 'FR-0' || CAST(FLOOR(MOD(ID,95)+1) AS VARCHAR(2))
+            ELSE 'FR-' || CAST(FLOOR(MOD(ID,95)+1) AS VARCHAR(2))
+        END
+        WHERE BC_TRANS_IS_FRAUD = 1
+          AND CITY IS NULL
+    """)
+    conn.commit()
+    cur.close()
     conn.close()
-    return number_of_transactions, number_of_frauds_compliant, fraud_type_counts, blocked_type_counts
 
-def random_transaction(accounts, merch_accounts, min_amount=5000, max_amount=5002):
-    trans_type = random.choice(TRANS_TYPES)
-    amount = random.randint(min_amount, max_amount)
-    from_account = random.choice(accounts)
-    to_account = random.choice(merch_accounts)
-    return {
-        "TransType": trans_type,
-        "Amount": str(amount),
-        "FromAccountNumber": from_account,
-        "ToAccountNumber": to_account
-    }
+# send one random transaction
+
+def random_transaction(accounts, merch, min_amt=5000, max_amt=5002):
+    t = random.choice(TRANS_TYPES)
+    amt = str(random.randint(min_amt, max_amt))
+    f = random.choice(accounts)
+    t_acc = random.choice(merch)
+    return {"TransType": t, "Amount": amt,
+            "FromAccountNumber": f, "ToAccountNumber": t_acc}
+
+# post and return status
 
 def send_transaction(data):
     try:
-        response = requests.post(URL, headers=HEADERS, json=data, timeout=5)
-        return response.status_code, response.text, data, response
+        r = requests.post(URL, headers=HEADERS, json=data, timeout=5)
+        return r.status_code, r.text, data, r
     except Exception as e:
         return None, str(e), data, None
 
-def print_stats(number_of_transactions, number_of_frauds_compliant, fraud_type_counts, blocked_type_counts, logf=None):
-    lines = []
-    lines.append("\n====== IRIS DATA PLATFORM TRANSACTION STATS ======")
-    lines.append(f"Total transactions:       {number_of_transactions}")
-    lines.append(f"Fraud complaints:         {number_of_frauds_compliant}")
-    lines.append("\nTransaction counts by type:")
-    for count, fraud_type in fraud_type_counts:
-        fraud_type_str = str(fraud_type) if fraud_type is not None else "NULL"
-        lines.append(f"  Fraud type {fraud_type_str:8}: {count}")
+# fetch stats
+def fetch_stats():
+    conn = irisnative.createConnection(db_host, db_port, db_ns, db_user, db_pass)
+    cur = conn.cursor()
+    cur.execute("SELECT count(*) FROM IRISDemo.BC_TRANSACTIONS")
+    tx_cnt = cur.fetchone()[0]
+    cur.execute("SELECT count(*) FROM IRISDEMO.CS_FRAUD_COMPLAINT")
+    fraud_cnt = cur.fetchone()[0]
+    cur.execute("SELECT count(*), BC_TRANS_IS_FRAUD FROM IRISDemo.BC_TRANSACTIONS GROUP BY BC_TRANS_IS_FRAUD")
+    fraud_types = cur.fetchall()
+    cur.execute("SELECT count(*), BC_TRANS_WAS_BLOCKED FROM IRISDemo.BC_TRANSACTIONS GROUP BY BC_TRANS_WAS_BLOCKED")
+    blocked = cur.fetchall()
+    cur.close()
+    conn.close()
+    return tx_cnt, fraud_cnt, fraud_types, blocked
+
+# print stats
+def print_stats(tx_cnt, fraud_cnt, fraud_types, blocked, logf=None):
+    lines = ["\n====== IRIS DATA PLATFORM TRANSACTION STATS ======",
+             f"Total transactions:       {tx_cnt}",
+             f"Fraud complaints:         {fraud_cnt}",
+             "\nTransaction counts by fraud:"]
+    for cnt, ft in fraud_types:
+        ft_str = str(ft) if ft is not None else "NULL"
+        lines.append(f"  Fraud {ft_str:8}: {cnt}")
     lines.append("\nTransaction counts by blocked:")
-    for count, blocked_type in blocked_type_counts:
-        blocked_type_str = str(blocked_type) if blocked_type is not None else "NULL"
-        lines.append(f"  Blocked   {blocked_type_str:8}: {count}")
+    for cnt, bt in blocked:
+        bt_str = str(bt) if bt is not None else "NULL"
+        lines.append(f"  Blocked {bt_str:8}: {cnt}")
     lines.append("=================================================\n")
     out = "\n".join(lines)
     print(out)
     if logf:
         logf.write(out + "\n")
 
-def add_million_to_balances():
-    db_host = "bankingcore"
-    conn = irisnative.createConnection(db_host, DB_PORT, DB_NAMESPACE, DB_USER, DB_PASS)
-    cursor = conn.cursor()
-    for table in ["IRISDemo.Account", "IRISDemo.CustomerAccount"]:
-        cursor.execute(f"UPDATE {table} SET Balance = Balance + 1000000")
-    conn.commit()
-    cursor.close()
-    conn.close()
-    print("Added 1000000 to all Balance fields in Account and CustomerAccount.")
-
-def delete_all_rows():
-    conn = irisnative.createConnection(DB_HOST, DB_PORT, DB_NAMESPACE, DB_USER, DB_PASS)
-    cursor = conn.cursor()
-    for table in ["IRISDemo.CS_FRAUD_COMPLAINT", "IRISDemo.BC_TRANSACTIONS"]:
-        cursor.execute(f"DELETE FROM {table}")
-    conn.commit()
-    cursor.close()
-    conn.close()
-    print("Deleted all rows from CS_FRAUD_COMPLAINT and BC_TRANSACTIONS.")
+# main
 
 def main():
-    parser = argparse.ArgumentParser(description="Send random banking transactions or update balances or delete data")
-    parser.add_argument("--num", type=int, help="Number of random POST calls to execute")
-    parser.add_argument("--increase-balances", action="store_true", help="Increase all balances by 1,000,000")
-    parser.add_argument("--min-amount", type=int, help="Minimum transaction amount (default: 5000)")
-    parser.add_argument("--max-amount", type=int, help="Maximum transaction amount (default: 5002)")
-    parser.add_argument("--delete", action="store_true", help="Delete all rows from CS_FRAUD_COMPLAINT and BC_TRANSACTIONS")
-    args = parser.parse_args()
+    p = argparse.ArgumentParser()
+    p.add_argument("--num", type=int)
+    p.add_argument("--increase-balances", action="store_true")
+    p.add_argument("--min-amount", type=int)
+    p.add_argument("--max-amount", type=int)
+    p.add_argument("--delete", action="store_true")
+    args = p.parse_args()
 
     if args.increase_balances:
         add_million_to_balances()
         return
-
     if args.delete:
         delete_all_rows()
         return
-
     if not args.num:
-        print("You must provide --num for transactions or --increase-balances or --delete.")
+        print("Provide --num or --increase-balances or --delete.")
         return
 
-    min_amount = args.min_amount if args.min_amount is not None else 5000
-    max_amount = args.max_amount if args.max_amount is not None else 5002
+    min_amt = args.min_amount or 5000
+    max_amt = args.max_amount or 5002
+    ts = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    logfn = f"transaction_{ts}.log"
 
-    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    logfilename = f"transaction_{timestamp}.log"
-
-    accounts, merch_accounts = fetch_accounts()
-
-    with open(logfilename, "w") as logf:
-        for idx in range(args.num):
-            data = random_transaction(accounts, merch_accounts, min_amount, max_amount)
-            status, body, tx_data, response = send_transaction(data)
-            sys.stdout.write("\r" + " " * 120 + "\r")
+    acc, merch = fetch_accounts()
+    with open(logfn, "w") as logf:
+        for i in range(args.num):
+            data = random_transaction(acc, merch, min_amt, max_amt)
+            status, body, tx, resp = send_transaction(data)
+            sys.stdout.write("\r" + " "*120 + "\r")
             if status:
-                resp_code = response.status_code if response is not None else "NA"
-                last_status = (f"#{idx+1:02d} | Status: {status} | RespCode: {resp_code} | Amount: {tx_data['Amount']} | "
-                               f"From: {tx_data['FromAccountNumber']} -> To: {tx_data['ToAccountNumber']} | "
-                               f"Type: {tx_data['TransType']}")
+                code = resp.status_code if resp else "NA"
+                last = (f"#{i+1:02d} | Status: {status} | RespCode: {code} | "
+                        f"Amt: {tx['Amount']} | From: {tx['FromAccountNumber']} -> {tx['ToAccountNumber']} | "
+                        f"Type: {tx['TransType']}")
             else:
-                last_status = f"#{idx+1:02d} | FAILED | {body}"
-            sys.stdout.write(last_status)
-            sys.stdout.flush()
-            logf.write(last_status + "\n")
+                last = f"#{i+1:02d} | FAILED | {body}"
+            sys.stdout.write(last); sys.stdout.flush()
+            logf.write(last + "\n")
+
+            # update city for fraud
+            update_city()
+
             time.sleep(0.3)
         print()
         stats = fetch_stats()
-        print_stats(*stats, logf=logf)
-        logf.flush()
+        print_stats(*stats, logf)
 
 if __name__ == "__main__":
     main()
 
 
 
-
-
 # /appint/rest
 # http://sojen0:9092/csp/sys/sec/%25CSP.UI.Portal.Applications.Web.zen?PID=%2Fcsp%2Fappint%2Frest#0
-# unthauthenticated + app role
+# unthauthenticated + app role + recompile production + restartd prodction
 # Example usage:
 # python3 generate_transations.py --num 10
 
@@ -174,4 +169,8 @@ if __name__ == "__main__":
 #   python3 generate_transations.py --delete
 #   python3 generate_transations.py --increase-balances
 
-#   python3 generate_transations.py  --min-amount 150 --max-amount 500 --num 10
+#   python3 generate_transations.py  --min-amount 20 --max-amount 300 --num 10
+
+
+# todo: 2018 --> 2025
+# todo: add blocked to fraud for the 500k

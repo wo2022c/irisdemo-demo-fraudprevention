@@ -1,0 +1,5 @@
+database_name: examples
+sqlalchemy_uri: iris://_system:sys@datalake:1972/APP
+expose_in_sqllab: true
+allow_run_async: true
+

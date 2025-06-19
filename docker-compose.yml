@@ -213,9 +213,25 @@ services:
       - SUPERSET_SQLALCHEMY_EXAMPLES_URI=iris://_system:sys@datalake:1972/APP
     depends_on:
       - datalake
-    volumes:
-      # persisted dashboards and charts
-      - ./superset/superset_home:/app/pythonpath/superset_home
-      # configuration files
-      - ./superset/superset_config:/app/pythonpath/superset_config
-      - ./superset/.superset:/root/.superset/
+    # volumes:
+    #   # persisted dashboards and charts
+    #   - ./superset/superset_home:/app/pythonpath/superset_home
+    #   # configuration files
+    #   - ./superset/superset_config:/app/pythonpath/superset_config
+    #   - ./superset/.superset:/root/.superset/
+  # superset:
+  #   build: 
+  #     context: .
+  #     dockerfile: superset-iris/Dockerfile
+  #   ports:
+  #     - "8088:8088"
+  #   environment:
+  #     IRIS_USER:     admin
+  #     IRIS_PASSWORD: admin
+  #     IRIS_HOST:     iris-host.example.com
+  #     IRIS_PORT:     "1972"
+  #     IRIS_NAMESPACE: USER
+  #     ADMIN_USER:    admin
+  #     ADMIN_PASSWORD: admin123
+  #     ADMIN_EMAIL:   admin@example.com
+  #     SUPERSET_SECRET_KEY: someverysecretrandomkey

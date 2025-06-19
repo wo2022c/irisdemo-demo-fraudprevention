@@ -15,10 +15,8 @@ superset init
 #     superset load-examples &
 # fi
 
-if [ -f /app/dashboard_iris.zip ]; then
-    superset import-dashboards \
-    --path /app/dashboard_iris.zip \
-    --username admin
-fi
+#superset import-databases --path /app/databases --username admin
+superset import-dashboards --path /app/dashboard.zip --username admin >> /tmp/superset_dashboard.log  2>&1 &
+
 
 /usr/bin/run-server.sh
